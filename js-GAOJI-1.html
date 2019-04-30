@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js高级第一天</title>
+
+<style>
+#dv{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+}
+
+
+
+
+
+
+
+</style>
+</head>
+<script type="text/javascript" src="common.js"></script>
+<body>
+<input type="button" value="显示效果" id="btn">
+<div id="dv"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+//对象：特指的某个事物，具有属性和方法（一组无序的属性的集合）
+//特征-----》属性
+//行为-----》方法
+//三种创建对象的方式
+//1、字面量方式创建
+var per1={
+	name:"卡卡西",
+	age:20,
+	sex:"男",
+	eat:function(){
+		console.log("吃臭豆腐");
+	},
+	readBook:function(){
+		console.log("亲热天堂");
+	}
+};
+//2、调用系统构造函数
+var per2=new Object();
+per2.name="大蛇丸";
+per2.age=30;
+per2.sex="男";
+per2.eat=function(){
+	console.log("吃榴莲");
+};
+per2.play=function(){
+	console.log("这个小蛇真好玩");
+};
+
+//3、自定义构造函数
+function Person(name,age,sex){
+	this.name=name;
+	this.age=age;
+	this.sex=sex;
+	this.play=function(){
+		console.log("天天打游戏");
+	};
+}
+var per=new Person("雏田",18,"女");
+
+//工厂模式
+function createObject(name,age){
+	var obj=new Object();
+	obj.name=name;
+	obj.age=age;
+	obj.sayHi=function(){
+		console.log("您好");
+	};
+	return obj;
+}
+var per3=createObject("小米",20);
+
+
+/*
+工厂模式与自定义构造函数的异同点
+共同点：都是函数，都可以创建对象，都可以传入参数
+工厂模式：
+函数名是小写的
+有new
+有返回值
+new之后的对象是当前的这个对象
+直接调用函数就可以创建对象
+
+自定义构造函数：
+函数名是大写（首字母）
+没有new
+没有返回值
+this是当前的对象
+通过new的方式来创建对象
+ */
+
+//面向对象的思想是----抽象的过程----实例化的过程
+     
+
+
+//构造函数和实例对象之间的关系
+//自定义构造函数---实例化对象
+function Person(name,age,sex){
+	this.name=name;
+	this.age=age;
+	this.sex=sex;
+	this.play=function(){
+		console.log("天天打游戏");
+	};
+}
+//构造函数----创建对象
+var per4=new Person("小苏",38,"女");
+per4.play();
+//实例对象是通过构造函数来创建的
+//看这个对象的结构
+console.dir(per4);
+console.dir(Person);
+
+//实例对象的构造器（构造函数）以下两种方法都可以判断这个对象是不是这种数据类型
+//实例对象的构造器是指向Person的，结果是true ，所以，这个实例对象per4就是通过Person来创建的 
+console.log(per4.constructor==Person);
+console.log(per4 instanceof Person);
+
+
+/*
+总结：
+实例对象和构造函数之间的关系
+1、实例对象是通过构造函数来创建的----创建的过程叫做实例化
+2、如何判断对象是不是这个数据类型
+1)通过构造器的方式  实例对象.构造器（constructor ）==构造函数名字
+2）对象 instanceof 构造函数名字
+尽可能的使用第二种方式来识别
+ */
+
+
+//原型添加方法解决数据共享
+function Person1(name,age){
+  this.name=name;
+  this.age=age;
+ 
+  }
+
+//通过原型来添加方法,解决数据共享，节省内存空间
+Person1.prototype.play=function(){
+	console.log("打游戏");
+};
+var per5=new Person1("熊白",20);
+var per6=new Person1("大黑",30);
+console.log(per5.play==per6.play);
+
+
+console.dir(per5);
+console.dir(per6);
+console.dir(Person1);
+console.log(per5.__proto__==Person1.prototype);
+//通过原型来解决---数据共享，节省内存空间，作用之一
+//
+
+
+
+//常规思想---面向过程编程思想
+//my$("btn").onclick=function(){
+//my$("dv").style.backgroundColor="blue";
+//};
+//面向对象编程思想---初级
+//按钮是一个对象，div是一个对象，颜色是一个属性
+function ChangStyle(btnObj,dvObj,json){
+   this.btnObj=btnObj;//按钮对象
+   this.dvObj=dvObj;//div对象
+   this.json=json;//颜色
+}
+//通过原型数据共享来改变背景颜色
+ChangStyle.prototype.init=function(){
+	var that=this;
+  //点击按钮，改变div的背景颜色
+  this.btnObj.onclick=function(){
+   for(var key in that.json){
+    that.dvObj.style[key]=that.json[key];
+   }
+  };    
+};
+
+//实例化对象
+var json={
+	"width":"500px","height":"500px","backgroundColor":"pink","opacity":"0.2"
+};
+var cs=new ChangStyle(my$("btn"),my$("dv"),json);
+cs.init();//调用方法
+
+
+/*
+实例对象中有个属性，__proto__,也是对象，叫原型，不是标准的属性，浏览器用的
+构造函数中有一个属性，prototype,也是对象，叫原型，数标准属性，程序员用的
+
+原型----__proto__或者是prototype,都是原型对象
+原型的作用：数据共享，节省内存空间
+
+ */
+
+//构造函数与实例对象和原型对象之间的关系
+/*
+
+ 总结：
+构造函数可以实例化对象
+构造函数中有一个属性叫prototype,是构造函数的原型对象
+构造函数的原型对象（prototype）中有一个constructor构造器，这个构造器指向的就是自己所在的原型对象所在的构造函数
+实例对象的原型对象（__proto__）指向的是该构造函数的原型对象
+构造函数的原型对象（prototype）中的方法是可以被实例对象直接访问的
+
+
+三者之间的关系
+1、构造函数创建了实例对象
+2、构造函数里面有个prototype属性指向的是自己的原型对象
+3、原型对象里有个constructor构造器指向的是自己的构造函数
+4、实例对象里面的__proto__属性指向了构造函数里面的prototype属性里面的原型对象中的方法，而实例对象可以共享原型对象里面的这个方法
+ */
+
+
+
+//什么样的数据是需要写在原型中？
+/*
+1、需要共享的数据就写在原型中（属性需要共享，方法也需要共享）
+不想要共享的数据写在构造函数中，需要共享的数据写在原型中
+
+
+
+
+
+
+ */
+function Student(name,age,sex){
+	this.name=name;
+	this.age=age;
+	this.sex=sex;
+}
+Student.prototype={
+	//手动修改构造器的指向
+	constructor:Student,
+	height:"188",
+	weight:"55kg",
+	study:function(){
+		console.log("学习编程");
+	},
+	eat:function(){
+		console.log("吃榴莲");
+	}
+};
+var stu=new Student("段誉",20,"男");
+stu.eat();
+stu.study();
+
+
+
+//原型对象中的方法，可以相互调用
+function Animal(name,age){
+	this.name=name;
+	this.age=age;
+}
+//原型中添加方法
+Animal.prototype.eat=function(){
+    console.log("动物吃东西");
+    this.play();
+};
+Animal.prototype.play=function(){
+    console.log("玩球");
+    this.sleep();
+};
+Animal.prototype.sleep=function(){
+    console.log("睡觉了");
+    
+};
+
+var dog=new Animal("小苏",20);
+dog.eat();
+
+
+//实例对象使用的属性和方法层层的搜索
+function PersonA(age,sex){
+	this.age=age;
+	this.sex=sex;
+	this.play=function(){
+		console.log("天天打游戏");
+	};
+}
+PersonA.prototype.sex="女";
+PersonA.prototype.play=function(){
+	console.log("天天看电影");
+};
+var perA=new PersonA(20,"男");
+console.log(perA.sex);
+perA.play();
+/*
+实例对象使用的属性或方法，先在实例对象中查找，找到了则直接使用，找不到则去实例对象的__proto__指向的原型对象prototype中找，找到了则使用，找不到则报错
+ */
+
+//为内置对象（系统自带）的原型对象中添加方法
+//为内置对象添加原型方法
+//var arr=new Array(10,20,30,40,50);
+//arr.join();
+//console.dir(arr);
+//为Array内置对象的原型对象中添加方法
+Array.prototype.mySort=function(){
+ for (var i = 0; i < this.length-1; i++) {
+           for(var j= 0;j<this.length-1-i; j++){
+                  if(this[j]>this[j+1]){
+                     var temp = this[j];
+                     this[j] =this[j+1];
+                     this[j+1]=temp;
+                  }
+              } 
+
+           }     
+};
+var arr=[100,3,52,45,46,10];
+arr.mySort();
+console.log(arr); 
+
+//局部变量变成全局变量
+(function(win){
+	var num=10;//局部变量
+	win.num=num;
+})(window);
+console.log(num);
+
+//如何把局部变量变成全局变量
+//把局部变量给window就行了
+
+
+
+
+
+
+//通过自调用函数产生一个随机数对象，在自调用函数的外面，调用该随机数对象方法产生随机数
+(function(window){
+	//产生随机数的构造函数
+	function Random(){
+
+	}
+	//在原型对象中添加方法
+	Random.prototype.getRandom=function(min,max){
+     return Math.floor(Math.random()*(max-min)+min);
+	};
+	//把Random对象暴露给顶级对象window---外部可以直接使用这个对象
+	window.Random=Random;
+})(window);
+var rm=new Random();
+console.log(rm.getRandom(10,50));
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+	<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 </script>
+
+</body>
+</html>

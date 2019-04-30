@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+	<script>
+$(function(){
+	// 定义图片索引
+	index=0;
+	/*添加节流阀 true说明本次单击会有响应处理*/
+	var flag=true;
+	/*下一张*/
+	$(".next").on("click",function(){
+		if(flag==true){
+			flag=false;
+			index--;
+			// 下一张就是讲所有的li元素围绕x轴旋转
+       $("li").each(function(key,value){
+          /*通过添加transform样式进行旋转*/
+          $(this).css({
+          	"transform":"rotateX("+(index*90)+"deg)",
+          	"transition-delay":(key*0.2)+"s"
+		});
+       
+          });
+       setTimeout(function(){
+       	flag=true;
+       },1000);
+       };
+	});
+	$(".next").on("click",function(){
+		if(flag==true){
+			flag=false;
+			index++;
+			// 下一张就是讲所有的li元素围绕x轴旋转
+       $("li").each(function(key,value){
+          /*通过添加transform样式进行旋转*/
+          $(this).css({
+          	"transform":"rotateX("+(index*90)+"deg)",
+          	"transition-delay":(key*0.2)+"s"
+		});
+       
+          });
+       setTimeout(function(){
+       	flag=true;
+       },1000);
+       };
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+<style>
+/*携程网*/
+*{
+	margin: 0;
+	padding: 0;
+}
+  
+/*顶部模块*/
+header{
+	width: 100%;
+	display: flex;
+}
+header>a{
+	flex: 1;
+}
+header>a>img{
+	width: 100%;
+}
+/*主体内容*/
+main{
+	width: 100%;
+	padding: 0 10px;
+	/*设置盒模型*/
+	box-sizing: border-box;
+}
+main>.item{
+	width: 100%;
+	height: 100px;
+	background-color: #57c3ae;
+	border-radius:10px;
+	margin-top: 10px;
+	display: flex;
+}
+main>.item:nth-of-type(2){
+	background-color: #33aa46;
+}
+main>.item:nth-of-type(3){
+	background-color: #aa4b40;
+}
+main>.item:nth-of-type(4){
+	background-color: pink;
+}
+main>.item>.left{
+	flex:1;
+}
+main>.item>.right{
+	flex:2;
+	/*设置换行显示*/
+	flex-wrap: wrap;
+	display: flex; 
+}
+main>.item>.right>a{
+  /*如果想让子元素换行显示，必须为子元素设置宽度*/
+  width: 50%;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+  text-decoration: none;
+  color:#fff;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+main>.item>.right>a:nth-last-of-type(-n+2){
+	border-bottom:none;
+}
+
+main>.extra{
+	width: 100%;
+	display: flex;
+}
+main>.extra>a{
+	flex: 1;
+}
+main>.extra>a>img{
+	width: 100%;
+}
+
+/*底部块样式*/
+footer{
+	width: 100%;
+	font-size: 13px;
+}
+footer>nav{
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+footer>nav>a{
+    flex:1; 
+    line-height: 30px;
+    text-align: center;
+    color: #888;
+    text-decoration: none;  
+}
+footer>.link{
+	text-align: center;
+	line-height: 25px;
+}
+footer>.copyRight{
+	text-align: center;
+}
+
+/*3D切割轮播图案例*/
+.view{
+	width: 970px;
+	height: 385px;
+	margin:1500px auto;
+	position: relative;
+}
+
+.view>ul{
+	width: 100%;
+	height: 100%;
+	list-style: none;
+	transform-style: preserve-3d;
+}
+.view>ul>li{
+	width: 20%;
+	height: 100%;
+	float: left;
+	position: relative;
+	transform-style: preserve-3d;
+	/*添加过度效果*/
+	transition: transform 0.5s;
+}
+.view>ul>li>span{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left:0;
+	top:0;
+
+}
+.view>ul>li>span:nth-of-type(1){
+	background: url("images/1.jpg");
+	/*往z轴正方向偏移*/
+	transform:translateZ(192.5px);
+}
+.view>ul>li>span:nth-of-type(2){
+	background: url("images/2.jpg");
+	transform:translateY(-192.5px) rotateX(90deg);
+}
+.view>ul>li>span:nth-of-type(3){
+	background: url("images/3.jpg");
+	transform:translateZ(-192.5px) rotateX(180deg);
+}
+.view>ul>li>span:nth-of-type(4){
+	background: url("images/4.jpg");
+	transform:translateY(192.5px) rotateX(-90deg);
+}
+
+/*设置每一个li元素的span所显示的图片的位置*/
+.view>ul>li:nth-of-type(2)>span{
+	background-position: -100% 0;
+}
+
+.view>ul>li:nth-of-type(3)>span{
+	background-position: -200% 0;
+}
+.view>ul>li:nth-of-type(4)>span{
+	background-position: -300% 0;
+}
+.view>ul>li:nth-of-type(5)>span{
+	background-position: -400% 0;
+}
+
+.pre,.next{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    position: absolute;
+    text-decoration: none ;
+    font-size: 40px;
+    top:50%;
+    transform:translate(0,-50%);
+    background-color: rgba(0,0,0,0.5);
+    color:#fff;
+
+}
+.pre{
+	left:0;
+}
+.next{
+	right:0;
+}
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<!-- 携程网页面 -->
+	<div class="container">
+<header>
+<a href=""><img src="images/1.jpg"></a>
+</header>
+<main>
+<section class="item">
+<div class="left"></div>
+<div class="right">
+<a href="">海外酒店</a>
+<a href="">团购</a>
+<a href="">特惠酒店</a>
+<a href="">客栈公寓</a>
+</div>
+</section>
+<section class="item">
+<div class="left"></div>
+<div class="right">
+<a href="">海外酒店</a>
+<a href="">团购</a>
+<a href="">特惠酒店</a>
+<a href="">客栈公寓</a>
+</div>
+</section>
+<section class="item">
+<div class="left"></div>
+<div class="right">
+<a href="">海外酒店</a>
+<a href="">团购</a>
+<a href="">特惠酒店</a>
+<a href="">客栈公寓</a>
+</div>
+</section>
+<section class="item">
+<div class="left"></div>
+<div class="right">
+<a href="">海外酒店</a>
+<a href="">团购</a>
+<a href="">特惠酒店</a>
+<a href="">客栈公寓</a>
+</div>
+</section>
+<section class="item">
+<div class="left"></div>
+<div class="right">
+<a href="">海外酒店</a>
+<a href="">团购</a>
+<a href="">特惠酒店</a>
+<a href="">客栈公寓</a>
+</div>
+</section>
+<section class="extra">
+<a href=""><img src="images/2.jpg" alt=""></a>
+<a href=""><img src="images/3.jpg" alt=""></a>
+</section>
+</main>
+
+<footer>
+
+<nav>
+<a href="">电话预定</a>
+<a href="">下载客户端</a>
+<a href="">我的订单</a>
+
+
+</nav>
+<p class="link">
+<a href="">网站地图</a>
+<a href="">English</a>
+<a href="">电脑版</a>
+</p>
+<p class="copyRight">&copy;2015 携程旅行</p>
+</footer>
+	</div>
+
+<!-- 切割轮播图 -->
+<div class="view">
+<ul>
+	<li>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+	
+	</li>
+	<li>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+	
+	</li>
+	<li>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+	
+	</li>
+	<li>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+
+	</li>
+	<li>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+
+	</li>
+</ul>
+<a href="" class="pre">&lt;</a>
+<a href="" class="next">&gt;</a>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

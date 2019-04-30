@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复习</title>
+
+<style>
+#dj{
+    width: 300px;
+    height: 300px;
+    background-color: yellow;
+}
+
+.cls{
+	display: none;
+}
+
+#cp{
+	width: 300px;
+    height: 300px;
+    background-color: blue;
+
+}
+.black{
+	background-color: black;
+}
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+</head>
+<body class="black">
+<!-- 案例1：点击按钮显示图片及设置宽和高 -->
+<input type="button" value="宽高" id="btn">
+<img src="" alt="图片未加载" id="im">  
+
+
+
+<!-- 案例2：点击按钮设置P标签的文本内容 -->
+<input type="button" value="修改P" id="btn1">
+<p id="p1">这是一个P</p>
+
+
+
+<!-- 案例3：点击按钮修改超链接的地址及文字内容 -->
+<input type="button" value="修改超链接" id="btn2">
+<a id="ak" href="www.baidu.com">百度</a>
+
+
+
+<!-- 案例4：点击按钮设置多个p标签内容-->
+<input type="button" value="多个p" id="btn3">
+<div id="dv1">
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+</div>
+<div id="dv2">
+<p>呵呵</p>
+<p>呵呵</p>
+<p>呵呵</p>
+<p>呵呵</p>
+<p>呵呵</p>
+</div>
+<!-- 案例5：点击按钮修改多个文本框的值 -->
+<input type="button" value="控制文本框" id="btn4">
+<input type="text" value="" ><br>
+<input type="text" value="" ><br>
+<input type="text" value="" ><br>
+<input type="text" value="" ><br>
+<input type="text" value="" ><br>
+
+
+<!-- 案例6：点击每个图片弹出对话框-->
+<img src="images/ahimg1.jpg" alt="图片未加载">
+<img src="images/ahimg2.jpg" alt="图片未加载">
+<img src="images/ahimg4.jpg" alt="图片未加载">
+
+
+
+
+<!-- 案例7：点击按钮修改value的属性-->
+<input type="button" value="修改" id="btn5">
+
+
+
+
+<!-- 案例8：点击图片修改它的宽和高-->
+<img src="images/flimg3.gif" alt="" id="im2">
+<!-- 案例9：按钮的排他功能 -->
+<div id="dd">
+<input type="button" value="没怀孕">
+<input type="button" value="没怀孕">
+<input type="button" value="没怀孕">
+<input type="button" value="没怀孕">
+<input type="button" value="没怀孕">
+</div>
+<!-- 案例10：点击超链接切换图片 -->
+<a  id="akg" href="images/jqt.jpg"><img src="images/s_img2.png" alt="" id="imgS"></a>
+
+
+
+
+
+<!--案例11：点击按钮切换图片 -->
+<input type="button" value="切换图片" id="btn6">
+<img src="images/hd2.gif" alt="" id="img2">
+
+
+
+
+<!-- 案例12：点击按钮选择性别和兴趣-->
+<input type="button" value="选择性别" id="btn7">
+<input type="radio" value="1" name="sex">男
+<input type="radio" value="2" name="sex" id="rad">女
+<input type="radio" value="3" name="sex">人妖
+<input type="button" value="选择兴趣" id="btn8">
+<input type="checkbox" value="1" name="xingqu">吃饭
+<input type="checkbox" value="2" name="xingqu">睡觉
+<input type="checkbox" value="3" name="xingqu" id="in3">打豆豆
+<input type="checkbox" value="4" name="xingqu">打游戏
+<input type="checkbox" value="5" name="xingqu">看电影
+<input type="checkbox" value="6" name="xingqu">听歌
+<input type="checkbox" value="7" name="xingqu" id="in2">唱歌
+<!-- 案例13：点击按钮选择菜单 -->
+<input type="button" value="点菜" id="btn9">
+<select name="" id="df">
+<option value="1">红烧狮子头</option>
+<option value="2">清蒸桂鱼</option>
+<option value="3" id="nb">番茄牛腩</option>
+<option value="4">酸辣藕丁</option>
+<option value="5">油炸冰溜子</option>
+</select>
+<textarea name="" id="tt" cols="30" rows="10" readonly="readonly">
+某人问智者，
+大师：你觉得怎么做才是最快乐的？
+回答说：不要和愚者辩论
+这个人说我不这么认为！
+大师说：您说的对，
+我就是这么帅
+</textarea>
+<input type="button" value = "注册" id="btnA">
+<!-- 案例14：点击按钮设置div的样式 -->
+<input type="button" value="设置div" id="btnB">
+<div id="hh"></div>
+<!-- 案例15：点击按钮设置div的显示与隐藏 -->
+<input type="button" value= "隐藏" id="btnC">
+<div id="dj"></div>
+<!-- 案例16：div的显示与隐藏通过类样式实现 -->
+<input type="button" value="隐藏" id="btnD">
+<div id="cp" class="cls"></div>
+
+<!-- 案例17：网页开关灯-->
+<input type="button" value="开/关灯" id="btnE">
+
+
+
+
+
+<script type="text/javascript" src="common.js"></script>
+	<script>
+// 案例1：点击按钮显示图片及设置宽和高
+var btnObj=my$("btn");
+btnObj.onclick=function(){
+   var imobj=my$("im");
+   imobj.src="images/advjimg4.jpg";
+   imobj.width="400";
+   imobj.height="300";
+}
+ //案例2：点击按钮设置P标签的文本内容 
+my$("btn1").onclick=function(){
+	var pObj=my$("p1");
+	pObj.innerText="我是一个p标签";
+}
+//案例3：点击按钮修改超链接的地址及文字内容
+my$("btn2").onclick=function(){
+	var aObj=my$("ak");
+	aObj.href="www.jd.com";
+	aObj.innerText="京东";
+}
+//案例4：点击按钮设置多个p标签内容
+my$("btn3").onclick=function(){
+	var pObj1=my$("dv2").getElementsByTagName("p");
+	for (var i = 0; i < pObj1.length; i++) {
+		pObj1[i].innerText="这是个屁";
+	}
+}
+//案例5：点击按钮修改多个文本框的值
+my$("btn4").onclick=function(){
+	var txtObj=document.getElementsByTagName("input");
+	for (var i = 0; i < txtObj.length; i++) {
+		if(txtObj[i].type!="button"){
+
+			txtObj[i].value="小苏好可爱啊";
+		}
+	}
+}
+//案例6：点击每个图片弹出对话框
+var imgObj=document.getElementsByTagName("img");
+for (var i = 0; i < imgObj.length; i++) {
+	imgObj[i].onclick=function(){
+		alert("弹出对话框");
+	}
+}
+
+//案例7：点击按钮修改value的属性
+var inObj=my$("btn5");
+inObj.onclick=function(){
+	this.value="不修改";
+	this.type="text";
+}
+//案例8：点击图片修改它的宽和高
+var imObj1=my$("im2");
+imObj1.onclick=function(){
+    this.width="200";
+    this.height="300";
+
+}
+//案例9：按钮的排他功能
+var inputS=my$("dd").getElementsByTagName("input");
+for (var i = 0; i < inputS.length; i++) {
+	inputS[i].onclick=function(){
+		for (var j = 0; j < inputS.length; j++) {
+			inputS[j].value="没怀孕";
+		}
+		this.value="怀孕了";
+	}
+}
+
+//案例10：点击超链接切换图片
+var imObj2=my$("imgS");
+imObj2.onclick=function(){
+	this.src=my$("akg").href;
+	return false;
+}
+
+//案例11：点击按钮切换图片
+var btnObj=my$("btn6");
+btnObj.onclick=function(){
+	var tuPI=my$("img2");
+	tuPI.src="images/hd3.gif";
+}
+//案例12：点击按钮选择性别和兴趣
+my$("btn7").onclick=function(){
+    my$("rad").checked=true;
+}
+my$("btn8").onclick=function(){
+	my$("in2").checked=true;
+	my$("in3").checked=true;
+}
+
+//案例13：点击按钮选择菜单 
+my$("btn9").onclick=function(){
+	my$("nb").selected=true;
+}
+my$("btnA").onclick=function(){
+	my$("tt").value="嘎嘎";
+}
+//案例14：点击按钮设置div的样式
+my$("btnB").onclick=function(){
+	my$("hh").style.width="300px";
+	my$("hh").style.height="300px";
+	my$("hh").style.backgroundColor="pink";
+}
+
+
+//案例15：点击按钮设置div的显示与隐藏
+my$("btnC").onclick = function(){
+	if(this.value=="隐藏"){
+   my$("dj").style.display = "none";
+   this.value="显示";	
+   }else if(this.value=="显示"){
+   	my$("dj").style.display = "block";
+   this.value="隐藏";	
+   }	
+}
+
+//案例16：div的显示与隐藏通过类样式实现
+my$("btnD").onclick=function(){
+	if(my$("cp").className!="cls"){
+		my$("cp").className="cls";
+		this.value="显示";
+	}else{
+		my$("cp").className="";
+		this.value="隐藏";
+	}
+}
+//案例17：网页开关灯
+my$("btnE").onclick=function(){
+   document.body.className=document.body.className!="black"?"black":"";
+}
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

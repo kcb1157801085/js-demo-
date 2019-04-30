@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-高级5</title>
+	<style>
+
+#dv{
+width: 300px;
+height: 200px;
+position: absolute;
+left:300px;
+top: 100px;
+
+}
+.strengthLv0{
+	height: 6px;
+	width: 120px;
+	border: 1px solid #ccc;
+	padding: 2px;
+}
+.strengthLv1{
+	background: red;
+	height: 6px;
+	width: 40px;
+	border:1px solid #ccc;
+	padding:2px;
+}
+.strengthLv2{
+	background: orange;
+	height: 6px;
+	width: 80px;
+	border:1px solid #ccc;
+	padding:2px;
+}
+
+.strengthLv3{
+	background: green;
+	height: 6px;
+	width: 120px;
+	border:1px solid #ccc;
+	padding:2px;
+}
+
+div{
+	display: block;
+}
+
+
+
+
+
+	</style>
+</head>
+<body>
+<!-- 验证密码强度 -->
+<div id="dv">
+<label for="pwd">密码</label>
+<input type="password" id="pwd" maxlength="16">
+<div>
+<em>密码强度：</em>
+<em id="strength"></em>
+<div id="strengthLevel" class="strengthLv0"></div>
+</div>
+</div>
+<!-- 验证邮箱地址 -->
+请您输入邮箱地址：<input type="text" value="" id="email"/>*<br/>
+
+<!-- 验证用户输入的是不是中文名字 -->
+请输入您的名字： <input type="text" value="" id="userName">*<br>
+
+
+
+
+
+
+
+<script src="common.js" type="text/javascript"></script>
+
+<script>
+/*
+浅拷贝：拷贝就是复制，就相当于把一个对象中的所有的内容，复制一份给另一个对象，直接复制，或者是，就是把把一个对象的地址给了另一个对象，他们指向相同，两个对象之间藕共同的属性或者方法，都可以使用
+
+
+
+
+深拷贝：拷贝还是复制，深：把一个对象中所有的属性或者方法，一个一个的找到，并且在另一个对象中开辟相应的空间，一个一个的存储到另一个对象中
+ */
+   
+var obj1={
+	age:10,
+	sex:"男",
+	car:["奔驰","宝马"]
+};
+var obj2={};
+//写一个函数，作用：把一个对象的属性复制到另一个对象中，浅拷贝
+//把a对象中的所有的属性复制到对象b中
+function extend(a,b){
+	for(var key in a){
+		b[key]=a[key];
+	}
+}
+extend(obj1,obj2);
+console.dir(obj2);//开始的时候这个对象是空对象
+console.dir(obj1);//有属性
+
+
+var obj3={
+	age:10,
+	sex:"男",
+	car:["奔驰","宝马"],
+	dog:{
+		name:"大黄",
+		age:5,
+		color:"黑黄色"
+	}
+};
+
+
+var obj4={};//空对象
+//通过函数实现，把对象a中的所有的数据深拷贝到对象b中
+function extenD(a,b){
+    for(var key in a){
+    	//先获取a对象中的每个属性的值
+    	var item=a[key];
+    	//判断这个属性的值是不是数组
+    	if(item instanceof Array){
+    		//如果是数组，那么在b对象中添加一个新的属性，并且这个属性的值也是数组
+          b[key]=[];
+          //调用这个方法，把a对象中这个数组中的属性值一个一个的复制到b对象的这个数组属性中
+          extenD(item,b[key]);
+          //判断这个属性的值是不是对象
+    	}else if(item instanceof Object){
+    		//如果是对象类型的，那么在b对象中添加一个新的属性，是一个空对象
+          b[key]={};
+          //再次调用这个方法，把a对象中的属性对象中的值一个一个的复制到b对象的这个对象属性中
+          extenD(item,b[key]);
+    	}else{
+       //如果这个值是普通的数据，直接复制到b对象的这个属性中
+         b[key]=item;
+    	}
+    }
+}
+extenD(obj3,obj4);
+console.dir(obj3);
+console.dir(obj4);
+/*
+
+正则表达式：也是规则表达式，按照一定的规则组成的一个表达式，这个表达式的作用主要是匹配字符串的
+
+正则表达式的组成：是由元字符或者是限定符组成的一个式子
+
+元字符：
+  . 表示的是：除了\n以外的任意的一个字符
+  []表示的是：范围， 例：[0-9]表示的是0到9这几件的任意一个数字
+  [a-z]表示的是：所有的小写的字母中的任意的一个
+  [A-Z]表示的是：所有的大写的字母中的任意一个   
+  [a-zA-Z]表示的是：所有的字母的任意一个
+  [0-9a-zA-Z]表示的是：所有的数字或者是字母中的一个
+  []  另一个含义：把正则表达式中元字符的意义干掉  [.]就是一个.
+  |  表示的是：或者  [0-9]|[a-z] 表示的是要么是一个数字，要么是一个小写的字母
+  ()  表示的是分组 提升优先级 
+  ([0-9])([1-5])([a-z])三组，从最左边开始计算
+  * 表示的是：前面的表达式出现了0次到多次
+  [a-z][0-9]*   小写字母中的任意一个 后面是要么是没有数字的，要么是多个数字的
+  + 表示的是：前面的表达式出现了一次到多次
+  [a-z][9]+   小写字母一个后面最少一个9，或者多个9
+  ?  表示的是：前面的表达式出现了0次到1次，最少0次，最多1次  另一个含义：阻止贪婪模式
+  [4][a-z]?    
+
+
+限定符：限定前面的表达式出现的次数
+  {}  更加的明确前面的表达式出现的次数
+{0,}  表示的是前面的表达式出现了0次到多次，和*一样的
+{1,}  表示的是前面的表达式出现了1次到多次, 和+一样的
+{0,1} 表示的是前面的表达式出现了0次到1次,  和?一样的
+{4}   前面的表达式出现了4次
+   ^  表示的是以...开始，或者是取非（取反）^[0-9]以数字开头
+   ^[a-z]  以小写字母开始
+   [^0-9]  取反，非数字
+   [^a-z]  非小写字母 
+   $  表示以...结束   [0-9][a-z]$  必须以小写字母结束
+   \d 表示数字中的任意一个
+   \D 表示非数字中的一个
+   \s 空白符中的一个
+   \S 非空白符
+   \w 非特殊符号  含 _ 下划线 
+   \W 特殊符号
+   \b 单词边界
+
+正则表达式中：g 表示的的是全局模式匹配
+正则表达式中：i 表示忽略大小写
+
+*/
+
+//练习
+//身份证的正则表达式
+//15位身份证或18位身份证 
+//([1-9][0-9]{14})|([1-9][0-9]{16}[0-9xX])
+//2.座机号码的正则表达式
+//  010-19879875
+//  0431-87123490
+//\d{3,4}[-]\d{8}
+//[0-9]{3,4}[-][0-9]{8}
+
+ //2.QQ号码的正则表达式
+ //[1-9][0-9]{4,10}
+
+//3手机号码的正则表达式
+/*
+130 131 132 133 134 135 136 137 138 139 
+143 147 
+150 151 152 153 154 155 156 157 158 159
+170 171 173 176 177
+180 181 182 183 184 185 186 187 188 189
+ */
+//([1][358][0-9][0-9]{8})|([1][4][37][0-9]{8})|([1][7][01367][0-9]{8})
+
+//邮箱的正则表达式-----重点
+//[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}
+
+//创建正则表达式对象
+/*
+1.通过构造函数创建对象
+2.字面量的方式创建对象
+
+
+
+
+
+ */
+//构造函数的方式创建正则表达式的对象
+var reg=new RegExp(/\d{5}/);
+//字符串
+var str="我的电话是10086";
+//调用方法验证字符串是否匹配
+var flag=reg.test(str);
+console.log(flag);
+
+//字面量的方式创建正则表达式对象
+var reg1=/\d{1,5}/;
+var flag=reg1.test("小苏的幸运数字是888");
+console.log(flag);
+
+
+
+//验证密码的弱中强
+/*
+密码：数字，字母，特殊符号
+密码：只有数字，或者只有字母，或者只有特殊符号----1级
+两两组合：有数字也有字母，有数字和特殊符号，字母特殊符号----2级
+密码：有数字有字母有特殊符号----3级
+ */
+
+//获取文本框注册键盘抬起事件
+my$("pwd").onkeyup=function(){
+   //每次键盘抬起都要获取文本框中的内容，验证文本框中有什么东西，得到一个级别，然后下面的div显示对应的颜色
+     //给我密码，我返回对应的级别
+    if(this.value.length>=6){
+    	var lvl=getLvl(this.value);
+    	my$("strengthLevel").className="strengthLv"+lvl;
+    }else{
+        my$("strengthLevel").className="strengthLv0";
+    }
+
+};
+
+
+
+     function getLvl(pwd){
+     	var lvl=0;//默认是0级
+     	//密码中是否有数字，或者字母，或者是特殊符号
+     	if(/[0-9]/.test(pwd)){
+           lvl++;
+     	}
+     	//判断密码中有没有字母
+     	if(/[a-zA-Z]/.test(pwd)){
+     		lvl++;
+     	}
+     	if(/[^0-9a-zA-Z_]/.test(pwd)){
+     		lvl++;
+     	}
+     	return lvl;
+     }
+//验证邮箱地址
+//如果输入的是邮箱，那么背景颜色为绿色，否则为红色
+//获取文本框，注册失去焦点的事件
+my$("email").onblur=function(){
+   //判断这个文本框中输入的是不是邮箱
+ var reg=/^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
+ if(reg.test(this.value)){
+ 	this.style.backgroundColor="green";
+ }else{
+ 	this.style.backgroundColor="red";
+ }
+};
+
+//验证中文名字
+my$("userName").onblur=function(){
+    var reg=/^[\u4e00-\u9fa5]{2,6}$/;
+    if(reg.test(this.value)){
+    	this.style.backgroundColor="green";
+    }else{
+    	this.style.backgroundColor="pink";
+    }
+};
+  
+
+//字符串中使用正则表达式的方法
+var str="中国移动:10086,中国联通:10010,中国电信:10000";
+//把里面所有的数字全部显示出来
+var array=str.match(/\d{5}/g);
+console.log(array);
+
+//正则替换方法
+var str1="小苏好帅哦，真的太帅了，帅，就是真帅";
+str1=str1.replace(/帅/g,"猥琐");
+console.log(str1);
+
+
+//正则去掉字符串空格
+var str2="   哦买噶的    ,太幸福了  ";
+str2=str2.replace(/\s+/g,"");
+console.log(str2);
+//所有的h都替换成S
+var str3="HhppH";
+str3=str3.replace(/[h]/gi,"S");
+console.log(str3);
+
+
+
+
+
+ 
+</script>
+
+</body>
+</html>

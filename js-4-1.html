@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第四天练习及笔记</title>
+</head>
+<body>
+	<script>
+	//通过函数实现数组最大值、最小值、和？
+	function MaxAndMinAndSum(array){
+          var max =array[0];
+          var min =array[0];
+          var sum =0;
+       for (var i = 0; i < array.length; i++) {
+       	       sum+=array[i];
+       	       if(max<array[i]){
+                    max = array[i];
+       	       }
+       	       if(min>array[i]){
+                   min = array[i];
+       	       }
+       }
+       var num =[max,min,sum];
+       return num;
+	}
+	var resultArray = MaxAndMinAndSum([1,5,8,9,7,6,4]);
+     console.log("最大值："+resultArray[0]);
+     console.log("最小值："+resultArray[1]);
+     console.log("和为："+resultArray[2]);
+
+
+
+
+
+
+    //通过函数实现数组反转
+    function reverseArray(arr){
+        for (var i = 0; i < arr.length/2; i++) {
+        	//利用第三方变量交换位置
+                 var temp = arr[i];                
+                 arr[i] = arr[arr.length-1-i];//利用数组的长度-1等于最大的数组索引值找到最后的那个数组元素
+                 arr[arr.length-1-i] = temp;
+        }
+            return arr;
+    } 
+console.log(reverseArray([1,3,5,7,9]));
+   //通过函数实现冒泡排序(//将数组中的数按照一定的顺序进行排列【从小到大，从大到小】)
+function arrayNum(array1){
+    for (var i = 0; i < array1.length-1; i++) {
+           for(var j= 0;j<array1.length-1-i; j++){
+                  if(array1[j]>array1[j+1]){
+                     var temp = array1[j];
+                     array1[j] =array1[j+1];
+                     array1[j+1]=temp;
+                  }
+              } 
+
+           }     
+          return array1;
+}
+console.log(arrayNum([5,89,99,7,4,65,71]));
+//求一个数的阶乘(含升级版阶乘和)
+function getJieCheng(num){
+	var result = 1;
+	for (var i = 1; i <=num; i++) {
+		result*=i;
+	}
+	return result;
+}
+console.log(getJieCheng(5));
+function getJieChengSum(num){
+     var sum =0;
+     for (var i = 1; i <=num; i++) {
+     	sum+=getJieCheng(i);
+     }
+     return sum;
+}
+console.log(getJieChengSum(5));
+//求斐波那契数列
+    function getFib(num){
+    	var num1 = 1;
+    	var num2 = 1;
+    	var sum = 0;
+    	for (var i = 3; i <=num; i++) {
+    		sum = num1+num2;
+    		num1 = num2;
+    		num2 = sum;
+    	}
+         return sum;
+    }
+    console.log(getFib(12));
+    //输入年月日，获取这个日期是这一年中的第多少天
+    //判断年份是不是闰年
+    function isLeapYear(year){
+    	return year%4==0&&year%100!=0||year%400==0;
+    }
+    function getDays(year,month,day){
+    	var days = day;
+    	if(month == 1){
+    		return days;
+    	}
+    	var months=[31,28,31,30,31,30,31,31,30,31,30,31];
+    	for (var i = 0; i < month-1; i++) {
+    		days+=months[i];
+    	}
+    	if(isLeapYear(year)&&month>2){
+    		days++;
+    	}
+    	return days;
+    }
+    console.log(getDays(2018,1,20));
+    //arguments对象伪数组
+      //定义
+      function f1(){
+      	//获取的是函数在调用的时候，传入了几个参数
+      	console.log(arguments.length);
+      	//使用arguments对象可以获取传入的每个参数的值
+      console.log(arguments);
+      }
+      f1(10,20,30,40,50,60,70);
+/*
+//函数的其他定义方式
+命名函数：函数有名字就是命名函数
+匿名函数：函数没有名字就是匿名函数  
+ //函数表达式：
+ 把一个函数给一个变量，此时就形成了函数表达式
+  如： var f2 = function(){
+
+  };
+  如果是函数表达式，那么此时前面的变量中存储的就是一个函数，而这个变量就相当于是一个函数，就可以直接加小括号调用了
+ 如：f2() ;
+ 命名函数如果重名了，只执行后面的函数
+ 匿名函数重名，两个都执行相当于变量的重新赋值
+ 函数自调用,没有名字，调用---声明的同时，直接调用，一次性的    函数没有名字，调用不会冲突
+ (function(){console.log("你好");})()
+//函数也是一种数据类型
+function f1(){
+	console.log("我是函数");
+}
+//如何获取某个变量的数据类型  typeof
+console.log(typeof f1);
+函数是有数据类型的，数据类型：function
+
+函数作为参数使用
+函数可以作为参数使用，如果一个函数作为参数，那么我们说这个参数（函数）可以叫做回调函数
+只要是看到一个函数作为参数使用，那就是回调函数
+例子：   function sayHi(fn){
+	console.log("您好啊");
+	fn();//fn此时应该是一个函数
+}
+function suSay(){
+	console.log("我叫小苏");
+}
+sayHi(suSay);
+
+函数作为返回值使用
+function f1(){
+
+	return function(){
+	console.log("ff是个函数")
+	}
+}
+var ff = f1();
+ff();
+ */
+//作用域：使用范围
+/*
+全局变量：声明的变量是使用var声明的，那么这个变量就是全局变量，全局变量可以在页面的任何位置使用 （全局变量只有在页面关闭的时候才会释放内存）
+除了函数以外，其他的任何位置定义的变量都是全局变量
+局部变量：在函数内部定义的变量，是局部变量，外面不能使用（局部变量在函数执行完后会释放内存空间）
+全局作用域：全局变量的使用范围
+局部作用域：局部变量的使用范围
+隐式全局变量：声明的变量没有var ，就叫隐式全局变量
+全局变量是不能被删除的，但隐式全局变量是可以被删除的
+定义变量使用var是不会被删除的，没有var是可以被删除的
+
+例子:   var num1 =10;
+       var num2=20;
+       delete num1;
+       delete num2;
+       console.log(typeof num1);   //number
+       console.log(typeof num2);   //undefined
+
+ */
+//预解析：提前解析代码
+/*
+预解析就是把变量的声明提前了，函数的声明也被提前了，提前到当前所在的作用域的最上面
+预解析过程：
+1、把变量的声明提升到当前作用域的最前面，只会提升声明，不会提升赋值
+2、把函数的声明提升到当前作用域的最前面，只会提升声明，不会提升调用
+3、先提升var ，再提升function
+
+
+
+
+
+
+
+
+
+ */
+//   console.log(num);  没有报错，结果是undefined
+//   var num = 10;
+
+
+
+
+
+
+
+
+
+
+//console.log(a);                     
+// function a(){                       
+//	console.log("aaaa");
+//}
+//  var a =1;
+//  console.log(a);
+//
+////推导过程
+//var a;
+//function a(){
+//	console.log("aaaa");
+//}
+//console.log(a);//此时执行的是函数代码
+//a =1;
+//console.log(a);//全局变量执行后结果为1
+//f1();
+//console.log(c);
+//console.log(b);
+//console.log(a);
+//function  f1(){
+//	var a = b = c = 9;
+//	console.log(a);
+//	console.log(b);
+//	console.log(c);
+//}
+//  推导过程
+//  function f1(){
+//  	//局部变量
+//  	var a;
+//    a=b=c=9;
+//  	a =9;
+//  	//隐式全局变量
+//  	b=9;
+//  	c=9;
+//  	console.log(a);//9
+//  	console.log(b);//9
+//  	console.log(c);//9
+//  }
+//  f1();
+//  console.log(c);//9
+//  console.log(b);//9
+//  console.log(a);//报错
+//预解析案例小心陷阱
+f1();//报错
+var f1 = function(){
+  console.log(a);//undefined
+  var a = 10; 
+
+}
+
+/*
+var f1;
+f1();
+f1=function(){
+  var a ;
+  console.log(a);
+  a = 10;
+}
+注意函数表达式的预解析是把变量先提前了。
+
+
+
+
+
+ */
+
+
+
+
+
+
+//函数当返回值使用
+//function f1(){
+//  console.log("f1是一个函数");
+//  return function(){
+//  console.log("ff是个函数");
+//  };
+//}
+//var ff = f1();
+//ff();
+	</script>
+</body>
+</html>

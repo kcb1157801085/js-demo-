@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-api-7</title>
+
+
+
+
+
+<style>
+*{
+	margin:0;
+	padding: 0;
+}
+#im{
+	position: absolute;
+	width: 100px;
+    height: 100px;
+}
+
+.login{
+	width: 512px;
+	position: absolute;
+	border: #ebebeb solid 1px;
+	height: 280px;
+	left: 50%;
+	right: 50%;
+	background: #fff;
+	box-shadow: 0px 0px 20px #ddd;
+	z-index: 999;
+    margin-left: -250px;
+    margin-top:140px;
+    display: none;
+}
+.login-title{
+	width:100%;
+	margin:10px 0px 0px 0px;
+	text-align: center;
+	line-height: 40px;
+	height: 40px;
+	font-size: 18px;
+	position: relative;
+	cursor: move;
+	user-select:none;
+}
+
+ 
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+	<!-- 图片跟着鼠标飞 -->
+<!-- <img src="images/bird.gif" alt="" id="im"> -->
+<script type="text/javascript" src="common.js"></script>
+
+<!-- 拖拽对话框 -->
+<div class="login-header"><a id="link" href="javascript:void(0);">点击，弹出登录框</a></div>
+<div id="login" class="login">
+	<div id="title" class="login-title">
+	<span><a id="closeBtn" href="javascript:void(0);" class="close-login">关闭</a></span></div>
+<div class="login-input-content">
+	<div class="login-input">
+	<label> 用 户 名：</label>
+	<input type="text" placeholder="请输入用户名" name="info[username]" id="username" class="list-input">
+	</div>
+    <div class="login-input">
+    <label>登录密码：</label>
+    <input type="password" placeholder="请输入密码" name="info[password]" id="password" class="list-input">
+    </div>
+    </div>
+<div id="loginBtn" class="login-button">
+<a href="javascript:void(0);" id="login-button-submit">登录会员</a>
+</div>
+ <div id="bg" class="login-bg"></div><!-- 遮挡层 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<script>
+/*
+因为IE8的浏览器针对事件参数对象使用的是window.event，那么，事件处理函数是没有e这个参数的，所以，使用window.event来代替e
+1、window.event和时间参数对象e是需要兼容的
+2、pageX和pageY就是鼠标相对于页面的边界的坐标
+
+
+
+
+
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//页面的鼠标移动事件
+//document.onmousemove=function(e){
+////鼠标相对于页面的可视区域的横坐标
+//  my$("im").style.left=evt.getPageX(e)+"px";
+////鼠标相对于页面的可视区域的纵坐标
+//  my$("im").style.top=evt.getPageY(e)+"px";
+//}
+//
+//
+//获取超链接，注册点击事件，显示登录框和遮挡层
+my$("link").onclick=function(){
+	my$("login").style.display="block";
+	my$("bg").style.display="block";
+};
+//获取关闭，注册点击事件，隐藏登录框和遮挡层  
+my$("closeBtn").onclick=function(){
+	my$("login").style.display="none";
+	my$("bg").style.display="none";
+};
+//按下鼠标，移动鼠标，移动登录框
+my$("title").onmousedown=function(e){
+	//获取此时的可视区域的横坐标-此时登录框距离左侧页面的横坐标
+	var spaceX=e.clientX-my$("login").offfsetLeft;
+	var spaceY=e.clientY-my$("login").offfsetTop;
+	//移动事件
+document.onmousemove=function(e){
+	//新的可视区域的横坐标-spaceX---》新的值--》登录框的left属性
+	var x=e.clientX-spaceX+250;
+	var y=e.clientY-spaceY-140;
+	my$("login").style.left=x+"px";
+    my$("login").style.top=y+"px";
+  }
+};
+
+document.onmouseup=function(){
+	document.onmousemove=null;
+};
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API第二天</title>
+<style>
+li{
+	list-style: none;
+}
+
+.nodeSmall{
+	width: 60px;
+	height: 60px;
+	background: url(images/mobile_qrcode.png)no-repeat;
+	position: fixed;
+	right: 10px;
+	top: 40%;
+}
+.erweima{
+	position: absolute;
+	top: 0;
+	left: -150px;
+}
+.nodeSmall a {
+	display: block;
+	width: 60px;
+	height: 60px;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}
+
+.cls{
+	background-color: green;
+
+}
+#aa div{
+	width: 200px;
+	height: 150px;
+	background-color: green;
+	float: left;
+	margin-left: 10px;
+	border: 2px solid green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<!-- 案例1：点击按钮禁用文本框 -->
+<input type="button" value="禁用" id="btn">
+<input type="text" value="不要" id="txt">
+
+
+<!-- 案例2：点击按钮修改列表背景颜色 -->
+<input type="button" value="列表颜色" id="btn1">
+<ul id="uu">
+	<li>梅赛德斯.奔驰</li>
+	<li>奥迪</li>
+	<li>保时捷</li>
+	<li>帕加尼</li>
+	<li>阿斯顿马丁</li>
+</ul>
+
+<!-- 案例3：阻止超链接默认跳转-->
+<a href="http://www.baidu.com" id="ak">百度</a>
+<!-- 案例4：列表隔行变色 -->
+<input type="button" value="隔行变色" id="btn2">
+<ul id="uc">
+	<li>红烧排骨</li>
+	<li>酸辣土豆丝</li>
+	<li>糖醋里脊</li>
+	<li>清蒸武昌鱼</li>
+	<li>滑炒藕片</li>
+	<li>干煸四季豆</li>
+	<li>肉末斩蛋</li>
+</ul>
+
+<!-- 案例5：列表高亮显示-->
+<ul id="jiu">
+	<li>白云边</li>
+	<li>天之蓝</li>
+	<li>五粮液</li>
+	<li>泸州老窖</li>
+	<li>茅台</li>
+</ul>
+<!-- 案例6：二维码的离开与隐藏 -->
+<div class="nodeSmall" id="node_small">
+<a href=""></a>
+<div class="erweima " id="er">
+<img src="images/mobile_qrcode@2x.png" alt="">
+</div>
+</div>
+
+
+<!-- 案例7：根据name属性值获取元素 -->
+<input type="button" value="显示" id="btn3"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name2"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name3"><br/>
+<input type="text" value="您好" name="name1"><br/>
+
+
+<!-- 案例8：根据类样式的名字获取元素 -->
+<p class="cls">这是第一个p</p>
+<p>这是第二个p</p>
+<div class="cls">这是第一个div</div>
+<div>这是第二个div</div>
+<span class="cls">这是第一个span</span><br/>
+<span>这是第二个span</span><br/>
+<input type="button" value="look" id="btn4"><br/>
+
+
+<!-- 案例9：div的高亮显示 -->
+<div id="aa">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<!-- 案例10：模拟搜索框 -->
+<input type="text" value="请输入搜索内容" id="txt1">
+
+<!-- 案例11：验证文本框密码长度 -->
+
+
+<!-- 案例12：点击按钮设置div中的文本内容 -->
+
+
+<!-- 案例13：自定义属性操作 -->
+
+<!-- 案例14：移除自定义属性 -->
+
+
+<!-- 案例15：tab切换实现 -->
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="common.js"></script>
+	<script>
+	//案例1：点击按钮禁用文本框
+my$("btn").onclick=function(){
+	my$("txt").disabled="true";
+}
+//案例2：点击按钮修改列表背景颜色
+my$("btn1").onclick=function(){
+	my$("uu").style.backgroundColor="pink";
+}
+//案例3：阻止超链接默认跳转
+my$("ak").onclick=function(){
+	alert("呵呵");
+	return false;
+}
+//案例4：列表隔行变色
+my$("btn2").onclick=function(){
+	var liObjs=my$("uc").getElementsByTagName("li");
+	for (var i = 0; i < liObjs.length; i++) {
+		if(i%2==0){
+			liObjs[i].style.backgroundColor="yellow";
+		}else{
+			liObjs[i].style.backgroundColor="blue";
+		}
+	}
+}
+//案例5：列表高亮显示
+var liObj=my$("jiu").getElementsByTagName("li");
+for (var i = 0; i < liObj.length; i++) {
+	liObj[i].onmouseover=function(){
+		this.style.backgroundColor="blue";
+	}
+	liObj[i].onmouseout=function(){
+		this.style.backgroundColor="";
+	}
+}
+
+//案例6：二维码的离开与隐藏
+var aObj=my$("node_small").getElementsByTagName("a")[0];
+aObj.onmouseover=function(){
+	my$("er").className="erweima show";
+}
+aObj.onmouseout=function(){
+	my$("er").className="erweima hide";
+}
+
+//案例7：根据name属性值获取元素
+my$("btn3").onclick=function(){
+	var inputS=document.getElementsByName("name1");
+	for (var i = 0; i < inputS.length; i++) {
+		inputS[i].value="我很好";
+	}
+}
+
+//案例8：根据类样式的名字获取元素
+my$("btn4").onclick=function(){
+	var classN=document.getElementsByClassName("cls");
+	for (var i = 0; i < classN.length; i++) {
+		classN[i].style.backgroundColor="pink";
+	}
+}
+//案例9：div的高亮显示
+      var divObj=my$("aa").getElementsByTagName("div");
+      for (var i = 0; i < divObj.length; i++) {
+      	divObj[i].onmouseover=function(){
+      		this.style.border="2px solid red";
+      	}
+      	divObj[i].onmouseout=function(){
+      		this.style.border="";
+      	}
+      }
+//案例10：模拟搜索框
+var txtObj=my$("txt1");
+txtObj.onfocus=function(){
+	if(this.value="请输入搜索内容"){
+		this.value="";
+		this.style.color="black";
+	}
+
+txtObj.onblur=function(){
+	if(this.value=""){
+       this.value="请输入搜索内容";
+       this.style.color="gray"; 
+	}
+}
+}
+
+
+
+	</script>
+</body>
+</html>

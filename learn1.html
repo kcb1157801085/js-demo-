@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js复习巩固</title>
+</head>
+<body>
+	<script>
+//变量数据交换（3种方法）
+   var sum =10;
+   var sum1=20;
+   var temp = sum;
+   sum=sum1;
+   sum1=temp;
+   console.log(sum,sum1);
+
+
+   var num = 15;
+   var num1 =25;
+   num2 = num+num1;
+   num = num2-num;
+   num1 = num2-num;
+   console.log(num,num1);
+//位运算
+   var num3 = 11;
+   var num4 = 22;
+   num3 = num3^num4;
+   num4 = num3^num4;
+   num3 = num3^num4;
+   console.log(num3,num4);
+
+   console.log(parseInt("10"));
+   var dd ;
+   console.log(parseInt(dd));
+   console.log(parseInt(1.88));
+   var aa =null;
+   console.log(parseInt(aa));
+   console.log(parseFloat(9.88));
+   console.log(parseFloat("8.79"));
+   console.log(Number("10"));
+   console.log(Number(null));
+   console.log(Number("7.589"));
+   console.log(Boolean(1));
+   console.log(Boolean(0));
+   console.log(Boolean(""));
+   console.log(Boolean(null));
+   console.log(Boolean(undefined));
+   console.log(Boolean(-10));
+   console.log(Boolean(11));
+   var bb = 10;
+   console.log(bb.toString());
+   var cc;
+   console.log(String(cc));
+   var ee = null;
+   console.log(String(ee));
+   var ff ="";
+   console.log(String(ff));
+
+//算数运算符   + - * / %
+//比较运算符   > < >= <= == === != !==
+//赋值运算符   =
+//逻辑运算符   &&  || ！
+//一元运算符   ++ -- 
+//复合运算符   +=  -= *= /= %=
+
+
+var sum= 10000;
+var rote = 0.003;
+for (var i = 1; i <= 5; i++) {
+sum = sum*(1+rote);
+}
+console.log(parseInt(sum));
+
+
+var AA = 1;
+var BB = 1;
+var CC = 0 ;
+for(var i = 3; i<=12 ;i++){
+   CC = AA + BB;
+   AA = BB ;
+   BB = CC ;
+}
+console.log(CC);
+
+var sun = 1;
+var num = ++sun + ++sun;//5
+var num = sun++ + ++sun;//4
+var num = sun++ + sun++;//3
+var num = ++sun + sun++;//4
+
+//例子1：小苏的年龄是否是成年人，如果是成年人，提示可以上网，否则提示回家写作业去！
+ var  age = 20 ;
+ if(age >18){
+   console.log("可以上网");
+ }else{
+   console.log("回家写作业去！");
+ }
+
+//例子2：找到两个数字中的最大值
+
+   var num1 = 10 ;
+   var num2 = 20 ;
+   if (num1>num2){
+      console.log(num1);
+   }else{
+      console.log(num2);
+   }
+
+//例子2：判断这个数字是奇数还是偶数     if  else
+ var num3 = parseInt(prompt("请输入数字"));
+ if(num3%2==0){
+   console.log("这个数是偶数");
+ }else{
+   console.log("这个数是奇数");
+ }
+
+//判断成年？    三元表达式
+var age1 = 19;
+var result = age1>18?"成年了":"未成年";
+console.log(result);
+
+
+
+// //例子：成绩在90-100之间显示A级
+            //成绩在80-90之间显示B级
+            //成绩在70-80之间显示C级
+            //成绩在60-70之间显示D级        if  else if方法
+            //成绩低于60 显示不及格
+var score = parseInt(prompt("请输入你的成绩"));
+if(score!=NaN){
+   if(score>100){
+      console.log("你输入的数字超出统计范围");
+   }else if(score>=90 &&score<=100){
+      console.log("A");
+   }else if(score>=80){
+      console.log("B");
+   }else if(score>=70){
+      console.log("c");
+   }else if(score>=60){
+      console.log("D");
+   }else{
+      console.log("成绩不合格");
+   }
+}else{
+   console.log("你的输入有误");
+}
+
+
+  //例子：获取一个人的成绩级别
+/*
+      如果是A级 显示90-100分
+      如果是B级 显示80-90分
+      如果是C级 显示70-80分
+      如果是D级 显示60-70分
+      否则显示0-59分        switch case
+*/
+
+var jibie = "C";
+switch(jibie){
+   case"A":console.log("90-100分");break;
+   case"B":console.log("80-90分");break;
+   case"C":console.log("70-80分");break;
+   case"D":console.log("60-70分");break;
+   default:console.log("0-59分");break;
+}
+
+//例子：找出一到一百之间所有的整数    while
+var i = 1;
+while(i<=100){
+   console.log(i);
+   i++;
+}
+
+ //例子2：计算1-100之间所有数字的和
+var ii =1;
+var kk =0 ;
+while(ii<=100){
+   kk+=ii;
+   ii++;
+}
+console.log(kk);
+//例子3：求1*2*3*4*5*6的结果
+var sua = 1;
+var sub = 1;
+while(sua<=6){
+   sub = sub*sua;
+   sua++;
+}
+console.log(sub);
+
+//例子4：求1-100之间偶数的和
+var subC = 1;
+var subD = 0;
+while(subC<=100){
+   if(subC%2==0){
+      subD+=subC;    
+}
+subC++;
+}
+console.log(subD);
+//例子5：求1-100之间奇数的和  
+var ads = 1 ;
+var acd = 0 ;
+while(ads<=100){
+   if(ads%2!=0){
+    acd+=ads;
+   }
+   ads++;
+}
+console.log(acd);
+ //练习：求100以内所有3的倍数的和
+ var zxc = 1;
+ var vbn = 0;
+ while(zxc<=100){
+  if(zxc%3==0){
+   vbn += zxc;
+  }
+      zxc++;
+ }
+console.log(vbn);
+ //例子：打印10次“哈哈，我又变帅了！”    for 循环
+for (var i = 1; i <=10; i++) {
+   console.log("哈哈，我又变帅了！");
+}
+
+ //画星星
+for (var a = 1; a<=10 ; a++) {
+   for(var b = 1; b<=a ; b++){
+       document.write("★");
+   }
+       document.write("<br/>");
+}
+//表格版乘法口诀表
+for(var c = 1 ; c <=9 ; c++){
+   for (var d = 1 ; d<=c ; d++){
+   document.write(c+"*"+d+"="+c*d);
+   }
+   document.write("<br/>");
+}
+
+//例子1：找到100-200之间第一个能被7整除的数
+for(var i = 100;i<=200;i++){
+   if(i%7==0){
+      console.log(i);
+      break;
+   }
+}
+
+//例子2：求100-200之间所有奇数的和？（用continue）
+var sun1 = 0;
+for(var a =100;a<=200;a++){
+   if(a%2==0){
+      continue;
+   }
+   sun1+=a;
+}
+console.log(sun1);
+//例子3：求1-100的累加值，但要求跳过说有个位数为3的数
+var sun2 = 0;
+var b = 1;
+while(b<=100){
+   if(b%10==3){
+      b++;
+      continue;
+   }
+   sun2+=b;
+   b++;
+}
+console.log(sun2);
+//for 循环遍历数组
+var arr = [10,20,30,40,50];
+for (var i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+//案例1：求数组中所有元素的和？ 
+var arr2 = [1,2,3,4,5,6];
+var qwe = 0;
+for (var i = 0; i < arr2.length; i++) {
+   qwe+=arr2[i];
+}
+console.log(qwe);
+
+//案例2：求数组中所有元素的平均值
+var arr3 = [10,20,30,40,50];
+var rty = 0 ;
+for (var i = 0; i < arr3.length; i++) {
+    rty+=arr3[i];
+}
+console.log(rty/arr3.length);
+//案例3：求数组中所有元素的最大值
+var arr4 = [15,60,25,36,78,52];
+var iop = arr4[0];
+for (var i = 0; i < arr4.length; i++) {
+    if(iop<arr4[i]){
+      iop = arr4[i];
+    }
+   }
+   console.log(iop);
+//案例4：求数组中所有元素的最小值
+var arr5 = [2.5,559,55,24,3,1,88];
+var asd = arr5[0];
+for (var i = 0; i < arr5.length; i++) {
+   if (asd>arr5[i]) {
+      asd=arr5[i];
+   }
+}
+console.log(asd);
+//案例5：倒序循环遍历数组
+var arr6 = [1,3,5,7,9];
+for (var i=arr6.length-1;i>=0;i--) {
+   console.log(arr6[i]);
+}
+
+
+
+//案例6：把数组中的每个元素用|拼接到一起产生一个字符串并输出
+var names = ["马云","马化腾","李彦宏","王健林","许家印","任正非","柳传志"];
+var str = "";
+for(var i = 1; i<names.length;i++){
+   str += "|" +names[i];
+}
+console.log(names[0]+str);
+//案例7：去掉数组中重复的0,把其他的数据放在一个新的数组中
+var num = [10,0,50,0,0,54,10,60];
+var newArr = [];
+for (var i = 0; i < num.length; i++) {
+   if(num[i]!=0){
+     newArr[newArr.length]=num[i];
+   }
+}
+console.log(newArr);
+//案例8：反转数组,把数组中的数据的位置调换
+var array = [10,30,50,70,90];
+for (var i = 0; i < array.length/2; i++) {
+   var temp  = array[i];
+   array[i] = array[array.length-1-i];
+   array[array.length-1-i]  = temp;
+}
+console.log(array);
+
+//案例9：提示用户输入班级人数，求总成绩，平均值，最高分，最低分
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//案例10：冒泡排序：把所有的数据按照一定的顺序进行排列
+    var akg = [1,5,8,7,9,4,6];
+    for (var i = 0; i < akg.length-1; i++) {
+     for(var j = 0 ; j<akg.length-1-i;j++){
+      if(akg[j]<akg[j+1]){
+         var temp = akg[j];
+         akg[j] = akg[j+1];
+         akg[j+1] = temp;
+      }
+     }
+    }
+console.log(akg);
+
+
+
+//
+var ADS = [4,6,5,9,2,7,8];
+for(var v =0;v<ADS.length-1;v++){
+   for (var i = 0; i < ADS.length-1-v; i++) {
+        if(ADS[i]<ADS[i+1]){
+           var temp = ADS[i];
+           ADS[i] = ADS[i+1];
+           ADS[i+1] = temp;
+        }
+   }
+}
+console.log(ADS);
+//求x-y之间的和
+function getSum(x,y){
+   var sum = 0;
+    for(var i =x ; i<=y ; i++){
+     sum+=i;
+    }
+    return sum;
+}
+console.log(getSum(2,10));
+//判断这个数是不是质数
+
+function isPerseNumber(num){
+   for (var i = 2; i < num; i++) {
+        if(num%i==0){
+         return  false;
+        }else{
+         return true;
+        }
+
+   }
+}
+console.log(isPerseNumber(8)?"这个数是质数":"这个数不是质数");
+//求数组的最大值、最小值、和
+function getMaxMinSum(array){
+       var max = array[0];
+       var min = array[0];
+       var sum = 0;
+    for (var i = 0; i <array[i] ; i++) {
+       sum+=array[i];
+       if(max<array[i]){
+         max = array[i];
+       }else if(min>array[i]){
+         min = array[i];
+       }
+
+    }
+  var num = [max, min , sum];
+return num ;
+}
+var result = getMaxMinSum([10,20,30,40,50]);
+console.log(result);
+
+//通过函数实现数组反转
+
+ function getArray(array1){
+   for (var i = 0; i < array1.length/2; i++) {
+           var temp  = array1[i];
+           array1[i] = array1[array1.length-1-i];
+           array1[array1.length-1-i] = temp;
+   }
+  return array1;
+ }
+
+console.log(getArray([1,3,5,7,9]));
+//通过函数实现冒泡排序
+function getMaoPao(array2){
+   var temp = 0;
+  for (var i = 0; i < array2.length-1; i++) {
+     for(var j = 0 ; j<array2.length-1-i;j++){
+            if(array2[j]<array2[j+1]){
+                temp = array2[j];
+                array2[j] = array2[j+1];
+                array2[j+1] = temp;
+            }
+     }
+  }
+return array2;
+
+}
+console.log(getMaoPao([11,65,48,23,79]));
+//求一个数的阶乘(及阶乘和)
+function getJieCheng(n){
+   var sum = 1 ;
+   for (var i = 1; i <=n; i++) {
+      sum *=i;
+   }
+   return sum;
+}
+console.log(getJieCheng(6));
+function getJieChengSum(num){
+   var sum = 0;
+   for (var i = 1; i <=num ; i++) {
+      sum+=getJieCheng(i);
+   }
+   return sum;
+}
+console.log(getJieChengSum(6));
+//函数实现斐波那契数列
+function getFeiBo(num){
+   var num1 = 1;
+   var num2 = 1;
+   var sum =0 ;
+   for (var i = 3; i <= num; i++) {
+      sum = num1 + num2;
+      num1 = num2;
+      num2 = sum ;
+   }
+return sum;
+}
+console.log(getFeiBo(12));
+
+//根据年、月、日计算这一天是一年中的第多少天？
+function isFullYear(year){
+   return year%100!=0&&year%4==0||year%400==0;
+}
+function getDays(year,month,day){
+   var days = day;
+   if(month==1){
+      return days;
+   }
+var months = [31,28,31,30,31,30,31,31,30,31,30,31];
+for (var i = 0; i < month-1; i++) {
+   days += months[i];
+} 
+if(isFullYear(year)&&month>2){
+      days++;
+   }
+return days;
+}
+console.log(getDays(2017,4,20));
+
+
+
+var a = 18 ;
+f1();
+function f1(){
+   var b = 9;
+   console.log(a);
+   console.log(b);
+   var a = "123";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>

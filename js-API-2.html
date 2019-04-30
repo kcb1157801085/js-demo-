@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API第二天</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+li{
+	list-style: none;
+	cursor: pointer;
+}
+.nodeSmall{
+	width: 60px;
+	height: 60px;
+	background: url(images/mobile_qrcode.png)no-repeat;
+	position: fixed;
+	right: 10px;
+	top: 40%;
+}
+.erweima{
+	position: absolute;
+	top: 0;
+	left: -150px;
+}
+.nodeSmall a {
+	display: block;
+	width: 60px;
+	height: 60px;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}
+.cls{
+	background-color: green;
+}
+#aa div{
+	width: 200px;
+	height: 150px;
+	background-color: green;
+	float: left;
+	margin-left: 10px;
+	border: 2px solid green;
+}
+#txt{
+	color: gray;
+}
+#fg{
+    width: 200px;
+    height: 150px;
+    border: 2px solid red;
+}
+#jb{
+	list-style-type: none;
+	cursor: pointer;
+}
+#ol{
+	width: 200px;
+	height: 100px;
+	background-color: yellow;
+}
+.asd{
+	border: 3px solid red;
+}
+
+
+.box{
+	width: 400px;
+	height: 300px;
+	border: 1px solid #ccc;
+	margin: 100px auto;
+	overflow: hidden;
+}
+.hd{
+	height: 45px;
+}
+.hd span{
+	display: inline-block;
+	width: 90px;
+	background-color: pink;
+	line-height: 45px;
+	text-align: center;
+	cursor: pointer;
+}
+.hd span.current{
+	background-color: purple;
+
+}
+
+.bd li{
+    height: 255px;
+    background-color: purple;
+    display:none;
+}
+.bd li.current{
+	display: block;
+}
+	</style>
+
+</head>
+<body>
+<!-- 案例1：点击按钮禁用文本框 -->
+<input type="button" value="禁用文本框" id="btn">
+<input type="text" value="不要" id="txt">
+<!-- 案例2：点击按钮修改列表背景颜色 -->
+<input type="button" value="变色" id="btn1">
+<ul id="uu">
+	<li>卡卡西</li>
+	<li>大蛇丸</li>
+	<li>我爱罗</li>
+	<li>鸣人</li>
+	<li>佐助</li>
+</ul>
+<!-- 案例3：阻止超链接默认跳转-->
+<a href="http://www.baidu.com" id="ak">百度</a>
+<!-- 案例4：列表隔行变色 -->
+<input type="button" value="隔行变色" id="btn2">  
+<ul id="uc">
+	<li>兰博基尼</li>
+	<li>法拉利</li>
+	<li>保时捷</li>
+	<li>阿斯顿马丁</li>
+	<li>奔驰</li>
+	<li>宝马</li>
+	<li>奥迪</li>
+	<li>五菱宏光</li>
+</ul>
+<!-- 案例5：列表高亮显示-->
+<ul id="ub">
+	<li>白云边</li>
+	<li>茅台</li>
+	<li>五粮液</li>
+	<li>天之蓝</li>
+	<li>稻花香</li>
+	<li>威士忌</li>
+	<li>人头马</li>
+	<li>江小白</li>
+</ul>
+<!-- 案例6：二维码的离开与隐藏 -->
+<div class="nodeSmall" id="node_small">
+<a href=""></a>
+<div class="erweima " id="er">
+<img src="images/mobile_qrcode@2x.png" alt="">
+</div>
+</div>
+<!-- 案例7：根据name属性值获取元素 -->
+<input type="button" value="显示" id="btn3"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name2"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name3"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<!-- 案例8：根据类样式的名字获取元素 -->
+<p class="cls">这是第一个p</p>
+<p>这是第二个p</p>
+<div class="cls">这是第一个div</div>
+<div>这是第二个div</div>
+<span class="cls">这是第一个span</span><br/>
+<span>这是第二个span</span><br/>
+<input type="button" value="look" id="btn4"><br/>
+<!-- 案例9：div的高亮显示 -->
+<div id="aa">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<!-- 案例10：模拟搜索框 -->
+<input type="text" value="请输入搜索内容" id="txt1">
+<!-- 案例11：验证文本框密码长度 -->
+<input type="password" value="" id="txt2">
+<!-- 案例12：点击按钮设置div中的文本内容 -->
+<input type="button" value="设置值" id="btn5"><br>
+<div id="fg">哈哈</div>
+<!-- 案例13：自定义属性操作 -->
+<ul id="jb">
+	<li>小网的成绩</li>
+	<li>小王的成绩</li>
+	<li>小刚的成绩</li>
+	<li>小明的成绩</li>
+	<li>小红的成绩</li>
+</ul>
+<!-- 案例14：移除自定义属性 -->
+<input type="button" value="移除自定义属性" id="btn6">
+<div id="ol" score="10" class="asd"></div>
+<!-- 案例15：tab切换实现 -->
+<div class="box" id="box">
+ <div class="hd">
+	<ul>
+		<span class="current">体育</span>
+		<span>娱乐</span>
+		<span>新闻</span>
+		<span>综合</span>
+	</ul>
+ </div>
+ <div class="bd">
+	<ul>
+		<li class="current">我是体育模块</li>
+		<li>我是娱乐模块</li>
+		<li>我是新闻模块</li>
+		<li>我是综合模块</li>
+	</ul>
+ </div>
+</div>
+<script type="text/javascript" src="common.js"></script>
+
+<script>
+//案例1：点击按钮禁用文本框和改变列表背景色
+my$("btn").onclick=function(){
+	my$("txt").disabled="true";
+}
+//案例2：点击按钮修改列表背景颜色
+my$("btn1").onclick=function(){
+	my$("uu").style.backgroundColor="yellow";
+}
+//案例3：阻止超链接默认跳转
+my$("ak").onclick=function(){
+	alert("嘎嘎");
+	return false;
+}
+//结论：阻止超链接跳转的方法是：  return false;
+//案例4：列表隔行变色
+my$("btn2").onclick = function(){
+var liObj=my$("uc").getElementsByTagName("li");
+for (var i = 0; i < liObj.length; i++) {
+	if(i%2==0){
+		liObj[i].style.backgroundColor="yellow";
+	}else{
+		liObj[i].style.backgroundColor="red";
+	}
+}
+}
+//案例5：列表高亮显示
+//鼠标进入和鼠标离开时间
+var jiuObj=my$("ub").getElementsByTagName("li");
+for (var i = 0; i < jiuObj.length; i++) {
+	//为li注册鼠标进入事件
+	jiuObj[i].onmouseover=function(){
+		this.style.backgroundColor="blue";
+	}
+	//为li注册鼠标离开时间
+	jiuObj[i].onmouseout=function(){
+		//恢复到这个标签默认的颜色
+		this.style.backgroundColor="";
+	}
+}
+
+//案例6：二维码的离开与隐藏
+//获取鼠标要进入的a标签
+//先获取最外面的div
+var aObj=my$("node_small").getElementsByTagName("a")[0];
+//为a注册鼠标进入事件
+aObj.onmouseover=function(){
+	my$("er").className ="erweima show";
+}
+//为a注册鼠标离开事件
+aObj.onmouseout=function(){
+	//注意：不能把erweima忘了，没加的话会把它的样式干掉
+	my$("er").className ="erweima hide";
+}
+//案例7：根据name属性值获取元素
+my$("btn3").onclick = function(){
+	var inputs=document.getElementsByName("name1"); 
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].value="我很好";
+	}
+};
+//案例8：根据类样式的名字获取元素
+my$("btn4").onclick=function(){
+	var objs=document.getElementsByClassName("cls");
+	for (var i = 0; i < objs.length; i++) {
+		objs[i].style.backgroundColor="pink";
+	}
+}
+//注意：getElementsByClassName存在兼容性问题H5 C3支持
+//案例9：div的高亮显示
+var divObj=my$("aa").getElementsByTagName("div");
+for (var i = 0; i < divObj.length; i++) {
+	divObj[i].onmouseover=function(){
+		this.style.border="2px solid red";
+	}
+	divObj[i].onmouseout=function(){
+		this.style.border="";
+	}
+	
+}
+
+//案例10：模拟搜索框
+//获取文本框
+var txtObj=my$("txt1");
+//注册获取焦点的事件
+txtObj.onfocus=function(){
+     if(this.value=="请输入搜索内容"){
+     	this.value="";//清空文本框
+     	this.style.color="black";
+     }
+};
+//注册失去焦点的事件
+txtObj.onblur=function(){
+	if(this.value==""){
+		this.value="请输入搜索内容";
+		this.style.color="gray";
+	}
+};
+//案例11：验证文本框密码长度
+my$("txt2").onblur=function(){
+	if(this.value.length>=6&&this.value.length<=10){
+		this.style.backgroundColor="yellow";
+	}else{
+       this.style.backgroundColor="blue";
+	}
+};
+//案例12：点击按钮设置div中的文本内容
+////设置标签中间的文本内容，应该使用textContent属性 IE8不支持 
+   
+   //IE8兼容性方法
+   //my$("fg").innertext="this is div标签";
+my$("btn5").onclick=function(){
+	setInnerText(my$("fg"),"哈哈，我又变帅了");
+};
+
+
+//案例13：自定义属性操作
+//动态添加自定义属性
+var list=my$("jb").getElementsByTagName("li");
+for (var i = 0; i < list.length; i++) {
+	//先为每个li添加自定义属性
+	list[i].setAttribute("score",(i+1)*10);
+    //点击每个li标签，显示对应的自定义属性值
+    list[i].onclick = function(){
+    	alert(this.getAttribute("score"));
+    }
+}
+//案例14：点击按钮移除自定义属性
+my$("btn6").onclick= function(){
+	my$("ol").removeAttribute("score");
+	my$("ol").removeAttribute("class");
+}
+//案例15：tab切换实现
+//获取最外面的div
+var box = my$("box");
+//获取里面的第一个div
+var hd = box.getElementsByTagName("div")[0];
+//获取里面的第二个div
+var bd = box.getElementsByTagName("div")[1];
+//获取所有的span标签
+var spans=hd.getElementsByTagName("span");
+var lis=bd.getElementsByTagName("li");
+//循环遍历span
+for (var i = 0; i < spans.length; i++) {
+//在点击之前就把缩影保存到span标签中
+spans[i].setAttribute("index",i);
+	spans[i].onclick=function(){
+		//1所有的span的类样式全部移除
+		for (var j = 0; j < spans.length; j++) {
+			spans[j].removeAttribute("class");
+		}
+		//2.当前被点击的span应用类样式
+		this.className="current"; 
+		//span被点击的时候获取存储的索引值
+		var num = this.getAttribute("index");
+        for (var k = 0; k < lis.length; k++) {
+        	lis[k].removeAttribute("class");
+        }
+        lis[num].className="current";
+
+	}
+}
+
+
+
+
+
+</script>
+
+	<script>
+/*
+根据id属性的值获取元素，返回的是一个元素对象
+document.getElementById("id属性的值");
+根据标签名字获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.getElementsByTagName("标签名字");
+
+如果这个属性在浏览器中不支持，那么这个属性的类型是undefined
+所以判断这个属性浏览器支不支持，只需要判断他的属性类型是不是undefined 
+
+下面的几个有的浏览器不支持
+根据name属性的值获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.getElementsByName("名字属性的值");
+根据类样式的名字来获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.getElementsByClassName("类样式的名字");
+根据选择器获取元素,返回的是一个元素对象
+document.querySelector("选择器的名字");
+根据选择器获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.querySelectorAll("选择器的名字");
+
+总结：如果使用innerText主要是设置文本的，设置标签内容，是没有标签的效果的
+innerHTML是可以设置文本内容和html标签的
+innerHTML主要的作用是在标签中设置新的html标签内容，是有标签效果的
+总结：想要设置标签内容使用innerHTML,想要设置文本内容可以使用innerText  textContent   innerHTML 推荐使用innerHTML
+
+获取：
+innerText可以获取标签中间的文本内容，但是标签中如果还有标签，那么最里面的标签的文本内容也获取了----获取不到标签，只能获取到标签中的文本内容
+innerHTML才是真正的获取标签中间的所有内容----包括标签
+
+结论：想要（获取）设置，标签及内容，使用innerHTML
+在html标签中添加的自定义属性，如果想要获取这个属性的值，
+需要使用getAttribute("自定义属性的名字")才能获取这个属性的值
+设置html中的自定义属性：setAttribute("自定义属性的名字","属性的值");
+获取自定义属性的值：getAttribute("属性的名字");
+移除自定义属性和系统自带的属性：removeAttribute("属性的名字");
+	*/
+ 
+
+
+	</script>
+</body>
+</html>

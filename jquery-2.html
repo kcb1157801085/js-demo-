@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQ第二天</title>
+	<style>
+
+ * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .wrapper {
+            width: 298px;
+            height: 248px;
+            margin: 100px auto 0;
+            border: 1px solid pink;
+            overflow: hidden;
+        }
+        #left, #center, #right {
+            float: left;
+        }
+        #left li, #right li {
+            background: url(images/lili.jpg) repeat-x;
+        }
+        #left li a, #right li a {
+            display: block;
+            width: 48px;
+            height: 27px;
+            border-bottom: 1px solid pink;
+            line-height: 27px;
+            text-align: center;
+            color: black;
+        }
+        #left li a:hover, #right li a:hover {
+            background-image: url(images/abg.gif);
+        }
+        #center {
+            border-left: 1px solid pink;
+            border-right: 1px solid pink;
+        }
+
+
+.wrap img{
+	width: 100px;
+	height: 100px;
+
+}
+
+.wrap{
+	width: 330px;
+	height: 220px;
+	border:1px solid black;
+}
+
+.wrap li{
+   float: left;
+   border:1px solid black;
+   margin-right: 8px;
+   margin-bottom: 5px;
+}
+
+
+
+ul {
+    list-style: none
+}
+
+
+#box {
+    width: 1150px;
+    height: 400px;
+    margin: 50px auto;
+    border: 1px solid red;
+    overflow: hidden;
+}
+
+#box li {
+    width: 240px;
+    height: 400px;
+    float: left;
+    /*background-image: url(images/1.jpg);*/
+}
+
+#box ul {
+    width: 1300px;
+
+}
+
+.cls{
+	width: 200px;
+	height: 100px;
+	background-color:red;
+}
+
+.ccs{
+	background-color: black;
+}
+
+#ul{
+	list-style-type: none;
+	width: 200px;
+	position: absolute;
+	left: 500px;
+
+}
+
+#ul li{
+	margin-top: 10px;
+	cursor:pointer;
+	text-align: center;
+	font-size: 20px;
+}
+
+.box1{
+	width: 400px;
+	height: 300px;
+	border: 1px solid #ccc;
+	margin: 100px auto;
+	overflow: hidden;
+}
+.hd{
+	height: 45px;
+}
+.hd span{
+	display: inline-block;
+	width: 90px;
+	background-color: pink;
+	line-height: 45px;
+	text-align: center;
+	cursor: pointer;
+}
+.hd span.current{
+	background-color: purple;
+
+}
+
+.bd li{
+    height: 255px;
+    background-color: purple;
+    display:none;
+}
+.bd li.current{
+	display: block;
+}
+
+
+#pp{
+	width: 300px;
+	height: 200px;
+	background-color: greenyellow;
+}
+
+.dg img{
+	width: 200px;
+	height: 200px;
+}
+
+
+
+
+
+	</style>
+</head>
+<body>
+<!-- 淘宝精品展示 -->
+	 <div class="wrapper">
+            <ul id="left">
+                <li><a href="#">女靴</a></li>
+                <li><a href="#">雪地靴</a></li>
+                <li><a href="#">冬裙</a></li>
+                <li><a href="#">呢大衣</a></li>
+                <li><a href="#">毛衣</a></li>
+                <li><a href="#">棉服</a></li>
+                <li><a href="#">女裤</a></li>
+                <li><a href="#">羽绒服</a></li>
+                <li><a href="#">牛仔裤</a></li>
+            </ul>
+            <ul id="center">
+                <li><a href="#"><img src="images/女靴.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/雪地靴.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/冬裙.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/呢大衣.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/毛衣.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/棉服.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/女裤.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/羽绒服.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/牛仔裤.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/女包.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/男包.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/登山鞋.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/皮带.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/围巾.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/皮衣.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/男毛衣.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/男棉服.jpg" width="200" height="250"/></a></li>
+                <li><a href="#"><img src="images/男靴.jpg" width="200" height="250"/></a></li>
+            </ul>
+            <ul id="right">
+                <li><a href="#">女包</a></li>
+                <li><a href="#">男包</a></li>
+                <li><a href="#">登山鞋</a></li>
+                <li><a href="#">皮带</a></li>
+                <li><a href="#">围巾</a></li>
+                <li><a href="#">皮衣</a></li>
+                <li><a href="#">男毛衣</a></li>
+                <li><a href="#">男棉服</a></li>
+                <li><a href="#">男靴</a></li>
+            </ul>
+        </div>
+
+<!-- 索引选择器 -->
+<input type="button" value="显示效果" id="btn">
+<ul id="uu">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+</ul>
+
+<!-- 图片高亮显示 -->
+<div class="wrap">
+<ul>
+<li><a href="#"><img src="images/01.jpg" alt=""></a></li>
+<li><a href="#"><img src="images/02.jpg" alt=""></a></li>
+<li><a href="#"><img src="images/03.jpg" alt=""></a></li>
+<li><a href="#"><img src="images/04.jpg" alt=""></a></li>
+<li><a href="#"><img src="images/05.jpg" alt=""></a></li>
+<li><a href="#"><img src="images/06.jpg" alt=""></a></li>
+</ul>
+</div>
+
+<!-- 手风琴 -->
+<div id="box">
+    <ul>
+        <li><img src="images/1.jpg"</li>
+        <li><img src="images/2.jpg"</li>
+        <li><img src="images/3.jpg"</li>
+        <li><img src="images/4.jpg"</li>
+        <li><img src="images/5.jpg"</li>
+    </ul>
+</div>
+
+
+<!-- 链式编程 -->
+
+<input type="button" value="显示效果" id="btnA">
+
+<p>这是一个p</p>
+
+
+<!-- 网页开关灯 -->
+<input type="button" value="显示效果" id="btnB">
+<input type="button" value="显示效果" id="btnC">
+<input type="button" value="显示效果" id="btnD">
+<div id="dv"></div>
+
+<input type="button" value="开/关灯" id="btnF">
+
+<!-- 获取元素的几个方法 -->
+<input type="button" value="显示" id="btnS">
+<div id="dv">
+<ul id="ug">
+	<li>香蕉</li>
+	<li>苹果</li>
+	<li>栗子</li>
+	<li id="four">芒果</li>
+	<li>葡萄</li>
+	<li>梨子</li>
+	<li>甘蔗</li>
+	<li>桃子</li>
+</ul>
+</div>
+
+<!-- 操作当前的兄弟元素 -->
+<ul id="ul">
+	<li>青岛啤酒</li>
+	<li>瓦伦丁</li>
+	<li>雪花</li>
+	<li>奥丁格教士</li>
+	<li>百威</li>
+	<li>哈尔滨蓝带</li>
+	<li>艾士堡</li>
+	<li>嘉士伯</li>
+	<li>罗斯福</li>
+	<li>科罗娜喜力柏龙</li>
+</ul>
+
+
+
+<div class="box1" id="box1">
+ <div class="hd">
+	<ul>
+		<span class="current">体育</span>
+		<span>娱乐</span>
+		<span>新闻</span>
+		<span>综合</span>
+	</ul>
+ </div>
+ <div class="bd">
+	<ul>
+		<li class="current">我是体育模块</li>
+		<li>我是娱乐模块</li>
+		<li>我是新闻模块</li>
+		<li>我是综合模块</li>
+	</ul>
+ </div>
+</div>
+
+
+
+
+<div id="pp"></div>
+<input type="button"  value="显示" id="btn8">
+<input type="button"  value="隐藏" id="btn9">
+<input type="button"  value="切换" id="btn10">
+
+
+<input type="button" value="隐藏动画" id="btn5">
+<input type="button" value="显示动画" id="btn6">
+<div class="dg">
+<img src="images/1.jpg" alt="">
+<img src="images/2.jpg" alt="">
+<img src="images/3.jpg" alt="">
+<img src="images/4.jpg" alt="">
+</div>
+
+
+<input type="button" value="创建一个p" id="btn7">
+<div id="yy"></div>
+
+
+<input type="button" value="按钮" id="btnG">
+<div id="xx"></div>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="jquery-3.3.1.js"></script>
+<script>
+
+
+// 淘宝精品展示
+//页面加载事件
+$(function(){
+  //左边的所有的列表，添加鼠标进入事件
+  $("#left>li").mouseenter(function(){
+   //先获取当前鼠标进入的这个li的索引值
+var index=$(this).index();
+//设置对应索引位置的li显示
+$("#center>li:eq("+index+")").show();
+  });  
+
+//右边的所有的列表，添加鼠标进入事件
+  $("#right>li").mouseenter(function(){
+   //先获取当前鼠标进入的这个li的索引值
+var index=$(this).index()+9;
+//设置对应索引位置的li显示
+$("#center>li:eq("+index+")").show();
+  });  
+    });
+
+
+//索引选择器
+$(function(){
+   $("#btn").click(function(){
+   //索引选择器
+   //：eq(索引值);----相对应的元素
+   //$("#uu>li:eq(2)").css("backgroundColor","red");
+   //:lt(索引值);----小于索引值的所有元素
+   $("#uu>li:lt(5)").css("backgroundColor","green");
+   //:gt(索引值);----大于索引值的所有元素
+   $("#uu>li:gt(5)").css("backgroundColor","yellow");
+//大于5的所有的元素之后，从索引值0开始，再找小于3的元素
+   //$("#uu>li:gt(5):lt(3)").css("backgroundColor","yellow");
+   });
+});
+
+
+$(function(){
+ $(".wrap>ul>li").mouseenter(function(){
+//先把所有的li的透明度设置为0.5
+$(".wrap>ul>li").css("opacity",0.5);
+$(this).css("opacity",1);
+ });
+ //鼠标离开wrap的这个div就还原
+ $(".wrap").mouseleave(function(){
+ 	//从.wrap这个div中找里面所有的li
+    $(this).find("li").css("opacity",1);
+ });
+});
+
+
+
+//手风琴
+$("#box>ul>li").mouseenter(function(){
+$(this).siblings("li").css("width","100px");
+$(this).css("width","800px");
+});
+
+$("#box>ul>li").mouseleave(function(){
+$("#box>ul>li").css("width","230px");
+
+});
+
+//链式编程
+$(function(){
+   //点击按钮，设置p的内容，样式
+   $("#btnA").click(function(){
+   $("p").text("你是p吗").css({"fontSize":"30px","color":"red"}).mouseenter(function(){
+$(this).css("backgroundColor","blue");
+   });
+
+   });
+});
+
+
+
+$(function(){
+$("#btnB").click(function(){
+//addClass相当于DOM中的className 添加类样式
+$("#dv").addClass("cls");
+});
+$("#btnC").click(function(){
+//addClass相当于DOM中的className  移除类样式
+$("#dv").removeClass("cls");
+});
+
+$("#btnD").click(function(){
+   if($("#dv").hasClass("cls")){
+   	console.log("应用了");
+   }else{
+   	console.log("没应用");
+   }
+});
+
+
+
+
+
+
+});
+
+//网页开关灯
+$("#btnF").click(function(){
+	//切换类样式
+   $("body").toggleClass("ccs");
+});
+
+//获取元素的几个方法
+$("#btnS").click(function(){
+//获取的是当前的元素前面一个兄弟元素
+$("#four").prev().css("backgroundColor","blue");
+//获取的是当前的元素的前面所有的兄弟元素
+$("#four").prevAll().css("backgroundColor","blue");
+//获取的是当前的元素的后一个兄弟元素
+$("#four").next().css("backgroundColor","yellow");
+//获取的是当前的元素的后面所有的兄弟元素
+$("#four").nextAll().css("backgroundColor","yellow");
+//获取的是当前的元素的父级元素
+$("#four").parent().css("backgroundColor","yellow");
+});
+
+// 操作当前的兄弟元素
+
+$(function(){
+  //鼠标进入事件，鼠标离开事件，点击事件
+  $("#ul>li").mouseenter(function(){//鼠标进入事件
+  	//当前的li有背景颜色，其他的兄弟元素没有背景颜色
+    $(this).css("backgroundColor","red").siblings().css("backgroundColor","");
+  }).mouseleave(function(){//鼠标离开事件
+//当前的li的父级元素中所有的li背景去掉  	
+$(this).parent().children("li").css("backgroundColor","");
+  }).click(function(){//鼠标点击事件
+  	//断链---对象调用方法后返回来的不是当前对象了，那么此时就叫断链，也就是不能再链式编程了，如果解决？在断链的位置直接使用end()方法，内部会帮助我们自动的修复断链
+$(this).prevAll().css("backgroundColor","yellow").end().nextAll().css("backgroundColor","blue");
+  });
+});
+
+//tab切换
+$(function(){
+    $("hd>span").mouseenter(function(){
+//当前的li添加一个类样式current，其他的span移除current
+ $(this).addClass("current").siblings("span").removeClass("current");
+ //先获取鼠标进入的span的索引值
+ var index=$(this).index();
+//获取下面的所有的li
+$("bd>li:eq("+index+")").addClass("current").siblings("li").removeClass("current");
+    });
+});
+
+
+
+$(function(){
+   $("#btn8").click(function(){
+    //$("#pp").slideUp(1000,function(){
+   // 	alert("进去了");//滑入
+   // });
+$("#pp").fadeOut(1000);//淡出
+   });
+$("#btn9").click(function(){
+    //$("#pp").slideDown();//滑出
+    $("#pp").fadeIn(1000);//淡入
+   });
+  
+
+$("#btn10").click(function(){
+   
+   //  $("#pp").slideToggle();//滑入滑出，切换
+    $("#pp").fadeToggle(2000);
+   });
+   });
+
+
+
+$(function(){
+  $("#btn5").click(function(){
+ $(".dg>img:last").hide(1000,function f1(){
+  $(this).prev().hide(1000,f1);
+ });
+  }); 
+});
+
+$(function(){
+     //点击按钮，在div中创建一个元素
+     $("#btn7").click(function(){
+       var pObj= $("<p>我真得</p>");
+       $("#yy").append(pObj);
+       $("<a herf='www.baidu.com'>百度</a>").appendTo($("#yy"));
+     });
+});
+
+//根据数组，动态创建一个列表，并且高亮显示
+var names=["助教","凤姐","芙蓉姐姐","小月月","苍老师","段誉","乔峰","张无忌","金毛狮王","周芷若"];
+
+$(function(){
+$("#btnG").click(function(){
+   //创建列表
+   var ulObj=$("<ul></ul>").appendTo($("#xx"));
+   //循环遍历数组，动态创建列表
+   for (var i = 0; i < names.length; i++) {
+   	//创建li，并且加入到ul中
+   $("<li>"+names[i]+"</li>").appendTo(ulObj).mouseenter(function(){
+$(this).css("backgroundColor","yellow");
+   }).mouseleave(function(){
+$(this).css("backgroundColor","");
+   });
+   }
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<script>
+/*
+
+
+
+索引选择器
+index()-----获取当前位置的索引
+$("选择器:eq(索引的值)");----相对应的元素
+:lt(索引值);----小于索引值的所有元素
+:gt(索引值);----大于索引值的所有元素
+$("选择器:last")----最后一个
+$("选择器:first")----第一个
+当前元素.next()----后一个兄弟元素
+当前元素.nextAll()----后面所有的兄弟元素
+当前元素.prev()-----前一个兄弟元素
+当前元素.prevAll()-----前面所有的兄弟元素
+当前元素.siblings()----所有的兄弟元素（没有自己）
+当前元素.parent()----父级元素
+当前元素.children()-----当前元素中所有的子元素（直接的子元素）
+当前元素.find("选择器")----从当前元素中找某个或者某些元素
+
+
+在jQuery中，如果一个对象调用了一个方法，那么这个方法是设置的方式，一般调用后返回来的都是当前调用该方法的对象，具体的是不是这个对象，最好的方法，就是验证一下
+
+jQuery中元素样式的操作有两种方式
+1  对象.css();
+2  类样式的方式：
+addClass();---添加类样式
+removeClass();---删除类样式
+hasClass(); ---是否应用类样式
+toggleClass();---切换类样式
+
+
+show(参数1，参数2);----显示
+参数1：数字---毫秒
+参数1：字符串的值----slow--600 normal--400 fast--200
+参数2：回调函数，当动画执行完毕后执行该函数
+
+
+同理hide()方法-----隐藏
+slideUp()----滑入
+slideDown()---滑出
+slideToggle()----切换滑入滑出
+fadeIn()----淡入
+fadeOut()---淡出
+fadeToggle()----切换淡入淡出
+fadeTo(时间,透明度的值)
+
+
+
+
+
+
+animate:自定义动画
+.animate({params},[speed],[easing],[callback]);
+{params}:要执行动画的css属性，带数字（必选）
+[speed]：执行动画的时长（可选）
+[easing]：执行效果，默认为swing（缓动） linear（匀速）
+[callback]：动画执行完后立即执行回调函数（可选）
+
+arguments.callee--属性，地柜的时候用来找匿名函数递归，
+
+元素的
+
+
+
+
+
+
+
+
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API-5</title>
+
+
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#jk{
+	width: 300px;
+	height: 200px;
+	background-color: hotpink;
+}
+
+#ar{
+	width: 200px;
+	height: 150px;
+	background-color: red;
+	border-radius: 100px;
+}
+
+input{
+	margin-top: 20px;
+}
+#tp{
+	margin-top: 30px;
+	width: 200px;
+	height: 100px;
+	background-color: green;
+	position: absolute;
+
+}
+img{
+	width: 600px;
+	height: 385px;
+}
+
+li{
+	float: left;
+}
+</style>
+
+</head>
+<body>
+<!-- 案例1：一次性定时器 -->
+<input type="button" value="停下" id="btn">
+<!-- 案例2：协议按钮禁用 -->
+<textarea name="texta" id="" cols="30" rows="10">
+这个世界就是这么疯狂，你不同意，我就让你注册，秦始皇，打钱
+</textarea>
+<input type="button" value="请仔细阅读协议(5)" id="btnA" disabled="disabled">
+<!-- 案例3：div颜色渐变-->
+<div id="jk"></div>
+<input type="button" value="渐变" id="btn1">
+<!-- 案例4：div变宽 -->
+<input type="button" value="变宽" id="btn2">
+<div id="ar"></div>
+<!-- 案例5：移动元素 -->
+<input type="button" value="移动到400px" id="btnC">
+<input type="button" value="移动到800px" id="btnD">
+<div id="tp"></div>
+
+
+
+<ul>
+		<li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/6.jpg" alt=""></a></li>
+	</ul>
+
+
+
+
+
+<script type="text/javascript" src="common.js"></script>
+	<script>
+
+//案例1：一次性定时器
+window.onload=function(){
+var	timeId=window.setTimeout(function(){
+		alert("萨瓦迪卡");
+	},1000);
+my$("btn").onclick=function(){
+	clearTimeout(timeId);
+  };
+};
+//案例2：协议按钮禁用
+var time=5;
+var timeID=setInterval(function(){
+time--;
+my$("btnA").value="请仔细阅读协议("+time+")";
+if(time<=0){
+	clearInterval(timeID);
+    my$("btnA").disabled=false;
+    my$("btnA").value="同意";
+   }
+},1000);
+//案例3：div颜色渐变
+my$("btn1").onclick=function(){
+	var opacity=10;
+	var timeId1=setInterval(function(){
+	opacity--;
+    if(time<=0){
+	clearInterval(timeId1);
+}
+     my$("jk").style.opacity=opacity/10;
+	},200);
+	
+}
+
+//案例4：div变宽
+my$("btn2").onclick=function(){
+	var width=200;
+	var timeId2=setInterval(function(){
+     width+=10;
+     if(width==800){
+      clearInterval(timeId2);
+     }
+      my$("ar").style.width=width+"px";
+	},200);
+}
+
+//案例5：移动元素
+my$("btnC").onclick=function(){
+	var timeId3=setInterval(function(){
+     var current=my$("tp").offsetLeft;
+    var temp=10;
+    current+=temp;
+    if(current<=400){
+      my$("tp").style.left=current+"px";
+    }else{
+    	clearInterval(timeId3);
+    }
+
+	},20);
+}
+
+//my$("btnD").onclick=function(){
+//	var timeId4=setInterval(function(){
+//     var current=my$("tp").offsetLeft;
+//    var temp=10;
+//    current+=temp;
+//    if(current<=800){
+//      my$("tp").style.left=current+"px";
+//    }else{
+//    	clearInterval(timeId4);
+//    }
+//
+//	},20);
+//}
+function animate1(element,target){
+	clearInterval(element.timeId);
+element.timeId=setInterval(function(){
+var current=element.offsetLeft;
+var temp=10;
+temp=current<target?temp:-temp;
+current+=temp;
+if(Math.abs(target-current)>Math.abs(temp)){
+   element.style.left=current+"px";
+}else{
+	clearInterval(element.timeId);
+	element.style.left=target+"px";
+}
+},20);
+}
+
+my$("btnD").onclick=function(){
+	animate1(my$("tp"),800);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

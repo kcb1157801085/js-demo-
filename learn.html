@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+function Person(name,age,salary){
+	this.name = name ;
+	this.age = age;
+	this.salary = salary ; 
+}
+function f1(person){
+	person.name = "ls";
+	person = new Person("aa",18,10);
+}
+var p = new Person("zs",18,1000);
+console.log(p.name);
+f1(p);
+console.log(p.name);
+
+
+var str = "hello";
+str = str.replace("ll","HH");
+console.log(str);
+console.log(typeof str);
+
+
+	</script>
+</body>
+</html>

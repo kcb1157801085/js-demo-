@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS-api-5</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+#jk{
+	width: 300px;
+	height: 200px;
+	background-color: hotpink;
+}
+
+#ar{
+	width: 200px;
+	height: 150px;
+	background-color: red;
+	border-radius: 100px;
+}
+
+input{
+	margin-top: 20px;
+}
+#tp{
+	margin-top: 30px;
+	width: 200px;
+	height: 100px;
+	background-color: green;
+	position: absolute;
+
+}
+ul{
+	list-style: none;
+
+}
+img{
+	vertical-align: top;
+	
+}
+.box{
+	width: 968px;
+	height: 385px;
+	margin: 100px auto;
+	padding: 5px;
+	border: 1px solid #ccc;
+}
+.inner{
+	width: 968px;
+	height: 385px;
+	background-color: pink;
+	position: relative; 
+	
+}
+.inner ul{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.inner ul li{
+   float: left;
+}
+.square{
+	position: relative;
+	top:355px;
+	left:30px;
+}
+.square span{
+	width: 16px;
+	height: 16px;
+	display:inline-block;
+	line-height: 16px;
+	text-align: center;
+	background-color: #fff;
+	cursor: pointer;
+}
+.square .current{
+	background-color: orange;
+    color: #fff;
+}
+#btnA{
+	margin-top: 250px;
+}
+
+#dv1{
+	width: 200px;
+	height: 150px;
+	background-color: red;
+	margin-left: 20px;
+	padding-left: 20px;
+	border:20px solid green;
+
+}
+#dv2{
+	width: 100px;
+	height: 50px;
+	background-color: green;
+	margin-left: 20px;
+	padding-left: 20px;
+	border:20px solid pink;
+}
+
+#im{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+<!-- 案例1：一次性定时器 -->
+<input type="button" value="停止" id="btn">
+<!-- 案例2：协议按钮禁用 -->
+<textarea name="texta" id="" cols="30" rows="10">
+这个世界就是这么疯狂，你不同意，我就让你注册，秦始皇，打钱
+</textarea>
+<input type="button" value="请仔细阅读协议(5)" id="btnA" disabled="disabled">
+<!-- 案例3：div颜色渐变-->
+<div id="jk"></div>
+<input type="button" value="渐变" id="btn1">
+<!-- 案例4：div变宽 -->
+<input type="button" value="变宽" id="btn2">
+<div id="ar"></div>
+<!-- 案例5：移动元素 -->
+<input type="button" value="移动到400px" id="btnC">
+<input type="button" value="移动到400px" id="btnD">
+<div id="tp"></div>
+<!-- 案例6：简单的轮播图 -->
+
+<div class="box" id="box">
+<div class="inner">
+	<ul>
+		<li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/6.jpg" alt=""></a></li>
+	</ul>
+<div class="square">
+<span class="current">1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+</div>
+</div>
+</div>
+<!-- offset系列 -->
+<input type="button" value="显示效果" id="btnA">
+<div id="dv1">
+<div id="dv2"></div>
+</div>
+
+<!-- 图片跟着鼠标移动 -->
+<img src="images/1.jpg" alt="" id="im">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="common.js"></script>
+	<script>
+	//案例1：一次性定时器
+var timeId=window.setTimeout(function(){
+	alert("您好");
+},1000);
+my$("btn").onclick=function(){
+	clearTimeout(timeId);
+};
+//案例2：协议按钮禁用
+window.onload=function(){
+	var time=5;
+	var timeID=setInterval(function(){
+		time--;
+		my$("btnA").value="请仔细阅读协议("+time+")";
+		if(time<=0){
+			clearInterval(timeID);
+			my$("btnA").disabled=false;
+			my$("btnA").value="同意";
+		}
+	},1000);
+}
+//案例3：div颜色渐变
+
+//按钮的点击事件
+my$("btn1").onclick=function(){
+	var opacity=10;
+  var timeId1=setInterval(function(){
+	opacity--;
+	if(opacity<=0){
+		clearInterval(timeId1);
+	}
+   my$("jk").style.opacity=opacity/10;
+},200);	
+   
+};
+
+//案例4：div变宽
+//div要移动，要脱离文档流--position:absolute
+//如果样式的代码是在style的标签中设置，我们是获取不到的
+//如果样式的代码是在style的属性设置，外面是可以获取
+my$("btn2").onclick=function(){
+	var width=200;
+    var timeid=setInterval(function(){
+    	width+=10;
+    	if(width==800){
+    		clearInterval(timeid);
+    	}
+    	my$("ar").style.width=width+"px";
+    },20);
+
+};
+//案例5：移动元素
+//点击第一个按钮移动到400
+my$("btnC").onclick=function(){
+	var timeId2=setInterval(function(){
+ //获取div的当前位置
+ var current=my$("tp").offsetLeft;
+ //div每次移动多少像素
+ var step=10;
+ //每次移动的距离
+ current+=step;
+ //判断当前移动后的位置是否到达目标位置
+if(current<=400){
+my$("tp").style.left=current+"px";
+}else{
+	clearInterval(timeId2);
+}
+
+	},20)
+}
+
+my$("btnD").onclick=function(){
+	var timeId3=setInterval(function(){
+ //获取div的当前位置
+ var current=my$("tp").offsetLeft;
+ //div每次移动多少像素
+ var step=10;
+ //每次移动的距离
+ current+=step;
+ //判断当前移动后的位置是否到达目标位置
+if(current<=800){
+my$("tp").style.left=current+"px";
+}else{
+	clearInterval(timeId3);
+}
+	},20)
+}
+
+
+//案例6：简单的轮播图
+//获取最外面的div
+var box=my$("box");
+//获取相框
+var inner=box.children[0];
+//获取相框的宽度
+var imgWidth=inner.offsetWidth;
+//获取ul
+var ulObj=inner.children[0];
+//获取所有的span标签
+var spanObjs=inner.children[1].children;
+//循环遍历所有的span标签，注册鼠标进入事件
+for (var i = 0; i < spanObjs.length; i++) {
+	//循环的时候把索引值保存在每个span的自定义属性中
+	spanObjs[i].setAttribute("index",i);
+	//为每个span标签注册鼠标进入事件
+	spanObjs[i].onmouseover=function(){
+     //先干掉所有的span的背景颜色
+     for (var j = 0; j < spanObjs.length; j++) {
+     	spanObjs[j].removeAttribute("class");
+
+     }
+     //设置当前的span的背景颜色
+     this.className="current";
+     
+     //移动ul（每个图片的宽*鼠标放在这个按钮的索引值）
+     var index=this.getAttribute("index");
+    animate(ulObj,-index*imgWidth);
+	};
+}
+//offset系列
+my$("btnA").onclick=function(){
+	console.log(my$("dv2").offsetLeft);
+}
+
+
+
+//获取body
+console.log(document.body); //获取的是元素，标签
+//获取title
+console.log(document.title);//标签中的值
+//修改title的值
+document.title="嘎嘎";
+//获取html
+console.log(document.documentElement);
+
+//图片跟着鼠标移动
+//鼠标在页面中移动，图片跟着鼠标移动
+document.onmouseover=function(e){
+	//可视区域的横坐标，纵坐标
+	my$("im").style.left=e.clientX+"px";
+	my$("im").style.top=e.clientY+"px";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+
+	<script>
+//div要移动，要脱离文档流--position:absolute
+//如果样式的代码是在style的标签中设置，我们是获取不到的
+//如果样式的代码是在style的属性设置，外面是可以获取
+
+
+/*
+要获取css文件中设置的属性样式，可以通过offset系列获取
+元素的样式属性是无法直接通过： 对象.style.属性来获取（样式在style属性中设置）
+offsetWidth:获取元素的宽(含边框及内填充)
+offsetHight:获取元素的高（含边框及内填充）
+offsetLeft:获取元素距离左边位置的值
+offsetTop:获取元素距离上边位置的值
+
+不脱离文档流：
+offsetLeft:父级元素的margin+padding+border+子级的margin
+
+注意：和子级元素的padding和border无关
+
+脱离文档流：
+offsetLeft:只和自己的left和margin有关
+
+不脱离文档流：
+offsetTop:父级元素的margin+padding+border+子级的margin
+
+注意：和子级元素的padding和border无关
+
+脱离文档流：
+offsetTop:只和自己的top和margin有关
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

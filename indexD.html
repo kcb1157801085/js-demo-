@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第一天作业</title>
+</head>
+<body>
+	<script>
+/*
+    JS第一天作业：
+    1、交换变量：两种方式每个三遍
+   
+    2、 类型转换13个案例每个三遍
+       parseInt()
+       parseFloat()
+       Number()
+       .toString() 
+       String()
+       Boolean()
+    3、操作符  
+      整理笔记
+      根据优先级运算
+  js第二天作业
+    1、本金10000元存入银行，年利率是千分之三，每过一年，将本金和利息相加作为新的本金。计算5年后，获得的本金是多少？
+
+    2、有人想知道，一年之内一对兔子能繁殖多少对？于是就筑了一道围墙把一堆小兔子关在里面。已知一对兔子每月可以生一对小兔子，而一对兔子从出生后第三个月起每月生一对小兔子。加入一年内没有死亡现象，那么，一对兔子一年内（12个月）能繁殖成多少对？
+    （兔子的规律为数列1 1 2 3 5 8 13 21 ）
+  js第三天作业
+  1、1-100之间不能被7整除的整数的和（用continue）
+  2、求200-300之间所有的奇数的和 用continue
+  3、求整数1-100的累加值，但要求碰到个位为3的数则停止累加
+  4、求两个数中的最大值？
+  5、求3个数中的最大值？
+  6、判断一个是是否是素数？
+
+ */
+//js第一天第一题方法1
+var num1 = 10 ;
+var num2 = 20 ;
+ var temp = num1;
+    num1 = num2;
+    num2 = temp;
+//js第一天方法2
+var a = 10;
+var b = 20;
+var a = a+b;
+var b = a - b;
+var a = a - b;
+
+
+//js第一天第二题
+//转换为整数
+console.log(parseInt(10));
+console.log(parseInt("10"));
+console.log(parseInt(10.98));
+console.log(parseInt("aabcc"));
+//转换为小数
+console.log(parseFloat(10));
+console.log(parseFloat("10"));
+console.log(parseFloat(10.98));
+console.log(parseFloat("aabcc"));
+//转换为Number
+console.log(Number(10));
+console.log(Number("10"));
+console.log(Number(10.98));
+console.log(Number("aabcc"));
+//转换的是有意义的字符串
+var str = 10;
+console.log(str.toString());
+var str1;
+//string
+console.log(String(str1));
+var str2 = null;
+console.log(String(str2));
+
+console.log(Boolean(0));
+console.log(Boolean(1));
+console.log(Boolean(-10));
+console.log(Boolean("呵呵"));
+console.log(Boolean(""));
+console.log(Boolean(undefined));
+console.log(Boolean(null));
+
+
+
+var rome =!false&&( "人"  ==="狗"||!(15%6>=10)&&"10"==10||true);
+console.log(Boolean(rome));
+//判断数据类型
+console.log(typeof(0));
+
+//js第二天第一题（复利问题）
+   var sum5 = 10000;
+   var rate = 0.003;
+for (var i = 0; i<5; i++){
+     sum5 = sum5*(1+rate);
+}
+document.write(parseInt(sum5));
+//js第二天第二题(求斐波拉契数列)
+var aa = 1;
+var bb = 1;
+var cc = 0;
+for(var b =3 ;b<=12; b++){
+  cc=aa+bb;
+  aa =bb;
+  bb =cc;
+}
+console.log(cc);
+//js第三天第一题
+   var dd=1;
+   var sum6 = 0 ;
+   while(dd<=100){
+    if(dd%7==0){
+      dd++;
+      continue;
+    }
+     sum6+=dd;
+     dd++;
+   }
+   console.log(sum6);
+   //js第三天第二题
+   var sum7 = 0;
+   for (var i = 100; i <= 200; i++) {
+     if(i%2==0){
+        continue;
+     }
+     sum7+=i;
+   }
+   console.log(sum7);
+   //js第三天第三题
+   var ee =1;
+   var sum8 = 0;
+   while(ee<=100){
+      if(ee%10==3){
+       ee++;
+       continue; 
+      }
+     sum8+=ee;
+     ee++;
+   }
+   console.log(sum8);
+   /*
+  第五天作业
+  用三种方式  调用object    自定义 字面量  （两遍）
+  工厂模式一遍
+  1、创建一个电脑对象，有颜色，有重量，有品牌，有型号，可以看电影，可以听音乐，可以打游戏，可以敲代码
+
+  2、创建一个按钮对象，宽，高，背景颜色，点击行为，按钮有鼠标进入的行为
+
+  3、创建一个车的对象，有重量，颜色，品牌，可以载人，拉货
+
+  4、Math对象讲的方法----三遍
+
+
+
+
+
+
+
+
+
+    */
+   //调用系统函数构造对象
+//   var computer = new Object();
+//   computer.color = "black";
+//   computer.weight = "2.5kG";
+//   computer.brand = "thunoerobot";
+//   computer.model = "g150s";
+//   computer.movie = function(){
+//    console.log("看电影");
+//   }
+//   computer.music = function (){
+//    console.log("听音乐");
+//   }
+//   computer.game= function (){
+//    console.log("打游戏");
+//   }
+//   computer.code = function(){
+//    console.log("敲代码");
+//   }
+//computer.movie();
+//computer.music();
+//computer.game();
+//computer.code();
+
+//自定义构造函数创建对象
+ function Computer(){
+ this.color ="black";
+ this.weight = "2.5kG";
+ this.brand ="thunoerobot"; 
+ this.model = "g150s";
+ this.movie = function(){
+     console.log("看电影");
+ }
+ this.music = function(){
+     console.log("听音乐");
+ }
+ this.game = function (){
+  console.log("打游戏");
+ }
+ this.code= function(){
+  console.log("敲代码");
+ }
+}
+var obj = new Computer();
+console.log(obj.color);
+obj.movie();
+
+//字面量方式创建对象
+var obj2 = {
+   color:"black",
+   weight:"2.5kG",
+   brand:"thunoerobot",
+   model:"g150s",
+   movie:function(){
+    console.log("看电影");
+   },
+   music:function(){
+    console.log("听音乐");
+   },
+   game:function(){
+    console.log("打游戏");
+   },
+   code:function(){
+    console.log("敲代码");
+   },
+};
+console.log(obj2.color);
+obj2.music();
+
+//工厂模式创建对象
+function createObject(color,weight,brand,model){
+  var obj = new Object();
+  obj.color = color;
+  obj.weight = weight;
+  obj.brand = brand;
+  obj.model = model;
+  obj.movie = function(){
+    console.log("看电影");
+  };
+  obj.say =function(){
+    console.log("颜色："+this.color+"重量："+this.weight+"品牌："+this.brand+"型号："+this.model);
+  };
+  return obj;
+}
+var per1 =createObject("black","2.5kG","thunoerobot","g150s");
+per1.say();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ //第六天作业
+所有案例一遍
+Math对象的案例
+格式化的日期案例
+String中的案例
+将一个字符串数组输出为|分割的形式，比如“刘备|张飞|关羽”使用两种方式实现
+将一个字符串数组的元素的顺序进行反转。使用两种方法。提示：第i个和第length-i-1个进行交换
+工资的数组[1500,1200,2000,2100,1800]把工资超过2000的删除
+["c","a","z","a","x","a"]找到数组中每一个a出现的位置
+编写一个方法去掉一个数组的重复元素
+Math和Date和String和Array中的所有的方法，全部一遍
+ */
+
+
+
+
+	</script>
+</body>
+</html>

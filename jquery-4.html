@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JQ-4</title>
+
+<style>
+*{
+	padding: 0;
+	margin:0;
+}
+#dv{
+	width: 300px;
+	height: 200px;
+	background-color:green;
+}
+#dv p{
+	width: 100px;
+	height: 30px;
+	background-color: red;
+}
+
+#dd{
+	width: 300px;
+	height: 200px;
+	background-color:green;
+}
+#dd p{
+	width: 100px;
+	height: 30px;
+	background-color: red;
+}
+
+#dj{
+	width: 300px;
+	height: 200px;
+	background-color:green;
+}
+#dj p{
+	width: 100px;
+	height: 30px;
+	background-color: red;
+	cursor: pointer;
+}
+#dn{
+	width: 300px;
+	height: 200px;
+	background-color:green;
+}
+#dn p{
+	width: 100px;
+	height: 30px;
+	background-color: red;
+	cursor: pointer;
+}
+
+
+#dg1{
+	width: 300px;
+	height: 400px;
+	background-color:yellow;
+}
+
+#dg2{
+	width: 200px;
+	height: 300px;
+	background-color:blue;
+}
+
+
+#dg3{
+	width: 100px;
+	height: 200px;
+	background-color:red;
+}
+
+
+#jb{
+	width: 200px;
+	height: 100px;
+	background-color: red;
+}
+
+#uu{
+	list-style-type: none;
+}
+#uu li{
+	width: 100px;
+	height: 100px;
+	background-color:green;
+	margin-right:10px;
+	float: left;
+}
+
+.comment li{
+   float: left;
+   list-style: none;
+   cursor: pointer;
+   font-size: 50px;
+   color: yellow;
+}
+
+
+#yu{
+	width: 300px;
+	height: 200px;
+	background-color:green;
+}
+
+#dv1{
+	width:300px;
+	height: 200px;
+	background-color: yellow;
+}
+#dv1 p{
+	width:100px;
+	height: 30px;
+	background-color: pink;
+}
+
+
+</style>
+
+</head>
+<body>
+<script type="text/javascript" src="jquery-3.3.1.js"></script>
+<script>
+//点击按钮为div最后那个添加一个子元素，并且子元素有点击事件
+//如果是先创建元素，再为这个子元素绑定事件(对象.事件名字(事件处理函数的方式))，后面再创建的子元素，没有事件----可用delegate方法解决
+ $(function(){
+   $("#btn").click(function(){
+   	$("<p>这是一个p</p>").appendTo($("#dv"));
+     $("#dv").delegate("p","click",function(){
+     alert("呵呵");
+     });
+   });
+$("#btn1").click(function(){
+	//后添加的
+   	$("<p>这是一个p2</p>").appendTo($("#dv"));
+     });
+   });
+
+// 绑定事件的方式2
+$(function(){
+   $("#btn2").click(function(){
+   	$("<p>这是一个p</p>").appendTo($("#dd"));
+   	//和delegate是一样的，都是在为子元素绑定事件,但是阐述的顺序是不一样的
+     $("#dd").on("click","p",function(){
+     alert("呵呵");
+     });
+   });
+$("#btn3").click(function(){a
+	//后添加的
+   	$("<p>这是一个p2</p>").appendTo($("#dd"));
+     });
+   });
+
+
+//用什么方式绑定事件，最好用对应的方式解绑事件
+ 
+//bind解绑事件
+$(function(){
+	//绑定
+    $("#btn4").click(function(){
+     $("#dj").bind("click",function(){
+      console.log("我被点了");
+     }).bind("click",function(){
+      console.log("我被点两次了");
+     });
+      $("#dj").bind("mouseenter",function(){
+      $(this).css("backgroundColor","blue");
+     });
+       $("#dj").bind("mouseleave",function(){
+      $(this).css("backgroundColor","red");
+     });
+    });
+    //解绑
+    $("#btn5").click(function(){
+    //解绑的是点击事件，所有的点击事件全部移除
+   //unbind()里面没有任何参数，此时该元素的所有的事件全部解绑
+   //解绑多个事件中间用空格隔开
+        $("#dj").unbind("click");
+    });
+});
+
+
+// delegate解绑事件
+$(function(){
+   $('#btn6').click(function(){
+    $("#dn").click(function(){
+       console.log("div被点了");
+    }).mouseenter(function(){
+    	console.log("鼠标进入");
+    }).mouseleave(function(){
+    	console.log("鼠标离开");
+    });
+    // 在div中创建一个p，同时绑定点击事件
+    $("<p>这是一个p</p>").appendTo($("#dn"));
+   // 为这个p绑定事件
+   //$("#dn").delegate("p","click",function(){
+    //   console.log("p被点了");
+   //});
+   // $("#dn").delegate("p","mouseenter",function(){
+   //    console.log("p进来了");
+   //});
+   $("#dn").on("click","p",function(){
+    console.log("p被点了");
+   });
+   $("#dn").on("mouseenter","p",function(){
+    console.log("p被点了");
+   });
+   });
+   //第二个按钮解绑事件
+   $("#btn7").click(function(){
+   	//p的点击事件没有了，移除了p的所有事件
+      // $("#dn").undelegate();
+       //可以移除多个事件，但是每个事件之间用空格隔开
+      // $("#dn").undelegate("p","click mouseenter");
+      // on的解绑事件
+      $("#dn").off(); 
+      //把父级元素和子级元素的点击事件解绑 
+          $("#dn").off("click"); 
+          //   中间用空格
+             $("#dn").off("click","p"); 
+   });
+});
+
+
+// 事件冒泡  阻止事件冒泡----return false
+$(function(){
+    $("#dg1").click(function(){
+       console.log($(this).attr("id"));
+    });
+    $("#dg2").click(function(){
+       console.log($(this).attr("id"));
+    });
+    $("#dg3").click(function(){
+       console.log($(this).attr("id"));
+       return false;
+    });
+});
+
+
+ // 事件的触发
+ $(function(){
+      //文本框添加获取焦点的事件
+      $("#txt").focus(function(){
+    console.log("我的获取焦点的事件触发了");
+    //设置当前元素的下一个兄弟元素中显示一个提示信息
+    $(this).next("span").text("文本框获取焦点了");
+      });
+      $("#btn").click(function(){
+        //调用文本框的获取焦点事件----方法1
+        // $("#txt").focus();
+        // 第二种触发事件的方式
+        // $("#txt").trigger(focus);
+        // 第三种触发事件的方式，这种方式可以触发该事件，但是，不能触发浏览器的默认的行为
+           $("#txt").triggerHandler(focus);
+      });
+ });
+
+
+
+// 获取用户按下什么组合键
+$(function(){
+  $(document).mousedown(function(e){
+  	//判断用户按下鼠标的时候，有没有按下alt键
+  	if(e.altKey){
+    //用户按下了alt键的同时也按下鼠标了
+    console.log("按下了alt键，鼠标也按下了");
+  	}else if(e.shiftKey){
+  // 用户按下了shift键的同时也按下鼠标了
+    console.log("按下了shift键，鼠标也按下了");
+  	}else if(e.ctrlKey){
+//用户按下了ctrl键的同时也按下鼠标了
+    console.log("按下了ctrl键，鼠标也按下了");
+  	}else{
+  		console.log("只按下了鼠标");
+  	}
+  })
+});
+
+
+
+// 按键改变背景颜色
+$(function(){
+$(document).keydown(function(e){
+    switch(e.keyCode){
+   case 65:$("#jb").css("backgroundColor","yellow");break;
+   case 66:$("#jb").css("backgroundColor","green");break;
+   case 67:$("#jb").css("backgroundColor","blue");break;
+   case 68:$("#jb").css("backgroundColor","gray");break;
+   case 69:$("#jb").css("backgroundColor","black");break;
+   case 70:$("#jb").css("backgroundColor","yellowblue");break;
+   case 71:$("#jb").css("backgroundColor","pink");break;
+   case 72:$("#jb").css("backgroundColor","deeppink");break;
+   case 73:$("#jb").css("backgroundColor","hotpink");break;
+   case 74:$("#jb").css("backgroundColor","orange");break;
+   case 75:$("#jb").css("backgroundColor","white");break;
+   case 76:$("#jb").css("backgroundColor","yellowgreen");break;
+    }
+});
+});
+
+
+
+// 评分效果实现
+$(function(){
+  //获取所有的li标签
+  $(".comment>li").mouseenter(function(){
+     $(this).text("★").prevAll("li").text("★").end().nextAll("li").text("☆");
+  }).click(function(){
+  	//点那个li就为那个li添加一个自定义属性，作为标识，但是其他的li中的这个自定义属性要删除
+     $(this).attr("index","1").siblings("li").removeAttr("index");
+  }).mouseleave(function(){
+//鼠标离开的时候，获取那个带有index自定义属性的li，然后，改变这个li中的五角星，同时前面的五角星也是实心的，同时后面的五角星是空心的
+//先干掉所有的li中的实心的五角星
+$(".comment>li").text("☆");
+$(".comment>li[index=1]").text("★").prevAll("li").text("★");
+  })
+});
+
+
+//隐式迭代---内部帮助我们循环遍历做操作
+// each方法，帮助我们遍历jQuery的对象
+//获取所有的li，针对每个li的透明度进行设置
+$(function(){
+$("#uu>li").each(function(index,ele){
+   //每个li的透明度不一样
+   var opacity=(index+1)/10;
+   $(ele).css("opacity",opacity);
+});
+});
+
+//只创建一个元素
+$(function(){
+    $("#btnA").click(function(){
+     if($("#p1").length==0){
+     	//点击按钮，只创建一个p标签，在div中
+     	$("<p id='p1'>这是一个p</p>").appendTo($("#yu"));
+     }
+    });
+});
+
+
+$(function(){
+//事件参数对象
+    $("#dv1").click(function(e){
+    //得到是触发该事件的目标对象
+      console.log($(e.target()).attr("id"));
+    });
+    $("p").click(function(){
+      console.log("p被点击了");
+      //阻止事件冒泡
+      return false;
+    });
+});
+
+
+</script>
+
+<script>
+/*
+对象.事件名字(事件处理函数);---普通写法
+对象.bind(参数1,参数2);---1.事件名字2事件处理函数
+前两种方式只能为存在的元素绑定事件，后添加的元素没有事件
+
+下面的两种方式，可以为存在的元素绑定事件，后添加的元素也有事件
+对象.delegate("选择器","事件名字","事件处理函数");
+父级元素调用方法，代理子级元素绑定事件
+对象.on("事件名字","选择器","事件处理函数");
+父级元素调用方法，代理子级元素绑定事件
+
+因为delegate方法中是调用的on的方法
+所以，以后可以调用on就行
+each方法就是用来遍历jQuery对象的，但是，里面的每个对象最开始都是DOM对象，如果想要使用jQuery的方法，需要把DOM对象转成jQuery对象
+
+
+
+为了避免多个js库共存，命名冲突的时候，把$的权利给了xy，$就可以作为其他的用法出现在代码中----   var xy=$.noConflict();
+
+包装集：把很多的DOM的对象进行包装或者是封装---jQuery对象
+jQuery中如何判断这个元素是否存在，就是通过包装集的length属性来测试---通过  对象.length!=0   的方法来判断
+
+
+innerWidth()/innerHeight() 方法返回元素的宽度/高度（包括内边距）
+outerWidth()/outerHeight() 方法返回元素的宽度/高度（包括内边距和边框）。
+outerWidth(true)/outerHeight(true) 方法返回元素的宽度/高度（包括内边距、边框和外边距）
+
+插件：就是一个功能，jQuery的插件，别人把功能写好了，我们直接拿过来就可以了 
+
+
+插件的基本代码放在$.fn中
+
+e.target-这个属性得到的是触发该事件的目标对象，此时是一个DOM对象
+e.currentTarget  这个属性得到的是触发该事件的当前的对象
+e.delegateTarget  这个属性得到的是代理的这个对象
+
+
+mouseenter和mouseover的区别
+mouseover有事件冒泡
+mouseenter避免了事件冒泡
+
+
+ */
+
+</script>
+
+<!-- 绑定事件的方式1 -->
+<input type="button" value="绑定事件" id="btn">
+<input type="button" value="绑定事件" id="btn1">
+<div id="dv"></div>
+<!-- 绑定事件的方式2 -->
+
+<input type="button" value="绑定事件" id="btn2">
+<input type="button" value="绑定事件" id="btn3">
+<div id="dd"></div>
+
+
+<!-- bind解绑事件 -->
+<input type="button" value="绑定事件" id="btn4">
+<input type="button" value="解绑事件" id="btn5">
+<div id="dj"></div>
+
+
+<!-- delegate解绑事件 -->
+<input type="button" value="绑定事件" id="btn6">
+<input type="button" value="解绑事件" id="btn7">
+<div id="dn"></div>
+
+<!-- 事件冒泡 -->
+<div id="dg1">
+	<div id="dg2">
+		<div id="dg3"></div>
+	</div>
+</div>
+
+<!-- 事件的触发 -->
+<input type="button" value="我要触发文本框" id="btn8">
+<input type="text" value="" id="txt"><span id="sp"></span>
+
+
+<!-- 按键改变背景颜色 -->
+<div id="jb"></div>
+
+
+<!-- 链式编程的原理 -->
+<input type="button" value="链式编程" id="btn9">
+
+<!-- 评分效果实现 -->
+<ul class="comment">
+	<li>☆</li>
+	<li>☆</li>
+	<li>☆</li>
+	<li>☆</li>
+	<li>☆</li>
+</ul>
+
+
+<!-- each方法 -->
+<ul id="uu">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+</ul>
+
+<!-- 只创建一个元素 -->
+<input type="button" value="创建一个p" id="btnA">
+<div id="yu"></div>
+
+<input type="button" value="显示效果" id="btnB">
+<div id="dv1">
+	<p>这是一个p</p>
+</div>
+
+
+
+</body>
+</html>

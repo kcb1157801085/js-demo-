@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>	
+
+<style>
+
+*{
+	margin:0;
+	padding: 0;
+
+}
+
+
+
+#dv{
+	width: 300px;
+	height: 200px;
+	border: 1px solid red; 
+}
+
+
+
+#hh{
+	width: 600px;
+	height: 450px;
+	border: 1px solid red; 
+}
+
+
+#py{
+	width: 200px;
+	height: 100px;
+	background-color: pink;
+	margin-top: 30px;
+	position: absolute;
+	left:100px;
+	top:200px;
+}
+
+
+#tp{
+	width:300px;
+	height: 200px;
+	border:1px solid red;
+    overflow: auto;
+}
+
+
+
+.top{
+	height: 100px;
+	width: 100%;
+	background-color: red
+
+}
+.nav{
+	height: 200px;
+	width: 100%;
+	background-color: yellow;
+	
+}
+.main{
+	height: 2000px;
+	width: 100%;
+	background-color: blue;
+	margin-top:10px;
+	position: fixed;
+}
+
+
+#rr{
+	width:200px;
+	height: 100px;
+	border:2px solid green;
+}
+
+#rr p{
+	width: 150px;
+	height: 50px;
+	border:1px solid red;
+	cursor: pointer;
+}
+
+
+</style>
+
+<script type="text/javascript" src="jquery-3.3.1.js"></script>
+ <script>
+$(function(){
+   $("#btn").click(function(){
+//把创建的span标签这个子元素直接插入到div中的第一个子元素的前面
+$("#dv").prepend($("<span> this is span</span>"));
+$("<span>this is spans</span>").prependTo($("#dv"));
+//把元素添加到div的后面的位置，是div的下一个兄弟元素
+$("#dv").after($("<span>this is spans1</span>"));
+//把元素添加到div的前面的位置，是div的上一个兄弟元素
+$("#dv").after($("<span>this is spans2</span>"));
+
+   });
+});
+
+
+$(function(){
+  //从父级元素中移除子级元素----移除所有的子元素
+  $("#btn1").click(function(){
+
+  $("#dd").html("");//清空父级元素中的子级元素的方法
+
+  $("#dd").empty();//清空父级元素中的子级元素的方法
+   //干掉一切
+  $("#dd").remove();//清空父级元素及他的子级元素
+  });
+});
+
+
+var arr=[{"name":"传智播客","href":"http://www.itcast.cn"},
+         {"name":"京东","href":"http://www.jd.cn"},
+         {"name":"淘宝","href":"http://www.taobao.cn"},
+         {"name":"优酷","href":"http://www.youku.cn"},
+         {"name":"爱奇艺","href":"http://www.aiqiyi.cn"},
+         {"name":"小米","href":"http://www.mi.cn"}];
+
+ $(function(){
+   $("#btn2").click(function(){
+  var table=$("<table border='1' cellspacing='0'></table>");
+  $("#hh").append(table);
+  for (var i = 0; i < arr.length; i++) {
+  //创建行，并加入到table中
+       var tr=$("<tr></tr>");
+       table.append(tr);
+       //在列中显示内容
+       var dt=arr[i];
+ var td1=$("<td>"+dt.name+"</td>");
+       tr.append(td1);
+var td2=$("<td><a href='"+dt.href+"'>"+dt.name+"</a></td>");
+       tr.append(td2);
+
+//鼠标进入事件
+tr.mouseenter(function(){
+	$(this).css("backgroundColor","pink");
+}).mouseleave(function(){
+	$(this).css("backgroundColor","");
+});
+  }
+   });
+
+$("#btn3").click(function(){
+//移除div中的表格
+	$("#hh").empty();
+}); 
+ });       
+
+
+ //点击按钮操作文本框的文本属性
+$(function(){
+$("#btn4").click(function(){
+     //点击按钮设置文本框的value属性
+     $("#txt").val("今天天气一点也不好");
+     $("#r2").val("OMG");
+     $("#ck3").val("打豆豆");
+     //设置文本域中的文本内容
+     $("#tt2").text("朕的大清啊");
+     //----为select标签中value属性是3的这个option标签选中
+     $("#s1").val(3);
+});
+});
+
+// 自定义属性选中
+$(function(){
+    $("#btn5").click(function(){
+    	//自定义属性的方式选中
+       $("#r3").prop("checked",true);
+    }) ;
+});
+
+
+// 自定义属性的操作
+$(function(){
+  $("#btn6").click(function(){
+     $("#uc>li").attr("score",100);
+  });
+});
+
+//全选全不选
+$(function(){
+   //全选
+   //获取thead复选框，获取他的选中状态
+  $("#j_cbAll").click(function(){
+ var flag=$(this).prop("checked");
+ if(flag){
+    $("#j_tb").find("input").prop("checked",true);
+ }else{
+    $("#j_tb").find("input").prop("checked",false);
+ }
+  });
+   
+   //全不选
+      $("#j_tb").find("input").click(function(){
+     var ckLength=$("#j_tb").find("input").length;
+     var checkedLenth=$("#j_tb:checked").length;
+  if(ckLength==checkedLenth){
+	 $("#j_cbAll").prop("checked",true);
+}else{
+	 $("#j_cbAll").prop("checked",false);
+}
+      });
+});
+
+
+// 操作元素的宽和高的方法 
+     
+$(function(){
+	//点击按钮，设置div的宽和高为原来的2倍
+     $("#btn7").click(function(){
+// var w=$("#py").css("width");
+// var h=$("#py").css("height");
+//设置div的宽和高
+   // $("#py").css("width",parseInt(w)*2);
+   // $("#py").css("height",parseInt(h)*2);
+   
+//  var w=$("#py").width();
+//  var h=$("#py").height();
+//  $("#py").css("width",w*2);
+//  $("#py").css("height",h*2);
+//设置div的宽和高
+$("#py").width(300);
+$("#py").height(400);
+//设置div的left和top
+$("#py").offset({"left":500,"top":250});
+     });
+});
+
+
+
+$(function(){
+$("#tp").scroll(function(){
+   console.log($(this).scrollTop());
+});
+});
+
+
+// 固定导航栏
+$(function(){
+	//为浏览器注册滚动事件
+$(window).scroll(function(){
+	//如果向上卷曲出去的距离的值或者是等于第一个div的高度
+   if($(this).scrollTop()>=$(".top").height()){
+      //设置导航栏固定在页面的顶部
+      $(".nav").css("position","fixed");
+      $(".nav").css("top",0);
+      $(".main").css("marginTop",$(".nav").height());  
+   }else{
+      $(".nav").css("position","static");
+      $(".main").css("marginTop",10); 
+   }
+});
+});
+
+
+
+$(function(){
+	//bind方法绑定事件
+$("#btn9").bind("click",function(){
+      alert("omg");
+});
+$("#btn9").bind("mouseenter",function(){
+     $(this).css("backgroundColor","red");
+});
+
+$("#btn9").bind("mouseleave",function(){
+     $(this).css("backgroundColor","green");
+});
+//链式编程
+
+$("#btn9").bind("click",function(){
+      alert("omg");
+}).bind("mouseenter",function(){
+     $(this).css("backgroundColor","red");
+}).bind("mouseleave",function(){
+     $(this).css("backgroundColor","green");
+});
+
+//键值对
+$("#btn9").bind({"click":function(){
+      alert("omg");
+},"mouseenter":function(){
+     $(this).css("backgroundColor","red");
+},"mouseleave":function(){
+     $(this).css("backgroundColor","green");
+}});
+ 
+});
+
+
+$(function(){
+   $("#btnSS").bind({"click":function(){
+   console.log("nihao ");
+   },"click":function(){
+ console.log("内耗 ");
+   }})
+});
+
+
+$(function(){
+    $("#btnSF").click(function(){
+//为父级元素绑定事件，父级元素代替自己元素绑定事件
+//父级元素调用方法，为子级元素绑定事件
+   $("#rr").delegate("p","click",function(){
+   	alert("啊被点了");
+   });
+    });
+});
+
+/*
+attr方法针对单选框或复选框的是否选中问题，操作起来很麻烦，几乎不用
+.attr("参数一","参数二");----设置某个属性的值
+.attr("参数一");----获取某个属性的值
+removeAttr("属性");移除这个自定义属性    
+
+参数一：属性的名字  参数2：属性的值
+
+.attr方法主要是操作元素的自定义属性，但是也可以操作元素自带的属性
+操作元素选中的问题最好用prop()方法
+
+.prop("属性",值); 值一般是布尔类型
+
+.css方法获取的宽和高实际上是字符串类型的
+
+.width()可以获取也可以设置元素的宽
+.height() 可以获取也可以设置元素的高
+.offset()方法获取的是一个对象，该对象有两个属性left和top
+left包含left和margin-left  top包含top和margin-top的值
+获取元素向上卷曲出去的距离scrollTop()--方法，数值
+获取元素向左卷曲出去的距离scrollLeft()
+bind方法绑定多个相同的事件的时候，如果使用的是键值对的方式，只能执行最后一个
+
+为元素绑定事件三种方式
+对象.事件名字(事件处理函数)---$("#btn").click(function(){
+	
+});
+对象.bind("事件名字",事件处理函数)--$("#btn").bind("click",function(){
+	
+});
+
+父级元素.delegate("子级元素","事件名字",事件处理函数);---$("#dv").delegate("p","click",function(){
+	
+});
+
+元素的创建
+1 $("html代码及内容")
+2 对象.html("html代码及内容")
+
+元素的添加
+父级元素.append(子级元素);
+子级元素.appendTo(父级元素);
+
+父级元素.prepend(子级元素);加到第一个子级元素的前面
+子级元素.prependTo(父级元素);加到第一个子级元素的前面
+父级元素.after(元素);当前父级元素后面的第一个兄弟元素的位置
+父级元素.before(元素);前父级元素前面的一个兄弟元素的位置
+
+如何移除父级元素中的子级元素
+父级元素.html("");
+父级元素.empty(); 清空
+父级元素.remove();   自杀，自己也被删除了
+ */
+
+ </script>
+</head>
+<body>
+	<input type="button" value="创建一个按钮" id="btn">
+	<div id="dv">
+
+<p>这是一个p</p>
+
+	</div>
+	<p>这是div后面的第一个子元素</p>
+
+
+
+
+
+<input type="button" value="创建一个按钮" id="btn1">
+<div id="dd">
+<p>电动</p>
+<span>网盘</span>
+</div>
+
+<input type="button" value="创建一个表格" id="btn2">
+<input type="button" value="移除表格" id="btn3">
+<div id="hh"></div>
+
+
+<!-- 点击按钮操作文本框的文本属性 -->
+<input type="button" value="显示效果" id="btn4">
+<input type="text" value="今天天气很好" id="txt"><br>
+<input type="radio" value="1" name="sex">男
+<input type="radio" value="2" name="sex" id="r2">女
+<input type="radio" value="3" name="sex">人妖<br>
+<input type="checked" value="1">吃饭
+<input type="checked" value="2" id="ck3">睡觉
+<input type="checked" value="3">打豆豆<br>
+<textarea name="tt" id="tt2" cols="30" rows="10">
+普天之下莫非王土，率土之滨莫非王臣。
+</textarea><br>
+<select id="s1">
+<option value="1">妲己</option>
+<option value="2">陈咬金</option>
+<option value="3">貂蝉</option>
+<option value="4">武则天</option>
+</select>
+
+<!-- 自定义属性选中 -->
+<input type="button" value="显示效果" id="btn5">
+请选择小苏的性别：
+<input type="radio" value="1" name="sex">男
+<input type="radio" value="2" name="sex" >女
+<input type="radio" value="3" name="sex" id="r3">人妖<br>
+
+<!-- 自定义属性的操作 -->
+<input type="button" value="显示效果" id="btn6">
+<ul id="uc">
+	<li>小白</li>
+	<li>小黑</li>
+	<li>小红</li>
+	<li>小灰</li>
+</ul>
+
+<!-- 全选全不选 -->
+<div class="wrap">
+<table>
+	<thead>
+		<tr>
+			<th>
+               <input type="checkbox" id="j_cbAll">
+			</th>
+			<th>菜名</th>
+			<th>饭店</th>
+		</tr>
+	</thead>
+<tbody id="j_tb">
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>红烧肉</td>
+	<td>田老师</td>
+</tr
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>西红柿炒鸡蛋</td>
+	<td>王老师</td>
+</tr>
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>油炸榴莲</td>
+	<td>张老师</td>
+</tr>
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>油炸冰溜子</td>
+	<td>黄老师</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- 操作元素的宽和高的方法 -->
+<div id="py"></div>
+<input type="button" value="设置元素的宽和高" id="btn7">
+
+
+<!-- 向上卷曲出去的距离和向左卷曲出去的距离 -->
+
+<input type="button" value="设置元素的卷曲" id="btn8">
+<div id="tp">
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+呵呵，我先让你嘚瑟一会儿，给你个机会，让你多活一会儿
+</div>
+
+
+<!-- 固定导航栏 -->
+<div class="top" id="topPart"></div>
+<div class="nav" id="navBar"></div>
+<div class="main" id="mainPart"></div>
+
+
+<!-- //为元素绑定事件 -->
+<input type="button" value="为元素绑定事件" id="btn9">
+
+
+
+
+<!-- 为元素绑定多个相同事件 -->
+
+<input type="button" value="为元素绑定事件" id="btnSS">
+
+
+<input type="button" value="为元素绑定事件" id="btnSF">
+<div id="rr">
+<p>我是小明</p>
+</div>
+
+</body>
+</html>

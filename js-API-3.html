@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> js-API第三天</title>
+	<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style-type: none;
+	cursor: pointer;
+}
+
+
+#dv{
+	width: 300px;
+	height: 450px;
+	border: 1px solid red;
+}
+#gk{
+	width: 300px;
+	height: 450px;
+	background-color: red;
+}
+#ipo{
+	width: 200px;
+	height: 400px;
+	border: 2px solid red;
+}
+#jkl{
+	width: 200px;
+	height: 400px;
+	border: 2px solid red;
+}
+
+
+
+
+</style>
+</head>
+<body>
+<script type="text/javascript" src="common.js"></script>
+<!-- 案例1：通过节点操作元素的背景颜色 -->
+<input type="button" value="变色" id="btn">
+<div id="dv">
+<span>这是span</span>
+<p>这是p</p>
+<span>这是span</span>
+<p>这是p</p>
+<span>这是span</span>
+<p>这是p</p>
+<span>这是span</span>
+<a href="http://www.baidu.com">百度</a>
+</div>
+<!-- 案例2：节点操作隔行变色 -->
+<input type="button" value="隔行变色" id="btn1">
+<ul id="uc">
+	<li>兰博基尼</li>
+	<li>法拉利</li>
+	<li>保时捷</li>
+	<li>阿斯顿马丁</li>
+	<li>奔驰</li>
+	<li>宝马</li>
+	<li>奥迪</li>
+	<li>五菱宏光</li>
+</ul>
+<!-- 案例3：全选和全不选案例 -->
+<div class="wrap">
+<table>
+	<thead>
+		<tr>
+			<th>
+               <input type="checkbox" id="j_cbAll">
+			</th>
+			<th>菜名</th>
+			<th>饭店</th>
+		</tr>
+	</thead>
+<tbody id="j_tb">
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>红烧肉</td>
+	<td>田老师</td>
+</tr
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>西红柿炒鸡蛋</td>
+	<td>王老师</td>
+</tr>
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>油炸榴莲</td>
+	<td>张老师</td>
+</tr>
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>油炸冰溜子</td>
+	<td>黄老师</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- 案例4：第一种元素创建方式 -->
+<input type="button" value="创建一个p" id="btn2">
+<!-- 案例4：第二种元素创建方式 -->
+<input type="button" value="div创建p" id="btn3">
+<div id="dvb"></div>
+<!-- 案例5：第三种元素创建方式 -->
+<input type="button" value="创建p" id="btn6">
+<div id="bb"></div>
+
+<!-- 案例6：点击按钮在div中创建图片 -->
+<input type="button" value="来个图片" id="btn4">
+<div id="jk"></div>
+<!-- 案例7：点击按钮动态创建列表-->
+<input type="button" value="创建列表" id="btn5">
+<div id="gk"></div>
+<!-- 案例8：点击按钮动态创建列表2 -->
+<input type="button" value="创建列表2" id="btn7">
+<div id="ipo"></div>
+<!-- 案例9：动态创建表格 -->
+<input type="button" value="创建表格" id="btn8">
+<div id="jkl"></div>
+<!-- 案例10：为元素绑定事件 -->
+<input type="button" value="按钮" id="btn9">
+
+
+
+
+
+
+	<script>
+//案例1：通过节点操作元素的背景颜色
+   my$("btn").onclick = function(){
+//点击按钮，设置p变色--节点方法
+var dvObj=my$("dv");
+ //获取里面所有的子节点
+ var nodes = dvObj.childNodes;
+ //循环遍历所有的子节点
+ for (var i = 0; i < nodes.length; i++) {
+ 	if(nodes[i].nodeType==1 && nodes[i].nodeName=="P"){
+        nodes[i].style.backgroundColor="red";
+ 	}
+ }
+
+};
+
+//案例2：节点操作隔行变色
+my$("btn1").onclick=function(){
+	var count = 0;
+     var nodes=my$("uc").childNodes;
+     for (var i = 0; i < nodes.length; i++) {
+     	if(nodes[i].nodeType==1 && nodes[i].nodeName=="LI"){
+    nodes[i].style.backgroundColor=count%2==0?"red":"yellow";
+     	count++;
+     	}
+     }
+}
+//案例3：全选和全不选案例
+//获取全选的这个复选框
+var ckAll=my$("j_cbAll");
+//获取tbody中所有的小复选框
+var cks=my$("j_tb").getElementsByTagName("input");
+//点击全选的这个复选框，获取其他当前的状态，然后设置tbody中所有复选框的状态
+ckAll.onclick=function(){
+for (var i = 0; i < cks.length; i++) {
+	cks[i].checked=this.checked;
+}
+};
+//获取tbody中所有的复选框，分别注册点击事件
+for(var j=0;j<cks.length;j++){
+	cks[j].onclick=function(){
+		var flag=true;//默认都被选中
+		//判断是否所有的复选框都选中
+       for (var k = 0; k < cks.length; k++) {
+       if(!cks[k].checked){
+       	//没选中就进来了
+       	flag=false;
+       	break;
+       }	
+       }
+       //全选的这个复选框的状态就是flag这个变量的值
+       ckAll.checked=flag;
+	};   
+}
+//案例4：第一种元素创建方式
+my$("btn2").onclick=function(){
+	document.write("<p>这是第一个p</p>")
+}
+
+//案例4：第二种元素创建方式
+my$("btn3").onclick=function(){
+	my$("dvb").innerHTML="<p>床前明月光，疑是地上霜</p>";
+}
+//案例5：第三种元素创建方式
+my$("btn6").onclick=function(){
+   //创建元素
+   var pObj=document.createElement("p");
+   setInnerText(pObj,"这是第一个p");
+   //把创建后的子元素追加到父级元素中
+   my$("bb").appendChild(pObj);
+};
+
+
+
+
+//案例6：点击按钮在div中创建图片
+my$("btn4").onclick=function(){
+	my$("jk").innerHTML="<img src='images/xsimg1.gif' alt='咖啡机'>"
+}
+//案例7：点击按钮动态创建列表
+var names=["杨过","郭靖","张无忌","金毛狮王","周芷若","灭绝师太","乔峰"];
+my$("btn5").onclick=function(){
+	var str = "<ul style='list-style-type:none; cursor:pointer'>";
+	//根据循环创建对应对数的li
+	for (var i = 0; i < names.length; i++) {
+		        str+="<li>"+names[i]+"</li>";
+	}
+	str+="</ul>";
+	my$("gk").innerHTML=str;
+    //代码执行到这里，li已经有了
+    //获取所有的li，遍历，添加鼠标进入事件、离开事件
+    var listS=my$("gk").getElementsByTagName("li");
+    for (var i = 0; i < listS.length; i++) {
+    	//鼠标进入
+    	listS[i].onmouseover = function(){
+    		this.style.backgroundColor="yellow";
+    	}
+    	//鼠标离开
+    	listS[i].onmouseout = function(){
+    		this.style.backgroundColor="";
+    	}
+
+    }
+
+};
+//案例8：点击按钮动态创建列表2
+var kungfu=["降龙十八掌","黯然销魂掌","葵花宝典","九阴真经","吸星大法","如来神掌","化骨绵掌","玉女心经","极乐神功"];
+//点击按钮动态的创建列表，把列表加到div中
+my$("btn7").onclick=function(){
+//创建ul,把ul立刻加到父级元素div中
+var ulObj= document.createElement("ul");
+my$("ipo").appendChild(ulObj);
+//动态的创建li，加到ul中
+for (var i = 0; i < kungfu.length; i++) {
+	var liObjs=document.createElement("li");
+	//设置li中间的文字内容
+	liObjs.innerHTML=kungfu[i];
+	ulObj.appendChild(liObjs);
+	//为li添加鼠标进入事件
+	liObjs.onmouseover=mouseoverHandle;
+
+	
+	//为li添加鼠标离开事件
+	liObjs.onmouseout=mouseoutHandle;
+}
+};
+ function mouseoverHandle(){
+    this.style.backgroundColor="red";
+ }
+
+
+function mouseoutHandle(){
+    this.style.backgroundColor="";
+}
+//案例9：动态创建表格
+var arr=[
+{name:"百度",href:"http://www.baidu.com"},
+{name:"谷歌",href:"http://www.google.com"},
+{name:"优酷",href:"http://www.youku.com"},
+{name:"淘宝",href:"http://www.taobao.com"},
+{name:"京东",href:"http://www.jd.com"},
+{name:"爱奇艺",href:"http://www.aiqiyi.com"}
+]
+my$("btn8").onclick=function(){
+	//创建table加入到div中
+	var tableObj=document.createElement("table");
+	tableObj.border="1";
+	tableObj.cellPadding="0";
+	tableObj.cellSpacing="0";
+	my$("jkl").appendChild(tableObj);
+	//创建行，把行加入到table中
+for (var i = 0; i < arr.length; i++) {
+	  var dt=arr[i];
+	  var trObj=document.createElement("tr");
+	  tableObj.appendChild(trObj);
+	  //创建第一列,然后加入到行中
+	  var td1=document.createElement("td");
+	  td1.innerText=dt.name;
+	  trObj.appendChild(td1);
+
+var td2=document.createElement("td");
+td2.innerHTML="<a href="+dt.href+">"+dt.name+"</a>";
+	  trObj.appendChild(td2);
+}	
+}
+//案例10：为元素绑定事件
+/*
+为元素绑定点击事件（DOM）：第一种，但是不兼容
+1.对象.addEventListener("事件类型"，事件处理函数，false);--谷歌和火狐支持，IE8不支持
+为按钮绑定点击事件
+参数1：事件的类型---事件的名字，没有on
+参数2：事件处理函数---函数（命名函数，匿名函数）
+参数3：布尔类型，目前就写false
+
+ */
+//为同一个元素绑定多个相同的事件（谷歌，火狐）
+my$("btn9").addEventListener("click",function(){
+	console.log("小苏好龌龊啊");
+},false);
+my$("btn9").addEventListener("click",function(){
+	console.log("小苏好邪恶啊");
+},false);
+my$("btn9").addEventListener("click",function(){
+	console.log("小苏好萌啊");
+},false);
+my$("btn9").addEventListener("click",function(){
+	console.log("小苏好可爱啊");
+},false);
+
+/*
+ 参数1：事件类型----事件名字，有on
+ 参数2：事件处理函数---函数（命名函数，匿名函数） 
+2.对象.attachEvent("事件类型",事件处理函数)---谷歌火狐不支持，IE支持
+ */
+//my$("btn9").attachEvent("onclick",function(){
+//	console.log("小杨好帅啊");
+//});
+//my$("btn9").attachEvent("onclick",function(){
+//	console.log("小杨好牛啊");
+//});
+//my$("btn9").attachEvent("onclick",function(){
+//	console.log("小杨好勇敢啊");
+//});
+//my$("btn9").attachEvent("onclick",function(){
+//	console.log("小杨好棒啊");
+//});
+	</script>
+	<script>
+/*
+回顾概念
+文档：document
+元素：页面中所有的标签，元素----element，标签----元素--文档
+节点：页面中所有的内容（标签，属性，文本）Node
+根元素：html标签   
+节点的属性：（可以使用标签.出来，可以使用属性.出来，文本节点.出来）
+nodeType：节点的类型:1---标签  2---属性  3---文本
+nodeName：节点的名字：1标签节点--大写的标签名字  2属性节点--小写的属性名字  3文本节点----#text
+nodeValue:节点的值：1标签节点--null  2属性节点--属性值 3文本节点---文本内容
+ 总结：凡是获取节点的代码在谷歌和火狐得到的都是相关的节点
+ 凡是获取元素的代码在谷歌和火狐得到的都是相关的元素
+ 从子节点和新的节点开始，凡是获取节点的代码在IE8中得到的都是元素，获取元素的相关代码，在ie8中得到的是undefined----元素的代码，ie不支持 
+
+父节点
+parentNode
+父元素
+parentElement
+子节点
+childNodes
+子元素
+children
+第一个子节点
+firstChild
+第一个子元素
+firstElementChild
+最后一个子节点
+lastChild
+最后一个子元素
+lastElementChild
+某个元素的前一个兄弟节点
+previousSibling
+某个元素的前一个兄弟元素
+previousElementSibling
+某个元素的后一个兄弟节点
+nextSibling
+某个元素的后一个兄弟元素
+nextElementSibling
+
+元素创建----为了提高用户的体验
+元素创建的三种方式
+1、 document.write("标签的代码及内容");如果在页面加载完毕后创建元素，页面中的内容会被干掉
+2、 父级对象.innerHTML="标签及代码";
+3、 document.createElement("标签的名字");得到的是一个对象，
+应配合父级元素.appendChild(子级元素对象);或
+父级元素.inerstBrfore(新的子级对象,参照的子级对象);
+移除子元素
+父级元素.removeChild(要干掉的子级元素对象);
+扩展document.write可以嵌入外部的代码内容
+案例12   找图片在做
+ */
+
+	</script>
+</body>
+</html>

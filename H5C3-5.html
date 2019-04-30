@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+    .box{
+    	width: 200px;
+    	height: 200px;
+    	margin: 100px auto;
+    	position: relative;
+    	transform: rotate3d(1,1,0,-30deg);
+    	/*使被转换的子元素保留其3D转换的效果（需要设置在父元素中）
+        flat  子元素将不保留其3D位置-平面方式
+        preserve-3d  子元素将保留其3D位置-立体方式
+    	*/
+    	transform-style: preserve-3d;
+    	/*添加透视景深效果*/
+    	perspective: 0px;
+    	/*设置透视的观察角度*/
+    	perspective-origin: 0px 0px;
+    }
+.box>div{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	opacity: 0.5;
+}
+
+.front{
+	background-color: red;
+	transform: translateZ(100px);
+}
+
+.back{
+	background-color: green;
+	transform: translateZ(-100px);
+}
+
+.left{
+	background-color:blue;
+	transform: translateX(-100px) rotateY(-90deg);
+}
+
+.right{
+	background-color:orange;
+	transform: translateX(100px) rotateY(90deg);
+}
+
+.top{
+	background-color: pink;
+	transform: translateY(-100px) rotateX(90deg);
+}
+
+.bottom: {
+	background-color:purple ;
+	transform: translateY(100px) rotateX(-90deg);
+}
+
+
+.dd{
+	width: 100px;
+	height: 100px;
+	background-color: red;
+/*添加动画的总耗时*/
+    animation-name: moveTest;
+    /*设置动画的总耗时*/
+    animation-duration: 2s;
+    /*设置动画的播放次数，默认为1次   infinite无限次 */
+    animation-iteration-count: 2;
+    /*设置交替动画 alternate来回交替*/
+    animation-direction:alternate; 
+    /*设置动画的延迟*/
+    animation-delay: 2s;
+    /*设置动画结束时的状态*/
+    
+}
+
+/*创建动画*/
+@keyframes moveTest{
+	/*百分比是值整个动画耗时的百分比   */
+	0%{
+         transform: translate(0,0);
+	}
+	50%{
+         transform: translate(0,500px);
+	}
+	100%{
+         transform: translate(500px,500px);
+	}
+}
+
+
+/*无缝滚动*/
+.pp{
+	width: 882px;
+	height: 86px;
+	margin: 500px auto;
+	background-color: #ddd;
+	overflow: hidden;
+}
+
+.pp>ul{
+	width: 200%;
+	list-style: none;
+
+	animation-name: move;
+	animation-duration: 7s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+     
+}
+.pp:hover>ul{
+	cursor: pointer;
+	animation-play-state: paused;
+}
+.pp>ul>li{
+	width: 126px;
+	float: left;
+}
+.pp>ul>li>img{
+	width: 100%;
+	height: 86px;
+}
+
+@keyframes move{
+	from{
+       transform: translateX(0);
+	}
+	to{
+		transform: translateX(-882px);
+	}
+}
+  
+
+
+/*时钟案例*/
+.clock{
+	width: 300px;
+	height: 300px;
+	border:10px solid #ccc;
+	border-radius: 50%;
+	margin: 700px auto;
+	position: relative;  
+}
+
+.line{
+	width: 8px;
+	height: 300px;
+	background-color: #ccc;
+	position: absolute;
+	left: 50%;
+	top:0;
+	transform:translate(-50%,0);
+}
+
+.line1,.line4{
+	width: 10px;
+}
+.line2{
+	transform:translate(-50%,0) rotate(30deg);
+}
+.line3{
+	transform:translate(-50%,0) rotate(60deg);
+}
+.line4{
+	transform:translate(-50%,0) rotate(90deg);
+}
+.line5{
+	transform:translate(-50%,0) rotate(120deg);
+}
+.line6{
+	transform:translate(-50%,0) rotate(150deg);
+}
+
+.cover{
+	width: 250px;
+	height: 250px;
+	border-radius: 50%;
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+}
+.hour,.minute,.second{
+	position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-100%);
+    /*设置旋转轴心*/
+    transform-origin: center bottom;
+}
+.hour{
+	width: 6px;
+	height: 80px;
+	background-color: red;
+	animation:clockAnimation 43200s linear infinite ;
+
+}
+.minute{
+	width: 4px;
+	height: 90px;
+	background-color: yellow;
+	animation:clockAnimation 3600s linear infinite ;
+}
+.second{
+	width: 2px;
+	height: 100px;
+	background-color: blue;
+	
+	animation:clockAnimation 60s  infinite steps(60);
+}
+.center{
+	width: 20px;
+	height: 20px;
+	background-color: #ccc;
+	border-radius: 50%;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+/*创建动画*/
+@keyframes clockAnimation{
+     from{
+     transform:translate(-50%,-100%) rotate(0deg);
+     }
+     to{  
+     transform:translate(-50%,-100%) rotate(360deg);
+     }
+}
+
+
+
+/*多列布局*/
+.wrapper{
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	/*设置多列布局*/
+	/*1、设置列数*/
+	column-count: 3;
+	/*添加列间隙样式，与边框样式的添加应用*/
+	column-rule: dashed 3px red;
+	/*设置列间隙的大小*/
+	column-gap: 50px;
+	/*设置列宽
+	原则：取大优先
+	1 如果人为设置宽度更大，则取更大的值，但是会填充整个屏幕，意味最终的宽度可能也会大于设置的宽度---填充整个屏幕*/
+	column-width: 200px;
+}
+h3{
+	/*设置跨列显示 1或 all*/
+	column-span: all;
+}
+
+
+/*伸缩布局*/
+.box1{
+	width: 1000px;
+	height: 600px;
+	border: 1px solid red;
+	/*设置父容器为盒子，会使每一个子元素自动变成伸缩项*/
+	display: flex;
+	/*设置子元素的排列方式
+      flex-start:让子元素从父容器的起始位置开始排列;
+      flex-end:让子元素从父容器的结束位置开始排列;
+      center：让子元素从父容器的中间位置开始排列;
+      space-between:左右对齐父容器的开始和结束，中间平均分布，产生相同的间距;
+      space-around:将多余的空间平均的分页在每一个子元素的两边;
+	*/
+	justify-content:space-around;
+ /*flex-flow: 是flex-wrap和flex-direction的综合
+ flex-wrap：控制子元素是否换行，默认不换行
+ nowrap:不换行，收缩; wrap：换行 wrap-reverse：翻转
+ flex-direction:设置子元素的排列方向就是用来主轴方向默认
+ 水平方向  row:水平排列方向，从左到右;
+  row-reverse:水平排列方向，从右到左;
+  column：垂直排列方向从上到下
+  column-reverse:从下到上  ;
+*/
+   flex-flow: wrap row;
+   /*
+   align-items:设置子元素（伸缩项）在侧轴方向上的对齐方式
+   flex-end：设置在侧轴方向上底对齐
+   flex-start:设置在侧轴方向上顶对齐;
+   center：设置在侧轴方向上居中对齐
+   stretch:拉伸：让子元素再侧轴方向上进行拉伸，填充满整个侧轴方向 默认值;
+   baseline:基线---文本的基线对齐--英语中的第三根线就是基线;
+
+    */
+   
+}
+
+.first{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	/*加到子元素里
+   flex-grow:可以来扩展子元素的宽度和值当前元素应该占据剩余空间的比例值;
+   比例值计算：当前空间的flex-grow/所有兄弟元素的flex-grow的和
+   flex-grow默认为0；
+    */
+   flex-grow:1;
+}
+
+.second1{
+	width: 200px;
+	height: 200px;
+	background-color: yellow;
+	/*当子元素大于父元素时，需要收缩子元素的时候可以用flex-shrink:定义收缩比例，通过设置的值来计算收缩空间
+	比例值计算：当亲空间的flex-shrink/所有兄弟元素的flex-shrink
+	默认为1
+	*/
+    flex-shrink: 2;
+}
+
+.third{
+	width: 200px;
+	height: 200px;
+	background-color: blue;
+}
+
+
+.fourth{
+	width: 200px;
+	height:200px;
+	background-color: green;
+}
+.fifth{
+	width: 210px;
+	height: 200px;
+	background-color: pink;
+	/*设置单个元素在侧轴方向上的对齐方式
+    align-self:flex-end;
+
+	*/ 
+
+}
+
+/*flex是用来设置当前伸缩子项占据剩余空间的比例值*/
+  
+.hh{
+	width: 500px;
+	height: 200px;
+	border:1px solid red;
+	margin: 1200px auto;
+
+}
+.hh>ul{
+    list-style: none;
+    width: 100%;
+    display: flex;
+}
+
+.hh>ul>li{
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	background-color: #9fff9d;
+	border-right: 1px solid #ccc;
+	flex:1;
+}
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="front"></div>
+		<div class="back"></div>
+		<div class="left"></div>
+		<div class="right"></div>
+		<div class="top"></div>
+		<div class="bottom"></div>
+	</div>
+
+<!-- 创建动画 -->
+<div class="dd"></div>
+
+
+<!-- 无缝滚动 -->
+<div class="pp">
+<ul>
+	<li><img src="images/01.jpg" alt=""></li>
+	<li><img src="images/02.jpg" alt=""></li>
+	<li><img src="images/03.jpg" alt=""></li>
+	<li><img src="images/04.jpg" alt=""></li>
+	<li><img src="images/05.jpg" alt=""></li>
+	<li><img src="images/06.jpg" alt=""></li>
+	<li><img src="images/1.jpg" alt=""></li>
+	<li><img src="images/01.jpg" alt=""></li>
+	<li><img src="images/02.jpg" alt=""></li>
+	<li><img src="images/03.jpg" alt=""></li>
+	<li><img src="images/04.jpg" alt=""></li>
+	<li><img src="images/05.jpg" alt=""></li>
+	<li><img src="images/06.jpg" alt=""></li>
+	<li><img src="images/1.jpg" alt=""></li>
+</ul>
+</div>
+
+
+<!-- 钟表实现 -->
+<div class="clock">
+<div class="line line1"></div>
+<div class="line line2"></div>
+<div class="line line3"></div>
+<div class="line line4"></div>
+<div class="line line5"></div>
+<div class="line line6"></div>
+<div class="cover"></div>
+<div class="hour"></div>
+<div class="minute"></div>
+<div class="second"></div>
+<div class="center"></div>
+</div>
+
+
+<!-- 多列布局 -->
+<div class="wrapper">
+	<h3>转换的元素</h3>
+	<p>	
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+使被转换的子元素保留其3D转换的效果（需要设置在父元素中v使被转换的子元素保留其3D转换的效果（需要设置在父元素中
+		</p>
+</div>
+
+
+<!-- 伸缩盒子布局 -->
+<div class="box1">
+	<div class="first"></div>
+	<div class="second1"></div>
+	<div class="third"></div>
+	<div class="fourth"></div>
+	<div class="fifth"></div>
+</div>
+
+
+
+<div class="hh">
+	<ul>
+		<li>首页</li>
+		<li>商品展示</li>
+		<li>我的订单</li>
+		<li>最新商品</li>
+		<li>折扣降价</li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>H5第三天</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+.red{
+	color: red;
+}
+.blue{
+	color: blue;
+
+}
+.darkred{
+	color: darkred;
+}
+.blueviolet{
+	color: blueviolet;
+}
+/*
+属性选择器：属性是相对于标签而言，所谓属性选择器就是根据指定名称的属性的值来查找元素
+1、查找拥有style属性的li标签     E[attr]:查找指定的拥有attr属性的E标签;
+ */
+li[style]{
+	text-decoration: underline;
+}
+
+/*
+E[attr=value]:查找拥有指定的Attr属性并且属性值为value的E标签;
+=  是严格匹配
+ */
+li[class=red]{
+	font-size: 30px;
+}
+/*
+E[attr*=value]:查找拥有指定的Attr属性并且属性值中包含（可以在任意位置）value的E标签;
+
+ */
+li[class*=red]{
+	font-size: 25px;
+}
+/*
+
+E[attr^=value]:查找拥有指定的Attr属性并且属性值以value 开头 的E标签;
+
+
+E[attr$=value]:查找拥有指定的Attr属性并且属性值以value 结束 的E标签;
+ */
+.first{
+	color: red;
+}
+/*
+
+添加了.first样式的标签的相邻的li元素
+1、相邻 2、必须是指定类型的元素
+
++：获取当前元素的相邻的满足条件的元素
+~：获取当前元素的满足条件的兄弟元素
+ */
+
+.first+li{
+
+}
+
+/*
+.first样式的元素的所有兄弟li元素
+必须是指定类型的元素（只能是li标签）
+ */
+.first~li{
+	list-style-type: none;
+}
+
+
+/*
+文本阴影：text-shadow:offsetX offsetY blur color;
+边框阴影: box-shadow:h v blur spread color inset;
+h:水平方向的偏移值;
+v:垂直方向的偏移值;
+blur：模糊---可选 默认0
+spread:阴影尺寸，扩展和收缩阴影的大小-可选 默认0
+color:颜色--可选，默认黑色;
+inset：内阴影; --可选  默认：外阴影
+ */
+
+.item{
+	width: 200px;
+	height: 300px;
+	border: 1px solid #ccc;
+	float: left;
+	margin-left: 20px;
+}
+.item img{
+	width: 200px;
+	height: 300px;
+}
+
+.item:nth-of-type(-n+4){
+	box-shadow: 3px 3px 3px #ccc;
+}
+.item:last-of-type{
+	box-shadow: 3px 3px 3px #ccc inset,-3px -3px 3px #ccc inset;
+}
+
+.ll{
+	width: 700px;
+	height: 500px;
+	margin: 0 auto;
+	margin-top: 500px;
+	list-style: none;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+}
+
+.ll>li{
+	float: left;
+	width: 100px;
+	box-sizing: border-box;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	background-color: #fff;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+/*
+相对于父元素的结构伪类
+E:first-child:查找E元素的父级元素中的第一个E元素;在查找的时候并不会限制查找的元素的类型
+1、相对于当前指定元素的父元素
+2、查找的类型必须是指定的类型
+ */
+.ll>li:first-child{
+	color: red;
+}
+
+/*
+相对于父元素的结构伪类
+E:first-child:查找E元素的父级元素中的最后一个E元素;
+1、相对于当前指定元素的父元素
+2、查找的类型必须是指定的类型
+ */
+.ll>li:last-child{
+	color: skyblue;
+}
+
+/*
+查找的时候限制类型  first-of-type
+1、也是相对于父元素
+2、在查找的时候只会查找满足类型条件的元素，过度掉其他类型的元素
+ */
+.ll>li:first-of-style{
+	color: red;
+}
+.ll>li:last-of-style{
+	color: red;
+}
+/*
+指定索引位置  nth-child(从1开始的缩影||关键字||表达式)
+even:偶数; odd：奇数	
+ */
+.ll>li:nth-child(4){
+	background-color: lightblue;
+}
+/*不严格的 --加别的标签会有影响*/
+.ll>li:nth-child(even){
+	background-color: orange;
+}
+.ll>li:nth-child(odd){
+	background-color: blue;
+}
+
+/*不管里面有没有加别的标签 只对li标签有效---严格的，会限制类型*/
+.ll>li:nth-of-type(even){
+	background-color: orange;
+}
+.ll>li:nth-of-type(odd){
+	background-color: blue;
+}
+
+/* n:默认取值范围为0~子元素的长度，但是当n<=0时，选取无效*/
+.ll>li:nth-of-type(-n+7){
+	font-size: 30px;
+}
+
+/*从最后一个开始*/
+.ll>li:nth-last-of-type(-n+7){
+	font-size: 18px;
+}
+/*
+空值：没有任何的内容，连空格都没有
+li:empty{
+	background-color: red;
+}
+
+E:target 结合锚点进行使用，处于当前锚点的元素会被选中;
+     
+伪元素选择器
+
+重点： E::brfore E::after;
+1  是一个行内元素，如果想设置宽高则需要display:block ;
+2  必须添加content，哪怕不设置内容，也需要content
+3  E：after E:before在旧版本里是伪类，在新版本里是伪元素，新版下 E：after E:before 会被自动识别为 E：:after E::before按伪元素来对待，这样做的目的是处理兼容问题;
+E::before  定义在一个元素的内容之前插入content属性定义的内容与样式
+E：:after 
+定义在一个元素的内容之后插入content属性定义的内容与样式
+*/
+body{
+	padding: 200px;
+}
+.cl{
+	height: 200px;
+}
+.cl>div:nth-of-type(1){
+	width: 300px;
+	height: 200px;
+	background-color: red;
+	float: left;
+	
+}
+
+.cl>div:nth-of-type(2){
+	width: 100px;
+	height: 200px;
+	background-color: blue;
+	float: left;
+	position: relative;
+}
+.cl>div:nth-of-type(2)::before{
+	/*必须添加content属性，否则后期不可见*/
+	content: "";
+	width: 20px;
+	height: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+    position: absolute;
+    left:-10px;
+    top:-10px;
+
+}
+
+.cl>div:nth-of-type(2)::after{
+	/*必须添加content属性，否则后期不可见*/
+	content: "";
+	width: 20px;
+	height: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+    position: absolute;
+    left:-10px;
+    bottom:-10px;
+
+}
+
+
+/*E::first-letter  	E元素中的第一个字符*/
+/*E::first-line  	E元素中的第一行内容 如果设置了E::first-letter，那么无法同时设置它的样式
+E::selection 设置当前选中内容的样式，它只能设置显示的样式，而不能设置内容的大小;
+*/
+
+/*
+透明度：
+1  opacity只能针对整个盒子设置透明度，子盒子及内容会继承父盒子的透明度
+2  transparent 不可调节透明度，始终完全透明
+3  使用rgba来控制颜色，相对于opacity,不具有继承性 
+ */
+
+
+/*添加文字阴影 text-shadow:offsetX offsetY blur color*/
+.demo{
+	width: 600px;
+	padding: 30px;
+	background-color: #666;
+	margin:20px auto;
+	text-align: center;
+	font:bold 80px/100% "微软雅黑";
+	color: #fff;
+}
+
+.demo1{
+	text-shadow:-2px -2px 5px red;
+}
+
+.demo2{
+	text-shadow:0px 0px 30px #fff;
+}
+
+.demo3{
+	text-shadow:0px 0px 30px #fff,0px 0px 50px red;
+}
+
+.demo4{
+	text-shadow:0px 1px 0px #fff;
+	color: black;
+}
+/*浮雕效果*/
+.demo5{
+	color: #fff;
+	text-shadow:-1px -1px 0px #eee,-2px -2px 0px #ddd,-3px -3px 0px #ccc;
+}
+  
+.demo6{
+	color: transparent;
+	text-shadow:0px 0px 8px orange;
+}
+
+
+
+	</style>
+
+</head>
+<body>
+	<ol>
+		<li class="red" style="">河南省</li>
+		<li class="blue">湖北省</li>
+		<li class="darkred" style="">黑龙江省</li>
+		<li class="blue">北京市</li>
+		<li class="red">上海市</li>
+		<li class="blueviolet">武汉市</li>
+	</ol>
+
+<ul>
+	<li class="first">前端与移动开发</li>
+	<li>爬虫工程师</li>
+	<li>java工程师</li>
+	<li>PHP工程师</li>
+	<li>后端工程师</li>
+</ul>
+
+
+
+
+
+<!-- 边框阴影 -->
+<div class="items">
+<div class="item">
+<img src="images/01.jpg" alt="">
+</div>
+<div class="item">
+<img src="images/02.jpg" alt="">
+</div>
+<div class="item">
+<img src="images/03.jpg" alt="">
+</div>
+<div class="item">
+<img src="images/04.jpg" alt="">
+</div>
+<div class="item">
+</div>
+</div>
+
+
+<ul class="ll">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>9</li>
+	<li>10</li>
+	<li>11</li>
+	<li>12</li>
+	<li>13</li>
+	<li>14</li>
+	<li>15</li>
+	<li>16</li>
+	<li>17</li>
+	<li>18</li>
+	<li>19</li>
+	<li>20</li>
+	<li>21</li>
+	<li>22</li>
+	<li>23</li>
+	<li>24</li>
+	<li>25</li>
+	<li>26</li>
+	<li>27</li>
+	<li>28</li>
+	<li>29</li>
+	<li>30</li>
+	<li>31</li>
+	<li>32</li>
+	<li>33</li>
+	<li>34</li>
+	<li>35</li>
+</ul>
+<div class="cl">
+<div></div>
+<div></div>
+</div>
+
+
+<div class="demo demo1">中华人民共和国</div>
+<div class="demo demo2">中华人民共和国</div>
+<div class="demo demo3">中华人民共和国</div>
+<div class="demo demo4">中华人民共和国</div>
+<div class="demo demo5">中华人民共和国</div>
+<div class="demo demo6">中华人民共和国</div>
+<div class="demo demo7">中华人民共和国</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+/*
+属性选择器：属性是相对于标签而言，所谓属性选择器就是根据指定名称的属性的值来查找元素
+1、查找拥有style属性的li标签
+
+
+ */
+  
+
+
+/*
+border-radius:边框圆角
+设置一个值   四个角的圆角值都一样
+设置两个值   第一个值控制左上/右下   第二个值控制右上/左下
+设置三个值  1 左上  2 右上/左下  3 右下
+设置四个值  1左上 2右上  3右下 4左下 
+border-radius:100px/50px
+是用来设置当前不同方向的半径值  水平X方向/垂直Y方向  椭圆的画法
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

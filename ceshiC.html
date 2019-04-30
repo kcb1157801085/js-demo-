@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试</title>
+</head>
+<body>
+	<div id="dv">
+		<span>这是div中的第一个span 标签</span>
+		<p>这是div中的第二个元素，第一个p标签</p>
+		<ul id="uu">呵呵
+			<li>乔峰</li>
+			<li>鹿茸</li>哈哈
+			<li id="three">段誉</li>纳尼
+			<li>卡卡西</li>
+			<li>雏田</li>嘎嘎
+		</ul>
+	</div>
+
+
+<input type="button" value="显示效果把" id="btnAA">
+<input type="button" value="干掉第一个按钮" id="btnBB">
+<input type="button" value="干掉所有按钮" id="btnCC">
+<div id="cbv"></div>
+
+
+
+
+
+
+
+
+	<script type="text/javascript" src="common.js"></script>
+	<script>
+	var ulObj=my$("uu");
+	//ul标签的父级节点
+    console.log(ulObj.parentNode);
+    //ul标签的父级元素
+    console.log(ulObj.parentElement);
+    //ul第一个子节点
+    console.log(ulObj.firstChild);
+    //ul第一个子元素
+    console.log(ulObj.firstElementChild);
+    //ul最后一个子节点
+    console.log(ulObj.lastChild);
+    //ul最后一个子元素
+    console.log(ulObj.lastElementChild);
+    //某个元素的前一个兄弟节点
+    console.log(my$("three").previousSibling); 
+    //某个元素的前一个兄弟元素
+    console.log(my$("three").previousElementSibling);
+    //某个元素的后一个兄弟节点
+    console.log(my$("three").nextSibling);
+    //某个元素的后一个兄弟元素
+    console.log(my$("three").nextElementSibling);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log(ulObj.parentNode.nodeType);//1
+console.log(ulObj.parentNode.nodeName);//DIV
+console.log(ulObj.parentNode.nodeValue);//null
+
+
+var dvObj=my$("dv");
+for (var i = 0; i < dvObj.childNodes.length; i++) {
+	       var node = dvObj.childNodes[i]; 
+//nodeType----节点的类型：1--标签  2--属性  3--文本
+//nodeName----节点的名字：大写的标签--标签  小写的属性名--属性 #text--文本
+//nodeValue---节点的值：标签--null 属性---属性的值  文本--文本的内容
+
+console.log(node.nodeType+"==="+node.nodeName+"==="+node.nodeValue);
+}
+//dv的子节点
+console.log(dvObj.childNodes);
+//dv的子元素
+console.log(dvObj.children);
+
+
+
+
+var i =0 ;
+my$("btnAA").onclick=function(){
+	i++;
+	var obj=document.createElement("input");
+	obj.type="button";
+	obj.value="按钮"+i;
+	//把新的子元素插入到第一个子元素的前面
+	my$("cbv").insertBefore(obj,my$("cbv").firstElementChild);
+	my$("cbv").replaceChild();
+}
+
+
+my$("btnBB").onclick=function(){
+	//移除父级元素中第一个子级元素
+	my$("cbv").removeChild(my$("cbv").firstElementChild);
+}
+
+my$("btnCC").onclick=function(){
+	//点击按钮删除div 中所有的子级元素
+	while(my$("cbv").firstElementChild){
+	my$("cbv").removeChild(my$("cbv").firstElementChild);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

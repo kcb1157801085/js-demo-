@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+	*{
+		margin:0;
+		padding: 0;
+
+	}
+#dv1{
+	height: 200px;
+	width: 100%;
+	background-color: yellow;
+
+}
+.dv2{
+	height: 400px;
+	width: 100%;
+	background-color: blue;
+
+}
+#dv3{
+	height: 2000px;
+	width: 100%;
+	background-color: pink;
+	margin-top: 10px;
+}
+
+.fixed{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+
+
+#dv4{
+	position: absolute;
+	left:0;
+	top:0;
+	width: 200px;
+	height: 200px;
+	background-color: green;
+}
+
+
+	</style>
+
+</head>
+<body>
+	<div id="dv1"></div>
+	<div class="dv2" id="dv2"></div>
+	<div id="dv3"></div>
+
+<input type="button" value="移动" id="btn">
+<div id="dv4"></div>
+	<script type="text/javascript" src="common.js"></script>
+
+<script>
+window.onscroll=function(){
+	if(getScroll().top>=my$("dv1").offsetHeight){
+       my$("dv2").className="dv2 fixed";
+     my$("dv3").style.marginTop=my$("dv2").offsetHeight+"px";   }else{
+		my$("dv2").className="dv2";
+		my$("dv3").style.marginTop="10px";
+	}
+}
+
+
+
+function slowAnimate(element,target){
+	clearInterval(element.timeId);
+	element.setInterval=(function(){
+     var current=element.offsetLeft;
+     var step=(target-current)/10;
+     step=step>0?Math.ceil(step):Math.floor(step);
+     current+=step;
+     element.style.left=current+"px";
+if(current==target){
+	clearInterval(element.timeId);
+}
+	},20)
+}
+
+
+function getStyle(element,attr){
+   return window.getComputedStyle?getComputedStyle(element,null)[attr]:element.currentStyle[attr];
+}
+
+
+function ssAimate(element,attr,target){
+	setInterval(element.timeId);
+	element.timeId=setInterval(function(){
+     var current=parseInt(getStyle(element,attr));
+     var step=(target-current)/10;
+     step=step>0?Math.ceil(step):Math.floor(step);
+     current+=step;
+     element.style[attr]=current+"px";
+     if(current==target){
+       clearInterval(element.timeId);
+     }
+     //测试代码,代码没问题删除
+console.log("目标位置："+target+"当前位置："+current+"每次移动的步数"+step);
+	},20)
+}
+
+
+
+my$("btn").onclick=function(){
+	ssAimate(my$("dv4"),"top",800);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

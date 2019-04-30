@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第三天笔记</title>
+
+</head>
+<body>
+<script>
+//break关键字：如果在循环中使用，遇到break，则立即跳出当前所在的循环  
+//例子1：找到100-200之间第一个能被7整除的数
+   for (var i = 100; i <=200 ; i++) {
+     	if(i%7==0){
+     		console.log(i);
+     		break;
+     	}
+     }  
+//continue:在循环中如果遇到continue关键字，直接开始下一次循环
+//例子2：求100-200之间所有奇数的和？（用continue）
+      var sum = 0;
+      var a = 100;
+      while(a<=200){
+      	if(a%2==0){
+      		a++;
+      		continue;
+      	}
+      	sum = sum+a;
+      	a++;
+      }
+//例子3：求1-100的累加值，但要求跳过说有个位数为3的数
+    var num = 0;
+    var b =1;
+    while(b<=100){
+        if(b%10==3){
+        	b++;
+        continue;	
+        }
+        num+=b;	
+        b++;
+    }
+    console.log(num);
+
+
+
+
+/*
+     数组：一组有序的数据
+     数组的作用：可以一次性存储多个数据
+     1.通过构造函数创建数组
+     语法：   var 变量名 = new Array();
+     数组的名字直接输出，那么直接就可以把数组中的数据显示出来，如果没有数据，就看不到数据
+     var 变量名 = new Array(长度)；
+     如果数组有长度但里面没有数据，那么数组中的每个值就是undefiend
+     2.通过字面量的方式来创建数组
+     语法：   var 数组名 = [];
+
+     3.数组元素：数组中的每一个数据，都是数组的元素
+     4.数组长度：就是数组元素的个数
+     5.数组索引：用来存储或者访问数组中的数据（数组的索引从0开始）
+重点：6.数组的长度和索引的关系是：数组的长度-1就是最大的索引值 
+     如何设置数组中某个位置的值
+
+     数组名[数组索引] = 值;
+     如何获取数组中某个位置的值
+     var result = 数组名[数组索引];
+     console.log(result); 
+ */
+//for 循环遍历数组
+   var arr=[10,20,30,40,50];
+   for (var c= 0; c < arr.length; c++) {
+   	      console.log(arr[c]);
+   }
+//案例1：求数组中所有元素的和？ 
+   var arr1=[10,20,30,40,50];
+   var sum6 = 0;
+   for (var d = 0; d<arr1.length; d++) {
+          sum6+=arr1[d];   
+   }
+   console.log(sum6);
+//案例2：求数组中所有元素的平均值
+   var arr2=[1,2,3,4,5];
+   var sum7=0;
+   for (var e = 0; e <arr2.length; e++) {
+   	    sum7+=arr2[e];
+   }
+   console.log(sum7/arr2.length);
+//案例3：求数组中所有元素的最大值
+    var arr3 = [1,3,2,5,10,100,50];
+    var max = arr3[0];
+    for (var f = 0; f<arr3.length;f++){
+    	if(max<arr3[f]){
+            max=arr3[f];
+    	}
+    }
+    console.log("最大值是："+max);
+//案例4：求数组中所有元素的最小值
+    var arr4 = [52,46,15,23,78];
+    var min = arr4[0];
+    for (var i = 0; i < arr4.length; i++){
+    if(min>arr4[i]){
+    	min = arr4[i];
+       }
+    }
+    console.log("最小值："+min);
+//案例5：倒序循环遍历数组
+   var arr5 = [10,30,50,78,90,46];
+   for(var g=arr5.length-1;g>=0;g--){
+   	console.log(arr5[g]);
+   }
+//案例6：把数组中的每个元素用|拼接到一起产生一个字符串并输出
+    var names =["马云","马化腾","李彦宏","柳传志","任正非","刘强东"]
+    var str3 ="";
+    for(var h=1;h<names.length;h++){
+    	str3+="|"+names[h];
+    }
+    console.log(names[0]+str3);
+//案例7：去掉数组中重复的0,把其他的数据放在一个新的数组中
+    var arr6 = [10,0,20,0,30,0,40,50];
+    var newArr=[];
+    for (var i = 0; i < arr6.length; i++) {
+    if(arr6[i]!=0){
+         newArr[newArr.length]=arr6[i];
+    }
+    }
+   console.log(newArr);
+//案例8：反转数组,把数组中的数据的位置调换
+ var array=[10,30,50,60,80];
+  //循环的目的是控制交换的次数
+  for (var i = 0; i <array.length/2; i++) {
+  //先把第一个元素的值放在第三方变量中
+  	var temp = array[i];
+  	array[i]=array[array.length-1-i];
+  	array[array.length-1-i]=temp;
+  }
+  console.log(array);
+//案例9：提示用户输入班级人数，求总成绩，平均值，最高分，最低分
+   //提示用户输入人数，并转成数字类型
+   var perCount = parseInt(prompt("请输入班级人数"));
+   //定义数组存储班级的每个人的成绩
+   var perScores=[];
+   //循环的方式录入每个人的成绩
+   for (var i = 0; i <perCount; i++) {
+   	//把每个人的成绩存储到数组中
+   perScores[perScores.length]=parseInt(prompt("请输入第"+(i+1)+"个人的成绩："));
+   }
+   //求总成绩
+   var sum8 = 0;
+   var avg = 0;
+   var max1= perScores[0];
+   var min1 = perScores[0];
+   for (var i = 0; i < perScores.length; i++) {
+   	      sum8+=perScores[i];//求和
+   	      //求最大值
+   	      if(max1<perScores[i]){
+   	      	max1=perScores[i];
+   	      }
+   	      //求最小值
+   	      if(min1>perScores[i]){
+   	      	min1=perScores[i];
+   	      }
+   }
+   //平均值
+   avg = sum8/perScores.length;
+   console.log("和为："+sum8);
+   console.log("平均值："+avg);
+   console.log("最大值："+max1);
+   console.log("最小值："+min1);
+//案例10：冒泡排序：把所有的数据按照一定的顺序进行排列
+  var arr7 =[10,0,100,20,60,30];
+  //循环控制比较的轮数
+  for (var i = 0; i < arr7.length-1; i++) {
+  	//控制每一轮的比较次数
+  	for (var j = 0; j<arr7.length-1-i; j++) {
+  		if(arr7[j]<arr7[j+1]){
+  			var temp =arr7[j];
+  			arr7[j]=arr7[j+1];
+  			arr7[j+1]=temp;
+  		}
+  	}
+  }
+  console.log(arr7);
+ 
+
+
+
+</script>	
+</body>
+</html>

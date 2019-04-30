@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+var score=parseInt(prompt("请输入你的成绩"));
+if(!isNaN(score)){
+	if(score>100){
+		console.log("你输入的数字超出测试范围");
+	}else if (score>90&&score<=100){
+		console.log("A级");
+	}else if(score>80){
+		console.log("B级");
+	}else if(score>70){
+		console.log("C级");
+	}else if(score>=60){
+		console.log("D级");
+	}else{
+		console.log("不及格");
+	}
+}else{
+	console.log("你的输入有误");
+}
+var num="C";
+switch(num){
+	case "A":console.log("90-100");break;
+	case "B":console.log("80-89");break;
+	case "C":console.log("70-79");break;
+	case "D":console.log("60-69");break;
+}
+for (var i = 0; i < 10; i++) {
+	for (var j = 0; j < i; j++) {
+		document.write("☆");
+	}
+	document.write("<br/>");
+}
+
+
+
+document.write("<table border='1' cellspacing='0' cellpadding='0' ");
+for (var i = 1; i <=9; i++) {
+	document.write("<tr>");
+	for (var j = 1; j <=i; j++) {
+    document.write("<td>");
+    document.write(i+"*"+j+"="+i*j);
+     document.write("</td>");
+	}
+	document.write("</tr>");
+
+}
+
+//案例1：求数组中所有元素的和？ 
+var arr=[10,2,30,4,55,77];
+var sum=0;
+for (var i = 0; i < arr.length; i++) {
+	sum+=arr[i];
+}
+console.log(sum);
+// 案例3：求数组中所有元素的最大值
+var arr1=[10,2,30,4,55,77];
+var sum1=arr1[0];
+for (var i = 0; i < arr1.length; i++) {
+	if(sum1<arr1[i]){
+		sum1=arr1[i];
+	}
+}
+
+console.log(sum1);
+
+
+// 案例5：倒序循环遍历数组
+var arr2=[10,2,30,4,55,77];
+for (var i = arr2.length - 1; i >= 0; i--) {
+	console.log(arr2[i]);
+}
+
+
+//案例6：把数组中的每个元素用|拼接到一起产生一个字符串并输出
+var names =["马云","马化腾","李彦宏","柳传志","任正非","刘强东"];
+var str="";
+for (var i = 0; i < names.length; i++) {
+str+="|"+names[i];
+}
+console.log(names[0]+str);
+//案例7：去掉数组中重复的0,把其他的数据放在一个新的数组中
+    var arr6 = [10,0,20,0,30,0,40,50];
+var arrY=[];
+for (var i = 0; i < arr6.length; i++) {
+	if(arr6[i]!=0){
+        arrY[arrY.length]=arr6[i]; 
+	}
+}
+console.log(arrY);
+//案例8：反转数组,把数组中的数据的位置调换
+ var array=[10,30,50,60,80];
+for (var i = 0; i < array.length/2; i++) {
+	var temp=array[i];
+	array[i]=array[array.length-1-i];
+	array[array.length-1-i]=temp;
+}
+
+console.log(array);
+
+//冒泡排序
+var array1=[10,88,50,60,80];
+for (var i = 0; i < array1.length-1; i++) {
+	for (var j = 0; j < array1.length-1-i; j++) {
+		if(array1[j]<array1[j+1]){
+           var temp=array1[j];
+           array1[j]=array1[j+1];
+           array1[j+1]=temp;
+		};
+
+	}
+}
+console.log(array1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

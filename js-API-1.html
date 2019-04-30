@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API第一天练习及笔记</title>
+	<style>
+img{
+	height: 200px;
+	width: 150px;
+}
+#dj{
+    width: 300px;
+    height: 300px;
+    background-color: yellow;
+}
+div{
+	width: 300px;
+    height: 300px;
+    background-color: blue;
+
+}
+.cls{
+	display: none;
+}
+
+.black{
+	background-color: black;
+}
+
+
+
+
+	</style>
+
+
+</head>
+<body class="black">
+<!-- 案例1：点击按钮显示图片及设置宽和高 -->
+<input type="button" value= "显示图片" id= "btn1" >
+<img src="" alt="" id = "im">
+
+ <!-- 案例2：点击按钮设置P标签的文本内容 -->
+<input type="button" value="设置p的内容" id="btn">
+<p id="p1">我是一个p</p>
+<!-- 案例3：点击按钮修改超链接的地址及文字内容 -->
+<input type="button" value="显示效果" id= "btn2">
+<a id="ak" href="http://www.baidu.com">百度</a><br/>
+<!-- 案例4：点击按钮设置多个p标签内容
+ -->
+<input type="button" value= "p标签" id="btn3"><br/>
+
+<div id="dv1">
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+<p>哈哈，我又变帅了 </p>
+</div>
+<div id="dv2">
+<p>呵呵</p>
+<p>呵呵</p>
+<p>呵呵</p>
+<p>呵呵</p>
+<p>呵呵</p>
+</div>
+<!-- 案例5：点击按钮修改多个文本框的值 -->
+<input type="button" value="文本显示" id="btn4"><br/>
+<input type="text" value = ""><br/>
+<input type="text" value = ""><br/>
+<input type="text" value = ""><br/>
+<input type="text" value = ""><br/>
+<input type="text" value = ""><br/>
+<input type="text" value = ""><br/> 
+
+<!-- 案例6：点击每个图片弹出对话框
+ -->
+<img src="images/ahimg1.jpg" alt="图片未加载">
+<img src="images/ahimg2.jpg" alt="图片未加载">
+<img src="images/ahimg4.jpg" alt="图片未加载">
+<!-- 案例7：点击按钮修改value的属性
+ -->
+<input type="button" value= "按钮" id="btn5">
+<!-- 案例8：点击图片修改它的宽和高-->
+<img src="images/ahimg5.jpg" alt="图片未加载" id="im1">
+<!-- 案例9：按钮的排他功能 -->
+<div id="ad">
+<input type="button" value = "没怀孕"/>
+<input type="button" value = "没怀孕"/>
+<input type="button" value = "没怀孕"/>
+<input type="button" value = "没怀孕"/>
+<input type="button" value = "没怀孕"/>
+</div>
+<!-- 案例10：点击超链接切换图片 -->
+<a id="akg" href="images/ahimg7.jpg"><img src="images/ahimg6.jpg" alt="" id="imgg"></a>
+<!--案例11：点击按钮切换图片 -->
+<input type="button" value="显示大图" id="btn6">
+<img src="images/hd2.gif" alt="" id="im2">
+<!-- 案例12：点击按钮选择性别和兴趣-->
+<input type="button" value = "修改性别" id="btn7">
+<input type="radio" value = "1" name="sex">男
+<input type="radio" value = "2" name="sex" id="rad1">女
+<input type="radio" value = "3" name="sex">保密
+<input type="button" value = "选择兴趣" id="btn8">
+<input type="checkbox" value="1" name="xingqu">吃饭
+<input type="checkbox" value="2" name="xingqu">睡觉
+<input type="checkbox" value="3" name="xingqu" id="ck1">打豆豆
+<input type="checkbox" value="4" name="xingqu">打游戏
+<input type="checkbox" value="5" name="xingqu" id="ck2">看电影
+<input type="checkbox" value="6" name="xingqu">听歌
+<!-- 案例13：点击按钮选择菜单 -->
+<input type="button" value="点菜" id="btn9">
+<select name="" id="ss">
+<option value="1">油炸榴莲</option>
+<option value="2">爆炒牛肚</option>
+<option value="3">凉拌毛豆</option>
+<option value="4" id="op1">红烧狮子头</option>
+<option value="5">清蒸武昌鱼</option>
+</select>
+<textarea name="" id="tt" cols="30" rows="10" readonly="readonly">
+某人问智者，
+大师：你觉得怎么做才是最快乐的？
+回答说：不要和愚者辩论
+这个人说我不这么认为！
+大师说：您说的对，
+我就是这么帅
+</textarea>
+<input type="button" value = "注册" id="btnA">
+<!-- 案例14：点击按钮设置div的样式 -->
+<input type="button" value="设置样式" id="btnB">
+<div id="df"></div>
+<!-- 案例15：点击按钮设置div的显示与隐藏 -->
+<input type="button" value= "隐藏" id="btnC">
+<div id="dj"></div>
+<!-- 案例16：div的显示与隐藏通过类样式实现 -->
+<input type="button" value="设置div样式" id="btnD">
+<div id="cp" class="cls"></div>
+<!-- 案例17：网页开关灯-->
+<input type="button" value="开/关灯" id="btnE">
+
+
+
+
+  
+<script>
+//案例1：点击按钮显示图片及设置宽和高
+
+//点击按钮显示图片：点击按钮的时候设置img标签的src属性有一个图片的路径
+//根据id获取按钮
+var btnObj = document.getElementById("btn1");
+//为按钮注册点击事件，添加事件处理函数
+btnObj.onclick = function(){
+//根据id获取图片的标签，设置图片的src属性值
+	var imObj = document.getElementById("im");
+	this.src = "images/advjimg4.jpg";
+	//设置图片的宽和高
+	this.width = "300";
+	this.height = "400";
+	this.alt = "图片未加载";          
+	this.title = "野生蜂蜜"
+}
+// 案例2：点击按钮修改P标签里面的文本内容
+var btn1Obj = document.getElementById("btn");
+btn1Obj.onclick = function (){
+	var pObj = document.getElementById("p1");
+	pObj.innerText = "这是一个P标签"
+}
+
+// 案例3：点击按钮修改超链接的地址及文字内容
+var btn2Obj = document.getElementById("btn2");
+btn2Obj.onclick = function(){
+	var aObj = document.getElementById("ak");
+	aObj.href = "http://www.jd.com";
+	aObj.innerText = "京东";
+}
+// 点击按钮设置多个p标签内容
+//根据id获取按钮，注册点击事件，添加事件处理函数
+var btn3Obj = document.getElementById("btn3");
+btn3Obj.onclick = function(){
+	//根据标签名字获取标签
+	var p1Obj = document.getElementsByTagName("p");
+	//操作某个div下的p标签
+	var p1Obj = document.getElementById("dv1").getElementsByTagName("p");
+    //循环遍历这个数组
+   for (var i = 0; i < p1Obj.length; i++) {
+   	p1Obj[i].innerText="我们都是P标签";
+   }
+}
+
+// 案例5：点击按钮修改多个文本框的值
+var btn4Obj = document.getElementById("btn4");
+btn4Obj.onclick = function (){
+	var textObj = document.getElementsByTagName("input");
+	for (var i = 0; i < textObj.length; i++) {
+		//判断这个元素是不是按钮
+		if(textObj[i].type!="button"){
+			textObj[i].value="其实，助教喜欢小苏";
+		}
+	}
+}
+
+
+// 案例6：点击每个图片弹出对话框
+var imgObjs = document.getElementsByTagName("img");
+for (var i = 0; i < imgObjs.length; i++) {
+	imgObjs[i].onclick = function(){
+		alert("弹出对话框");
+	}
+}
+// 案例7：点击按钮修改value的属性
+var inObj = document.getElementById("btn5");
+inObj.onclick = function(){
+//在某个元素的事件中，自己的事件中的this就是当前的这个元素对象
+	this.value ="我是按钮";
+	this.type = "text";
+}
+// 案例8：点击图片修改它的宽和高
+   var imgObj = document.getElementById("im1");
+    imgObj.onclick = function(){
+    	this.width = "200";
+    	this.height = "300";
+    }
+// 案例9：按钮的排他功能
+var btn5Obj = document.getElementById("ad").getElementsByTagName("input");
+for (var i = 0; i < btn5Obj.length; i++) {
+	btn5Obj[i].onclick = function (){
+		//把所有的按钮的value值设置为默认的值：没怀孕
+		for (var j = 0; j<btn5Obj.length; j++) {
+			btn5Obj[j].value = "没怀孕";
+		}
+		//当前被点击的按钮设置为：怀孕了
+		this.value = "怀孕了";
+	}
+}
+// 案例10：点击超链接切换图片
+var imggObj= document.getElementById("imgg");
+imggObj.onclick = function(){
+	this.src = document.getElementById("akg").href;
+	return false;
+}
+// 案例11：点击按钮切换图片
+function my$(id){
+	return document.getElementById(id);
+} 
+var btn6Obj = my$("btn6");
+btn6Obj.onclick = function(){
+	my$("im2").src="images/hd3.gif";
+}
+// 案例12：点击按钮选择性别和兴趣
+var btn7Obj = my$("btn7");
+btn7Obj.onclick = function (){
+	/*
+	规律：在表单标签中，如果属性和值只有一个，并且值是这个属性的本身，那么，在DOM操作的时候，这个属性值，是布尔类型就可以。
+	 */
+	my$("rad1").checked = true;
+}
+
+var btn8Obj =my$("btn8");
+btn8Obj.onclick = function(){
+	my$("ck1").checked=true;
+	my$("ck2").checked=true;
+	
+}
+
+
+// 案例  13：点击按钮选择菜单
+
+
+var btn9Obj =my$("btn9");
+btn9Obj.onclick = function(){
+	my$("op1").selected= true;
+}
+my$("btnA").onclick=function(){
+	my$("tt").value = "嘎嘎";
+}
+
+// 案例14：点击按钮设置div的样式
+my$("btnB").onclick = function(){
+	my$("df").style.width = "300px";
+	my$("df").style.height = "200px";
+	//凡是css中这个属性是多个单词的写法，在JS代码中DOM操作的时候，把-干掉，后面的单词首字母大写即可
+	my$("df").style.backgroundColor = "pink";
+}
+// 案例15：点击按钮设置div的显示与隐藏
+
+my$("btnC").onclick = function(){
+	if(this.value=="隐藏"){
+   my$("dj").style.display = "none";
+   this.value="显示";	
+   }else if(this.value=="显示"){
+   	my$("dj").style.display = "block";
+   this.value="隐藏";	
+   }	
+}
+
+// 案例16：div的显示与隐藏通过类样式实现
+my$("btnD").onclick= function(){
+	if(my$("cp").className!="cls"){
+		my$("cp").className = "cls"
+		this.value= "显示";
+	}else{
+		my$("cp").className ="";
+		this.value="隐藏";
+	}
+}
+
+// 案例17：网页开关灯
+
+my$("btnE").onclick = function(){
+	document.body.className = document.body.className!="black"?"black":"";
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+	<script>
+/*
+javascript分三个部分：
+ECMAScript标准：js的基本语法
+DOM：Document Object Model   文档对象模型  操作页面的元素
+BOM：Browser Object Model    浏览器对象模型  操作的是浏览器
+
+DOM：文档对象模型
+文档：把一个html文件看成是一个文档，由于万物皆对象，所以把这个文档看成是一个对象
+XML文件：也可以看成是一个文档
+XML：侧重于存储数据
+例:<?xml varson="1.0" encoding="UTF-8"?>
+HTML：展示信息，展示数据的
+页面中的每个标签，都是一个元素（element），每个元素都可以看成是一个对象
+标签可以嵌套，标签中有标签，元素中有元素
+html页面中都有一个根标签（html）---也叫根元素
+页面中的有一个根元素（标签---html），里面有很多的元素（有很多的标签，有很多的对象）
+
+元素：页面中的所有的标签都是元素，元素可以看成是对象
+节点（node）：页面中所有的内容都是节点：标签，属性，文本 
+
+由文档及文档中的所有的元素（标签）组成的一个树形结构图，叫DOM树
+//点击操作：------事件：就是一件事，有触发和响应，事件源
+按钮被点击，弹出对话框
+按钮-----事件源
+点击----事件的名字
+被点击了-----触发了
+弹框了----响应
+html代码中嵌入了JS代码，不方便后期的修改和维护
+应该把js代码和html分离
+凡是成对的标签，中间的文本内容，设置的时候，都使用innerText这个属性的方式
+document.getElementById("id属性的值")--返回的是一个元素对象
+document.getElementsByTagName("标签的名字");返回的是一个伪数组
+无论获取的是一个标签，还是多个标签，最终都是在数组中存储的，这行代码的返回值就是一个数组
+ */
+	</script>
+
+</body>
+</html>

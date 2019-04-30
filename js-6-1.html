@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第六天笔记</title>
+</head>
+<body>
+	<script>
+
+//例子：自己定义一个对象，实现系统的max的方法
+function MyMath(){
+	this.getMax = function (){
+		var max = arguments[0];
+		for(var i =0;i<arguments.length;i++){
+			if(max<arguments[i]){
+				max = arguments[i];
+			}
+
+				}		
+		return max;
+	};
+}
+var mt = new MyMath();
+var result = mt.getMax(10,20,3,40,100,50);
+console.log(result);
+//随机产生一个十六进制的颜色值
+
+function getColor(){
+	var str = "#";
+	var arr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+	for (var i = 0; i < 6; i++) {
+		var num = parseInt(Math.random()*16);
+		str+=arr[num];
+	}
+   return str;
+}
+console.log(getColor());
+var dt = new Date();
+//var dt =+ new Date();    兼容性问题，只适用Date对象
+
+//获取年份
+console.log(dt.getFullYear()); 
+//获取月份
+console.log(dt.getMonth());//从0开始，真实月份要加一
+//获取日期
+console.log(dt.getDate());
+//获取小时
+console.log(dt.getHours());
+//获取分钟
+console.log(dt.getMinutes());
+//获取秒
+console.log(dt.getSeconds());
+//获取星期
+console.log(dt.getDay());//星期从0开始
+//英文格式（年月日）
+console.log(dt.toDateString());
+//数字格式(年月日)
+console.log(dt.toLocaleDateString());
+//时分秒 （英文格式）
+console.log(dt.toTimeString());
+//时分秒  （数字格式）
+console.log(dt.toLocaleTimeString());
+//毫秒
+console.log(dt.valueOf());
+
+
+
+//格式化后的指定格式的日期和时间 -----封装一个函数
+function getDate(){
+	var dt = new Date();//创建日期对象
+	var year = dt.getFullYear();
+	var month = dt.getMonth()+1;
+	var day = dt.getDate();
+	var hour = dt.getHours();
+	var minutes = dt.getMinutes();
+	var second = dt.getSeconds();
+
+    month = month<10?"0"+month:month;
+    day = day<10?"0"+day:day;
+    minutes = minutes<10?"0"+minutes:minutes;
+    second = second<10?"0"+second:second;
+
+	return year+"年"+month+"月"+day+"日"+hour+":"+minutes+":"+second;
+}
+
+console.log(getDate(dt));
+
+  
+/*
+String --->是一个对象
+字符串可以看成是字符组成的数组，但是js中没有字符类型
+字符是一个一个的，在别的语言中字符用一对单引号括起来
+在JS中字符串可以使用单（双引号）
+因为字符串可以看成一个数组，所以，可以通过for循环进行遍历
+字符串特征：不可变性，字符串的值是不能改变
+字符串的值之所以看起来是改变的，那是因为指向改变了，并不是真的值改变了
+ */
+/*
+字符串常用属性和方法
+属性：
+str.length -----字符串的长度
+
+方法：
+str.charAt(索引)-----返回值是指定索引位置的字符，超出索引，结果为空
+str.fromCharCode(数字值，可多参数)----返回的是ASCII码对应的值
+str.concat(字符串1,字符串2,..)----将一个或多个字符串与原字符串连接合并，形成新字符串并返回
+str.indexOf(要找的字符串，从某个位置开始的索引)----返回的是这个字符串的索引，没找到返回-1
+str.lastIndexOf(要找的字符串);从后向前找，但是索引仍然是从左往右的方式，没有找到返回-1
+str.replace("原来的字符串","新的字符串");用来替换字符串的
+str.slice(开始的索引，结束的索引)从索引5的位置开始提取，到索引为10的前一个结束，没有10，并返回这个提取后的字符串
+str.split("要干掉的字符串"，切割后留下的个数)；切割字符串
+str.substr(开始的位置，个数);返回的是截取后的新的字符串
+str.substring(开始的索引，结束的索引)返回截取后的字符串，不包含结束的索引的字符串
+str.toLocaleLowerCase();  转小写
+str.toLowerCase(); 转小写
+str.toLocaleUpperCase(); 转大写
+str.toUpperCase(); 转大写
+str.trim();干掉字符串两端的空格
+
+
+
+ */
+var str = "whatareyouninongshanei"
+console.log(str.charAt(12));
+
+var str1 = String.fromCharCode(83,79,83);
+console.log(str1);
+
+var str2 = "小苏";
+console.log(str2.concat("喜欢","小米","手机"));
+
+var str3 = "小苏真的好猥好琐啊";
+var index = str3.indexOf("好",5);
+console.log(index);
+
+var str4 = "Hello World";
+var index = str4.lastIndexOf("o");
+console.log(index);
+
+var str5 = "小苏好帅哦，真的好勇敢哦";
+if(str5.indexOf("帅")!=-1){
+   str5 = str5.replace("帅","猥琐");	
+}else{
+	console.log("不存在");
+}
+console.log(str5);
+
+var str6 = "如果有一天我邪恶了，请记住，我曾纯洁过";
+//从索引5的位置开始提取，到索引为10的前一个结束，没有10，并返回这个提取后的字符串
+str6 = str6.slice(5,10);
+console.log(str6);
+
+var str7 ="乔峰|慕容|凤姐|梅超风|小苏|大蛇丸";
+var arr = str7.split("|",4);
+for (var i = 0; i < arr.length; i++) {
+	console.log(arr[i]);
+}
+
+var str8 = "哈哈，小苏真的是好帅哦";
+str8 = str8.substr(5,5);
+console.log(str8);
+
+var str9 = "哈哈，小苏真的是好帅哦";
+str9 = str9.substring(5,9);
+console.log(str9);
+
+var strA = "   哦，这    是一个神奇的一天    ";
+strA = strA.trim();
+console.log(strA);
+
+
+
+//案例
+var strB = "我爱最帅的杨哥，太帅了";
+var index = strB.indexOf("杨哥");
+strB = strB.substr(index,2);
+console.log(strB);
+
+//案例2：找到这个字符串中所有的o出现的位置
+  var strC = "hello wod odd ott fbo nhyo";
+ var index = 0;
+ var key = "o";
+ while((index = strC.indexOf(key,index))!=-1){
+       index+=key.length;
+       console.log(index);
+ }
+
+//案例3：找到这个字符串中的每个字符串出现了多少次
+  var strD = "whatsjhbsfGasdGhjsbuysgfsjfd";
+//第一步：把所有的字母全部变成小写
+strD = strD.toLocaleLowerCase();
+//第二步：创建一个空对象，目的：把字母作为键，次数作为值
+  var obj ={};
+//第三步：遍历字符串，获取每一个字母
+for (var i = 0; i < strD.length; i++) {
+	var key = strD[i];
+	if(obj[key]){
+      obj[key]++;
+	}else{
+//对象中没有这个字母，那就把字母加到对象中，并且给这个字母一个出现的次数，默认一次
+    obj[key] = 1;
+	}
+}
+//遍历对象，显示每个字母的次数
+for(var key in obj){
+	console.log(key+"这个字母出现了"+obj[key]+"次");
+}
+
+/*
+Array.isArray(对象)----判断这个对象是不是数组
+instanceof（关键字）
+arr.concat(数组，数组，数组，。。。)拼接数组并组合成一个新的数组
+arr.every(函数)---返回值是布尔类型，函数作为参数使用，函数中有三个参数，第一个参数是元素的值，第二个参数是索引值，第三个参数是原来的数组（没用）
+如果这个数组中的每个元素的值都符合条件，最后才返回的是true
+arr.filter(函数);返回的是数组中每一个元素都符合条件的元素，组成了一个新的数组。
+arr.push();把值追加到数组中，加到最后，返回值也是追加数据之后的数组长度
+arr.pop();  删除数组中最后一个元素，返回值就是删除的那个值
+arr.shift(); 删除数组中第一个元素，返回值就是删除的那个值
+arr.unshift();向数组的第一个元素前面插入一个新的元素，返回值是插入后的数组长度
+arr.forEach(); 遍历数组用 相当于for循环
+arr.indexOf(); 返回的是数组的索引，没有这个元素返回-1
+arr.join("字符串"); 返回的是一个字符串
+arr.map(函数); 数组中的每个元素都要执行这个函数，把执行后的结果重新的全部放在一个新的数组中
+arr.revarse()反转数组
+arr.sort()  排序的，可能不稳定，如果不稳定，请写MDN里面的固定写法
+arr.slice(开始索引，结束索引)；把截取的数组的值放在一个新的数组中，但是不包含结束的索引对应的元素值
+arr.splice(开始的位置，要删除的个数，替换的元素的值);一般是用于删除数组中的元素，或者是替换元素，或者是插入元素
+  
+ */
+
+
+//变量是不是数组类型：两种方法
+//1、instanceof
+//var obj = [];
+//console.log(obj instannceof Array);
+////2、使用数组
+//console.log(Array.isArray(obj));
+
+
+var arr = ["小面膜富家大室","多读点的是","多读点","的订单的","的订单 ","铲除 "];
+var flag = arr.every(function (ele,index){
+	//数组中的每个元素的长度是不是小于4
+     return ele.length>2;
+});
+
+var arr1 = [10,20,0,30,40,50,60,70,80];
+var newArr = arr1.filter(function (ele){
+	return ele>40;
+});
+console.log(newArr);
+
+var arr2 = [10,20,30,40,50];
+arr2.push(100);
+console.log(arr2);
+
+var arr3 = [15,25,35,45,55];
+var result = arr3.pop();
+console.log(result);
+console.log(arr3);
+
+var arr4 = [10,20,30,40];
+arr.forEach(function(ele,index,array){
+	console.log(ele+"===="+index);
+});
+
+var arr5 = [10,20,30,40];
+var index = arr5.indexOf(30);
+console.log(index);
+
+var arr6 = ["小白","小黑","小红","小黄","小吕","小明"];
+ var str = arr6.join("|");
+console.log(str);
+
+var numbers = [1,4,9,16,25];
+var roots = numbers.map(Math.sqrt);
+console.log(roots);
+
+var arr7 = [2,4,6,8,10,12];
+arr7.reverse();
+console.log(arr7);
+
+var arr8 = [1,40,20,10,100];
+arr8.sort(function(a,b){
+     if(a>b){
+     	return 1;
+     }else if (a==b){
+     	return 0;
+     }else{
+     	return -1;
+     }
+});
+console.log(arr8);
+
+var arr9 = [10,20,30,40,50,60,70,80,90,100];
+var newArr = arr.slice(3,7);
+console.log(newArr);
+
+var myFish = ["红","黄","绿","蓝"];
+myFish.splice(2,0,"紫色");//在索引2的位置插入紫色
+console.log(myFish);
+myFish.splice(2,1);//从索引为2的位置删除一项（也就是“紫色”）
+console.log(myFish);
+
+//基本包装类型
+/*
+//普通变量不能直接调用属性和方法
+//对象可以直接调用属性和方法
+
+基本包装类型：本身是基本类型，但是在执行代码的过程中，如果这种类型的变量调用了属性和方法，那么这种类型就不再是基本类型了，而是基本包装类型，这个变量也不是怕他的变量了，而是基本包装类型对象
+
+ */
+//如果是一个对象&&true,那么结果是true
+//如果是一个true&&对象，那么结果是对象
+
+var flag = new Boolean(false);
+var result = true&&flag;
+console.log(result);
+
+var str = "hello";
+str = str.replace("ll","HH");
+console.log(str);
+
+var str = new String("hello");
+str = str.replace("ll","HH");
+console.log(str);
+str = null;
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>one</title>
+	<style> 
+	*{
+		margin: 0;
+		padding: 0;
+	}
+header{
+	height: 100px;
+	width: 100%;
+	background-color: red; 
+}
+nav{
+	height: 36px;
+	width: 100%;
+	background-color: green; 
+}
+main{
+	height: 500px;
+	width: 100%;
+	background-color:#ccc; 
+}
+main>article{
+	height: 100%;
+	width: 80%;
+	background-color: purple; 
+	float: left;
+}
+
+main>aside{
+	height: 100%;
+	width: 20%;
+	background-color: pink; 
+	float: right;
+
+}
+
+footer{
+	height: 100px;
+	width: 100%;
+	background-color: skyblue;
+}
+
+
+
+	</style>
+</head>
+<!-- 解决IE兼容性问题的插件 -->
+<script src="https://cdn.bootcss.com/html5shiv/r29/html5.js"></script>
+<body>
+	<header>头部</header>
+<nav>导航</nav>
+<main>
+<article>左边</article>
+<aside>右边</aside>
+</main>
+<footer>底部</footer>
+
+<form action="">
+用户名：<input type="text" name="userName"><br>
+密码：<input type="password" name="userPwd"><br>
+<!-- email提供了默认的电子邮箱的完整验证：要求必须包含@符号，同时必须包含服务器名称，如果不能满足验证，则会阻止当前的数据提交 -->
+邮箱：<input type="email"><br>
+<!-- tel它并不是来实现验证，它的本质目的是为了能够在移动端打开数字键盘，意味着数字键盘限制了用户只能输入数字 -->
+电话：<input type="tel"><br>
+<!-- 验证只能输入合法网址，必须包含http:// -->
+网站：<input type="url"><br>
+<!-- number:只能输入数字（含小数点），不能输入其他的字符 -->
+<!-- value:默认值 -->
+<!-- max:最大值 -->
+<!-- min：最小值 -->
+数量：<input type="number"><br>
+<!-- search:可以提供更人性化的输入体验 -->
+请输入商品名称：<input type="search"><br>
+<!-- range:范围 -->
+范围：<input type="range" max="100" min="0" value="50"><br>
+<!-- color：颜色 -->
+颜色：<input type="color"><br>
+<!-- 日期时间相关 -->
+<!-- time:时分秒 -->
+时间：<input type="time"><br>
+<!-- date:年月日 -->
+日期：<input type="date"><br>
+<!-- datetime-local  得到日期和时间   datetime写法苹果支持 -->
+日期时间：<input type="datetime-local"><br>
+月份：<input type="month"><br>
+星期：<input type="week"><br>
+
+
+
+
+
+
+</form>
+
+
+
+<!-- 表单新增的其他属性 -->
+<form action="" id="myform">
+<!-- placeholder：提示文本 -->
+<!-- autofocus:自动获取焦点 -->
+<!-- autocomplete:自动完成 on:打开 off：关闭 1.必须成功提交过，2.当前添加autocomplete的元素必须有name属性 -->
+用户名：<input type="text" name="userName1" placeholder="请输入用户名" autofocus="autofocus" autocomplete="on"><br>
+<!-- tel会在移动端弹出数字键盘 -->
+<!-- required:必须输入，如果没有输入则会阻止当前数据提交 -->
+<!-- pattern:正则表达式验证 -->
+手机号：<input type="tel" required pattern="^(\+86)?1\d{10}$"><br>
+<!-- multiple:选择多个文件 在email中允许输入多个邮箱地址，用逗号分隔--> 
+文件：<input type="file" name="photo" multiple><br>
+
+
+
+
+
+
+
+
+<input type="submit">
+
+
+</form>
+<!-- 下面这个表单元素并没有包含在form中：默认情况下面表单元素的数据不会进行提交 -->
+<!-- form：指定表单id，那么在将来指定id号的表单进行数据提交的时候，也会将当前表单元素的数据一起提交 -->
+地址：<input type="text" name="address" form="myform">
+
+ 
+<!-- 建立输入框与datalist的关联  list="datalist的ID值" -->
+专业：<input type="text" list="subjects">
+<datalist id="subjects>
+<!-- 创建选项值：value：具体的值 label：提示信息，辅助值 -->
+<option value="前端与移动开发" label="前景非常好"></option>
+<option value="java" label="使用人数多"></option>
+<option value="pathon" label="智能高效"></option>
+</datalist>
+<!-- keygen密钥兼容性不好暂时不用   双标签 -->
+<!-- 显示输入信息 兼容性差，只能显示不能修改1.语义性更强2值需要你去设置，不能自动计算-->
+ <output>总金额：￥100.00</output>
+
+
+电话：<input type="tel" id="userPhone"><br>
+
+<!-- 进度条 -->
+<!-- 1 max  最大值 -->
+<!-- 2 value 当前进度值 -->
+<progress max="100" value="20"></progress>
+
+<!-- 度量器：衡量当前进度值 -->
+<!-- high:规定的较高的值 -->
+<!-- low：规定的较低的值 -->
+<!-- max：最大值 -->
+<!-- min：最小值 -->
+<!-- value：当前度量值 -->
+<meter max="100" min="0" high="80" low="40" value="20" ></meter>
+<!-- src:播放的音频路径
+     controls:音频播放器控制面板
+     autoplay:自动播放
+     loop：循环
+      -->
+<audio src=""></audio>
+     <!-- video：视频
+     src:播放的视频路径
+     controls:视频播放器控制面板
+     autoplay:自动播放
+     loop：循环
+     width：宽度
+     height：高度
+     poster:当视频还没有完全下载，或者用户还没有点击播放当前的默认显示的封面，默认是显示当前视频文件的第一帧画面
+     注意事项：当设置宽高的时候，一般抢矿下只会设置宽度或者高度，让其自动的等比例缩放，如果同时设置宽高，那么视频并不会真正的调整到设置的宽高，除非设置的值刚好是等比例的 -->
+
+
+<video src="" controls="">
+<!-- sourse的使用：因为不同浏览器支持的视频文件格式不一样，所以我们在进行视频添加的时候，需要考虑到浏览器是否支持，我们可以准备多个格式的视频文件，让浏览器自动的选择
+<source src="../mp3/flv.flv" type="video/flv"></source>
+<source src="../mp3/mp4.mp4" type="video/mp4"></source> -->
+
+
+
+
+
+
+</video>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/*
+
+ HTML5新增的表单事件
+
+oninput:监听当前指定元素内容的改变：只要内容改变（添加内容，删除内容），就会触发这个事件
+
+oninput与onkeyup的区别1.当内容改变一次后oninput只触发一次，而onkeyup每一个键抬起都触发一次  2、鼠标复制粘贴内容时oninput触发onkeyup不触发
+
+oninvalid:当验证不通过时触发
+
+设置默认提示信息--- setCustomValidity()方法
+                      
+
+
+
+
+*/
+
+//当验证不通过的时候来触发
+document.getElementById("userPhone").oninvalid=function(){
+	//设置默认提示信息
+	this.setCustomValidity("请输入11位合法的手机号");
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

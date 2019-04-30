@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		padding: 0px;
+		margin: 0px;
+	}
+.dv{
+	width: 300px;
+	height: 300px;
+	/*添加渐变
+     linear-gradient(方向，开始颜色，位置，颜色，位置，颜色，位置。。。)
+方向：  to top:0deg;
+       to right:90deg;
+       to bottom:180deg;
+       to left:270deg;
+
+	*/
+	background: linear-gradient(to right,yellow,blue);
+}
+/*径向渐变指从一个中心点开始沿着四周产生渐变效果
+语法  background:radial-gradient(形状 大小 坐标 )  
+形状shape：circle:产生正方形的渐变色 ellipse:适配当前的形状，如果是正方形的容器，两者效果一样，如果宽高不一样，默认切换到ellipse;
+at position:坐标，默认在正中心，可以赋值坐标(参照元素的左上角
+)，也可以赋值关键字（left center right top bottom）;
+大小size： closet-side:最近边  farthest-side:最远边 closet-corner:最近角 farthest-corner 最远角farthest-corner;
+
+
+*/
+
+.dd{
+	width: 300px;
+	height: 300px;
+	background:radial-gradient( circle farthest-corner, at 50px 50px ,red,blue);
+}
+
+/*
+重复径向渐变
+background: repeating-radial-gradient
+
+重复线性渐变background: repeating-linear-gradient
+*/
+.df{
+	width: 300px;
+	height: 300px;
+	background: repeating-radial-gradient(circle at center center ,#fff 0%,#fff 10%,#000 10%,#000 20%);
+}
+/*
+添加背景图片
+如果图片大于容器，那么默认就从容器左上角开始放置
+如果图片小于容器，那么托盘默认会平铺
+round:会将图片进行缩放之后再平铺;
+space:图片不会缩放平铺，只会在图片之间产生相同的间距值;
+
+4、设置在滚动容器的背景的行为：跟随滚动/固定
+background-attachment:scroll / fixed/local;
+fixed:背景图片的位置固定不变
+scroll:当滚动容器的时候，背景图片也会跟随滚动;
+local和scroll的区别：前提是滚动当前容器的内容
+local背景图片会跟随内容一起滚动
+scroll不会
+ */
+/*
+background-size:auto(原始图片大小）|| number（数值） ||percentage(百分比)||cover（放大铺满）||contain(缩小铺满);
+建议：在使用这个属性之前先确定狂高比与容器宽高比是否一致，否则会造成图片失真变形
+
+设置百分比，是参照父容器可防止内容区域的百分比
+contain：按比例调整图片大小，使用图片宽高自适应整个元素的背景区域是图片全部包含在容器内 
+1 图片大于容器：有可能造成容器的空白区域，将图片缩小
+2 图片小于容器：有可能造成容器的空白区域，将图片放大
+
+cover：与contain刚好相反背景图片会按比例缩放自适应整个背景区域，如果背景区域不足以包含所有背景图片，图片内容会溢出
+1 图片大于容器：等比例缩小，会填满整个背景区域，有可能造成图片的某些区域不可见
+2 图片小于容器：等比例放大，会填满整个背景区域，有可能造成图片的某个方向的内容溢出
+
+
+ */
+
+/*
+background-size:cover;
+background-position:center;
+连用可以让背景图片大于背景容器的时候，背景图片的内容区域居中显示
+
+
+
+
+ */
+
+/*
+background-origin:;
+border-box:从border的位置开始填充背景，会与border重叠;
+padding-box:从padding的位置开始填充背景，会与padding重叠;
+content-box:从内容的位置开始填充背景，会与content重叠;
+
+
+
+
+
+ */
+
+
+
+
+
+
+/*提升移动端响应区域的大小*/
+a{
+	width: 50px;
+	height: 50px;
+	display: block;
+	background-color:#ddd;
+	margin:100px auto;
+	background-image: url("images/sprite.footer.png"); 
+	/*设置背景偏移*/
+	background-position:200px 300px;
+	padding: 15px;
+    background-origin:content-box;
+    /*设置内容裁切,控制的是显示*/
+    background-clip:content-box; 
+}
+
+
+
+/*
+添加过度效果:过渡效果执行完毕之后，默认会还原到原始状态;
+1  transition-property:添加过渡效果的样式属性名称;
+2  transition-duration：过渡效果的耗时 以秒做单位
+3  transition-timing-function:设置时间函数---控制运动的速度;
+4  transition-delay:过渡效果的延迟;
+step(4)可以让过渡效果分为指定的几次来完成
+简写：transition:属性名称 过渡时间 时间函数 延迟;
+ */
+
+
+
+
+
+.gg{
+	width: 200px;
+	height: 200px;	
+	background-color:red;
+	position: absolute;
+	left:100px;
+	top:100px;
+	/*transition-property: left;
+	transition-duration: 2s;
+    transition-timing-function:linear;
+    transition-delay: 2s;
+
+
+    */
+    transition:left 2s linear 2s;  
+}
+
+
+div:active{
+	left:1000px;
+}
+
+
+.menu{
+	width: 200px;
+	height: auto;
+	margin:100px auto;
+}
+
+.item{
+	width: 100%;
+	height: auto;
+
+}
+
+.item>h3{
+	height: 40px;
+	line-height: 40px;
+	background-color: #7dffe7;
+	color:orange;
+	border-bottom: 2px solid #ccc;
+	padding-left: 10px;	 
+}
+.item>.itemBox{
+	width: 100%;
+	height: 0px;
+	overflow: hidden;
+	transition-property: height;
+	transition-duration: 1s;
+}
+.item>.itemBox>ul{
+	list-style: none;
+	background-color: #eaffb6;
+	padding: 10px;
+}
+/*为item添加hover伪类 */   
+.item:hover>.itemBox{
+	height: 110px;
+}
+
+
+.mm{
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	margin-left: 200px;
+	transition: transform 2s;
+}
+.mm:active{
+	transform: translate(300px);
+	/*
+	transform: translateX 水平方向
+    transform: translateY 垂直方向
+
+    缩放scale
+    实现缩放 1不缩放 >1.01 放大
+    1如果只有一个参数，就代表x和y方向都进行相等比例的缩放
+    2如果有两个参数，就代表x/y方向
+    transform:scale(2);
+
+    旋转rotate-----里面填角度
+    实现transform:rotate(360deg);
+
+
+    斜切：skew
+    如果角度为正，则往当前轴的负方向斜切，如果角度为负，则往当前轴的正方向斜切   1往x轴方向 2往y轴方向
+    transform:skew(-30deg,30deg);
+
+    origin：设置旋转轴心 left top right bottom center 
+    transform:origin(left top);
+
+
+
+
+
+	 */
+}
+
+.box{
+	width: 400px;
+	height: 400px;
+	border-radius: 200px;
+	background-color: #ccc;
+	margin:100px auto;
+	position: relative;
+}
+.rec{
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	/*使用transform实现元素的居中 百分比是参照元素本身的宽高*/
+    transform: translate(-50%,-50%);
+}
+
+/*定位结合transform来实现任意元素的居中显示------常用*/
+
+.p1{
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	margin-left: 200px;
+	margin-top: 10px;
+	transition: transform 2s;
+}
+.p1:first-of-type:active{
+	/*translate3d(x轴方向偏移，y轴方向偏移，z轴方向偏移)*/
+    transform: translate3d(400px,400px,400px);
+    /*三维缩放*/
+    /*
+    
+    scale3d(x轴方向的缩放，y轴方向的缩放，z轴方向的缩放 比例)
+    transform:scale3d(1.5,2,1);
+     */
+    
+
+    /*三维旋转
+     x:代表x轴方向上的一个向量值;
+     y:代表y轴方向上的一个向量值;
+     z:代表z轴方向上的一个向量值;
+     angle：角度
+    transform:rotate3d(x,y,z,angle);
+
+
+
+   */
+}
+
+
+
+	</style>
+</head>
+<body> 
+	<div class="dv"></div>
+	<div class="dd"></div>
+	<div class="df"></div>
+	<!-- 提升移动端响应区域的大小 -->
+	<a href=""></a>
+
+   <div class="gg"></div>
+
+
+<div class="menu">
+	<div class="item">
+		<h3>室内新闻</h3>
+		<div class="itemBox">
+			<ul>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+			</ul>
+		</div>
+	</div>
+	<div class="item">
+		<h3>省内新闻</h3>
+		<div class="itemBox">
+			<ul>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+			</ul>
+		</div>
+	</div>
+	<div class="item">
+		
+		<h3>国标新闻</h3>
+		<div class="itemBox">
+			<ul>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+			</ul>
+		</div>
+	</div>
+	<div class="item">
+		<h3>国内新闻</h3>
+		<div class="itemBox">
+			<ul>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+				<li>深圳超市肉菜档早哄抢</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="mm"></div>
+
+
+<!-- 实现任意元素居中 -->
+<div class="box">
+	<div class="rec"></div>
+</div>
+
+
+<!-- 3d -->
+<div class="p1"></div>
+<div class="p2"></div>
+<div class="p3"></div>
+<div class="p4"></div>
+
+
+
+</body>
+</html>

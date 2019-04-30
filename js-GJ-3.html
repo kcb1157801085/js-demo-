@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	//继承
+	/*
+	首先继承是一种关系，类（class）与类之间的关系，js中没有类，但是可以通过构造函数模拟类，然后通过原型来实现继承
+	继承也是为了数据共享
+原型的作用2：为了实现继承
+继承是一种关系：父类级别和子类级别的关系
+
+
+多态：一个对象有不同的行为，或者是同一个行为针对不同的对象，产生不同的结果，要想有多态，就要先有继承，js中可以模拟多态，但是不会使用多态，也不会模拟多态，因为多态会占用很多的内存空间
+
+
+
+
+
+
+
+	 */
+function Person(name,age,sex){
+	this.name=name;
+	this.age=age;
+	this.sex=sex;
+}
+Person.prototype.eat=function(){
+console.log("人要吃东西");
+};
+Person.prototype.sleep=function(){
+console.log("人要睡觉");
+};
+Person.prototype.play=function(){
+console.log("人要玩");
+};
+
+function Student(score){
+	this.score=score;
+}
+//改变学生的原型指向即可-----让学生和人发生关系
+Student.prototype=new Person("小米",10,"男");
+Student.prototype.study=function(){
+console.log("学生要学习");
+};
+
+var stu=new Student(100);
+console.log(stu.name);
+console.log(stu.age);
+console.log(stu.sex);
+stu.eat();
+stu.play();
+stu.sleep();
+
+
+
+
+console.log(stu.score);
+stu.study();
+
+
+
+//借用构造函数：-----构造函数名字.call(this,属性，属性，属性);
+//解决了属性继承，并且值不重复的问题
+//缺陷：父级类别中的方法不能继承
+//借用构造函数继承
+function PersonA(name,age,sex,weight){
+	this.name=name;
+	this.age=age;
+	this.sex=sex;
+	this.weight=weight;
+}
+//希望人的类别中的数据可以共享给学生----继承
+PersonA.prototype.sayHi=function(){
+    console.log("萨瓦迪卡");
+};
+function StudentA(name,age,sex,weight,score){
+	//借用构造函数：解决属性值重复的问题
+	PersonA.call(this,name,age,sex,weight);
+	this.score=score;
+}
+//改变原型指向----继承
+StudentA.prototype=new PersonA();
+StudentA.prototype.eat=function(){
+	console.log("吃东西");
+};
+
+var stuA=new StudentA("小明",20,"男","50kg","100");
+console.log(stuA.name,stuA.age,stuA.sex,stuA.weight,stuA.score);
+stuA.sayHi();
+stuA.eat();
+var stuB=new StudentA("小红",21,"女","50kg","120");
+console.log(stuB.name,stuB.age,stuB.sex,stuB.weight,stuB.score);
+var stuC=new StudentA("小刚",23,"男","50kg","130");
+console.log(stuC.name,stuC.age,stuC.sex,stuC.weight,stuC.score);
+
+
+//为了数据共享，通过改变原型的指向实现了继承
+//缺陷：因为改变原型指向的同时实现继承，直接初始化了属性，继承过来的属性的值都是一样的，所以，这是个bug
+//只能重新调用对象的属性进行重新赋值
+//解决方案：继承的时候，不用改变原型的指向，直接调用父级的构造函数的方式来为属性赋值就可以了----借用构造函数继承
+
+
+
+//原型实现继承
+//借用构造函数实现继承
+//组合继承：原型实现继承+借用构造函数实现继承
+
+
+
+
+
+//拷贝继承：把一个对象中的属性或者方法直接复制到另一个对象中
+function PersonB(){
+
+}
+PersonB.prototype.age=10;
+PersonB.prototype.sex="男";
+PersonB.prototype.height=100;
+PersonB.prototype.play=function(){
+console.log("玩的开心");
+};
+
+
+var obj={};
+
+//PersonB的构造函数中有原型prototype，protptype就是一个对象，那么里面的age，sex，height，play都是该对象的属性和方法
+
+for(var key in PersonB.prototype){
+	obj[key]=PersonB.prototype[key];
+}
+console.dir(obj);
+obj.play();
+
+
+/*
+总结继承：
+继承，类与类之间的关系，面向对象的语言的继承是为了多态服务的
+js不是面向对象的语言，但是可以模拟面向对象，模拟继承，为了节省内存空间
+原型的作用：是数据共享，目的是：为了节省空间
+原型作用：继承  目的是：为了节省空间
+原型继承：改变原型的指向
+借用构造函数继承：主要解决属性的问题
+组合继承：原型实现继承+借用构造函数实现继承（既能解决属性问题又能解决方法问题）
+拷贝继承：就是把对象中需要共享的属性或者方法，直接用遍历的方法赋值到另一个对象中
+
+
+ */
+function F1(age){
+	this.age=age;
+}
+
+function F2(age){
+	this.age=age;
+}
+
+F2.prototype=new F1(10);
+function F3(age){
+	this.age=age;
+}
+
+F3.prototype=new F2(20);
+
+var f3=new F3(30);
+console.log(f3.age);
+
+//函数中的this和严格模式
+/*
+函数中的this的指向
+
+普通函数中的this是谁？---window
+对象.方法中的this是谁?----当前的实例对象
+定时器方法中的this是谁?---window
+构造函数中的this是谁？----当前的实例对象
+原型对象方法中的this是谁？---当前的实例对象
+
+
+
+
+
+
+
+
+ */
+
+//严格模式：
+
+function f1(){
+	console.log(this);//window
+}
+window.f1();
+
+
+//函数的不同的调用方式
+//普通函数
+function f2(){
+	console.log("文能提笔控萝莉");
+}
+//普通函数的调用
+f2();
+
+//构造函数
+function F4(){
+	console.log("武能提枪干御姐");
+}
+//构造函数的调用
+var f=new F1();
+
+
+
+//对象的方法
+function PersonS(){
+this.play=function(){
+console.log("敲代码");
+};
+};
+//对象的方法调用
+var per=new PersonS();
+per.play();
+
+
+
+/*
+函数是对象，对象不一定是函数
+对象中有__proto__原型，是对象
+函数中有prototype原型，是对象
+对象中有__proto__，函数中应该有prototype
+如果一个东西了吗有prototype，又有__proto__，说明是函数也是对象
+所有的函数实际上都是Function的构造函数创建出来的实例对象
+ */
+//数组中的函数调用
+var arr=[
+function(){
+	console.log("1");
+},
+function(){
+	console.log("2");
+},
+function(){
+	console.log("3");
+},
+function(){
+	console.log("4");
+}
+]
+//回调函数：函数作为参数使用
+arr.forEach(function(ele){
+ele();
+});
+
+
+
+	</script>
+</body>
+</html>

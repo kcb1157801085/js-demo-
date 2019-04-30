@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一元运算符</title>
+</head>
+<body>
+	<script>
+    /*
+    1.如果++在后面  如：num++ +10参与运算
+    先运算，运算结束后自身再加一
+    2.如果++在前面  如：++num +10参与运算
+    先自身加一，再参与运算
+     */
+
+    var sum = 10;
+    var num = sum++ +10;   //20 先运算不管++，也就是num的值10+10=20，但sum的值++，最后sum=11
+    console.log(num,sum)
+    var sum1 = 10;
+    var num1 = ++sum1 +10 //21
+    console.log(num1,sum1)
+    //先自身加一，然后加10再加10 num1 =21；
+    //sum1 ++  最后sum1 = 11; 
+    //  --同理
+	</script>
+	<script>
+     //流程控制：代码的执行过程
+     /*
+     1、顺序结构：从上到下，从左到右
+     2、分支结构：if语句，if-else语句，if-else if-else if...语句，switch-case语句
+     3、循环结构：while循环，do-while循环，for循环，for-in循环
+      */
+     //if语句：主要是判断
+     /* 语法 ：   if(表达式){
+	               代码块
+                 }
+        执行过程
+        先判断表达式的结果是true还是flase，如果是true则执行代码块，如果是flase，则不执行。
+      */
+     var sum2 = 10;
+     if(sum2>8){
+     	console.log(sum2);
+     }
+     var sum3 = 10;
+     if(sum3>20){
+     	console.log(sum3);
+     }
+
+
+     //if...else语句
+     /*
+     两个分支，只能执行一个
+     语法：   if(表达式){
+	            代码1
+                }else{
+	            代码2
+                }
+     执行过程：
+     如果表达式的结果是true，则执行代码1. 如果表达式的结果是flase，则执行代码2. 
+      */
+     //例子1：小苏的年龄是否是成年人，如果是成年人，提示可以上网，否则提示回家写作业去！
+    var age = parseInt(prompt("请输入您的年龄"));
+    if(age>=18){
+    	console.log("可以上网");
+    }else{
+    	console.log("回家写作业去！"); 
+    }
+    //例子2：找到两个数字中的最大值
+    var num3 = 10 ;
+    var num4 = 20 ;
+    if(num3>num4){
+         console.log(num3);
+    }else{
+    	 console.log(num4);
+    }
+    //例子2：判断这个数字是奇数还是偶数
+    var num5 = parseInt(prompt("请您输入数字"));
+    if(num5%2==0){
+              console.log("这个数是偶数");
+    }else{
+              console.log("这个数是奇数");
+    }
+
+
+
+    //三元表达式
+    /*    三元表达式符号：   ？  ：
+    语法：    var  变量名 = 表达式1 ？ 表达式2 : 表达式3 ;
+    执行过程：
+    表达式1的结果是true还是flase。 如果是true则执行表达式2，然后把结果给变量。
+    如果是flase则执行表达式3，把结果给变量。
+     */
+    
+     //例子：判断成年？
+     var age1 = 20;
+     var result = age1>=18?"成年了":"未成年";
+     console.log(result);
+
+     //if  else...if   else...if语句
+     /*
+     语法：
+     if(表达式1){
+	   代码1
+     }else if(表达式2){
+	   代码2
+     }else if(表达式3){
+	   代码3
+     }else{
+	   代码4
+     }
+     执行过程：
+     先判断表达式1的结果，如果为true则执行代码1.
+     如果为flase，则判断表达式2
+     如果表达式2为true，则执行代码2
+     如果为false，则判断表达式3
+     如果表达式3为true，则执行代码3
+     如果表达式3为flase，则执行代码4
+
+
+     else if 这种结构可以写多个，具体多少个看需求
+     else    结构是可以不用写的，具体也是看需求
+      */
+      //例子：成绩在90-100之间显示A级
+            //成绩在80-90之间显示B级
+            //成绩在70-80之间显示C级
+            //成绩在60-70之间显示D级
+            //成绩低于60 显示不及格
+      var score = parseInt(prompt("请输入您的成绩"));
+      if(!isNaN(score)){
+       if(score>100){
+       	console.log("您的成绩超出测试范围");
+       }else if(score>90&&score<=100){
+      	console.log("A级");
+      }else if(score>80){
+        console.log("B级");
+      }else if(score>70){
+        console.log("C级");
+      }else if(score>=60){
+        console.log("D级");
+      }else{
+        console.log("不及格");
+      }
+      }else{
+      	console.log("您的输入有误");
+      }
+
+      //switch case语句
+      /*
+      
+      语法：
+      switch(表达式){
+	   case 值1：代码1;break; 
+	   case 值2：代码2;break; 
+	   case 值3：代码3;break; 
+	   case 值4：代码4;break;
+	   .... 
+	   default:代码5；break;
+      }
+      执行过程：
+      获取表达式的值，和值1比较，如果一样，则执行代码1，遇到break，则跳出整个语句，后面代码不执行。
+      如果不一样，则与值2比较    以此类推
+      最后如果表达式的值与1 2 3 4的值都不同，执行default里面的代码5
+      break，跳出
+       */
+      //例子：获取一个人的成绩级别
+      /*
+      如果是A级 显示90-100分
+      如果是B级 显示80-90分
+      如果是C级 显示70-80分
+      如果是D级 显示60-70分
+      否则显示0-59分
+       */
+      var jiBie = "C";
+      switch(jiBie){
+      	case"A":console.log("90-100分");break;
+      	case"B":console.log("80-90分");break;
+      	case"C":console.log("70-80分");break;
+      	case"D":console.log("60-70分");break;
+      	default:console.log("0-59分");break;
+      }
+      /*
+      分支语句总结：
+      if语句：一个分支
+      if...else语句：两个分支，最终执行一个
+      if...else  if...else 语句：多个分支，执行一个 
+      多个分支，针对范围的判断一般用if...else  if...else 语句
+      switch...case语句：多个分支执行一个（必须要有break）
+      多个分支，针对具体的值的判断，一般用switch...case语句
+      三元表达式：和if...else语句一样
+       */
+      
+
+      //循环
+      /*
+      while循环
+      while循环语法：
+      计数器
+      var 变量 = 0;
+      while(循环的条件){
+	     循环体;
+	     计数器++;
+      }
+      执行过程：
+      先判断条件是否成立（循环的条件是true还是flase）如果是flase，那么循环体的代码不执行，如果是true，首先执行循环体，然后执行计数器，再跳转到循环条件，再次判断是否成立，成立执行循环体代码......以此类推。否则跳出循环。
+       */
+   //例子：找出一到一百之间所有的整数
+   var i = 1;
+   while(i<=100){
+        console.log(i);
+        i++;
+   }
+   //例子2：计算1-100之间所有数字的和
+  var  j = 0;
+  var  k = 1;
+  while(k<=100){
+  	j = j +k;
+  	k++;
+  }
+  console.log("和为："+j);
+  //例子3：求1*2*3*4*5*6的结果
+  var a = 1;
+  var b = 1;
+  while(a<=6){
+      b = b*a;
+      a++;
+  }
+  console.log(b);
+  //例子4：求1-100之间偶数的和
+  var c = 0;
+  var d = 1;
+  while(d<=100){
+     if(d%2==0){
+       c = c + d;
+     }
+    d++;
+  }
+  console.log(c);
+  //例子5：求1-100之间奇数的和
+  var e = 0 ;
+  var f = 1 ;
+  while(f<=100){
+    if(f%2!=0){
+      e = e + f;
+    }
+    f++;
+  }
+  console.log(e);
+
+
+
+  //do...while循环语句
+  /*
+  语法：
+  do{
+    循环体
+  }while(条件);
+执行过程：先执行一次循环体，然后判断条件是否成立，不成立，则跳出循环，成立则执行循环体，然后再判断条件是否成立，成立则继续循环，否则跳出
+   */
+  //例子：问用户：您觉得我帅吗？提示用户输入yes/no，如果为no就一直问我帅不帅，如果为yes，就结束 并提示用户你真有眼光
+  /*do{
+    var g = prompt("您觉得我帅吗？ yes/no");
+  }while(g!="yes");
+  console.log("您真有眼光");*/
+
+
+
+  //总结循环
+  //练习：求100以内所有3的倍数的和
+  var sum4 = 0 ;
+  var h = 1 ;
+  while(h<=100){
+     if(h%3==0){
+       sum4 = sum4 +h;
+     }
+     h++;
+  }
+  console.log(sum4);
+
+  //while循环特点：先判断，后循环，有可能一次循环体都不执行
+  //do...while循环特点：先循环，后判断，至少执行一次循环体
+  
+
+
+  //for 循环语句
+  /*
+  语法：
+  for(表达式1;表达式2;表达式3){
+	循环体;
+  }
+  执行过程：
+  先执行一次表达式1，然后判断表达式2；如果不成立直接跳出循环
+  如果表达式2成立，执行循环体代码，结束后，跳到表达式3执行，然后跳到表达式2，判断表达式2是否成立，不成立，则跳出循环  以此类推
+ 
+
+
+
+
+
+   */
+   //例子：打印10次“哈哈，我又变帅了！”
+      for (var m = 1; m <=10 ; m++) {
+      	console.log("哈哈，我又变帅了！");
+      }
+   
+
+   //画星星
+   for (var l =1 ; l<=10 ;l++){
+   for (var i = 1; i <=l ; i++) {
+   	    document.write("★");
+   }
+       document.write("<br/>");
+}
+    //表格版乘法口诀表
+    
+    document.write("<table border='1' cellpadding='0' cellspacing='0'>");
+     for(var z =1; z<=9 ; z++){
+       document.write("<tr>");
+      for(var x=1; x<=z ;x++){
+       document.write("<td>");
+       document.write(x+"*"+z+"="+z*x);
+       document.write("</td>");
+      }
+       document.write("</tr>");
+}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery1</title>
+	<!-- 负责引入jq -->
+<script type="text/javascript" src="jquery-3.3.1.js"></script>
+<style>
+*{
+	margin:0;
+	padding: 0;
+}
+.cls{
+	background-color: black;
+}
+
+.ccs{
+	width: 200px;
+	height: 100px;
+	background-color:pink;
+}
+.fff{
+	background-color: blue;
+}
+
+
+.ccc{
+	background-color: red;
+}
+
+
+#df{
+	width: 500px;
+	height: 300px;
+	border:2px solid green;
+}
+
+
+ul{
+	list-style: none;
+	cursor: pointer;
+}
+
+.wrap{
+	width: 330px;
+	height: 30px;
+	margin:100px auto 0;
+	padding-left: 10px;
+
+}
+
+
+.wrap li{
+	float: left;
+	width: 100px;
+	height: 30px;
+	margin-right: 10px;
+	position: relative;
+
+}
+
+.wrap a{
+	display: block;
+	height: 30px;
+	width: 100px;
+	text-decoration: none;
+	color: #000;
+	line-height: 30px;
+	text-align: center;
+}
+
+.wrap li ul{
+	position:absolute;
+	display: none;
+}
+
+#kk{
+	height: 200px;
+}
+</style>
+</head>
+<script>
+//jQuery里面的页面加载事件可多次调用执行不冲突
+//页面加载事件-----方法1----页面所有的加载完毕才触发
+//$(window).load(function(){
+//   console.log("小苏");
+//});
+//$(window).load(function(){
+//   console.log("哈");
+//});
+//
+////页面加载事件-----方法2---比上面的快---页面中的基本的元素加载后//就触发了
+//$(document).ready(function(){
+//console.log("1");
+//});
+//
+//$(document).ready(function(){
+//console.log("2");
+//});
+//
+//页面加载事件-----方法3---同上---页面中的基本的元素加载后就触发了
+$(function(){
+    console.log("我是1");
+});
+
+
+$(function(){
+    console.log("我是2");
+});
+
+
+$(function(){
+   //根据id获取按钮，添加点击事件
+   $("#btn4").click(function(){
+       console.log("我今天帅吗？");
+   });
+});
+//id选择器
+//页面加载事件
+$(function(){
+   //根据id选择器获取按钮，添加点击事件，修改按钮的value属性值
+   $("#btn5").click(function(){
+      $(this).val("我帅吗");
+   });
+});
+
+//通过标签选择器操作元素属性
+$(function(){
+   $("#btn6").click(function(){
+   	//通过标签选择器获取p标签
+      $("p").text("mmp");
+   });
+});
+
+
+// 通过类样式操作元素属性
+$(function(){
+     $("#btn7").click(function(){
+      //获取所有应用cls类样式的元素，改变背景颜色
+      $(".ccs").css("background-color","yellow");
+     });
+});
+
+
+//通过交集选择器改变背景颜色
+$(function(){
+  $("#btn8").click(function(){
+  	//交集选择器-----标签+类选择器
+     $("p.fff").css("background-color","pink");
+  });
+});
+//通过并集选择器改变背景颜色
+
+$(function(){
+    $("#btn9").click(function(){
+     $("#dd,p,.ccc").css("backgroundColor","orange");
+    });
+});
+
+//层次选择器
+
+$(function(){
+   $("#btnA").click(function(){
+   	//获取的是div这个父级元素中所有span标签（直接的子元素，孙子元素）
+   // $("#df span").css("backgroundColor","orange");
+   //获取的是div这个父级元素中的直接子元素 ---不含孙子元素
+    $("#df>span").css("backgroundColor","orange");
+    //获取的是div这个父级元素后面的所有的兄弟元素---span
+    //$("#df~span").css("backgroundColor","orange");
+    //获取的是div后面的直接兄弟元素
+    //$("#df+span").css("backgroundColor","orange");
+   });
+});
+
+
+
+
+$(function(){
+  $("#btnB").click(function(){
+  	//  :odd---奇数选择器
+   $("#uc>li:odd").css("backgroundColor","yellow");
+   //   :even--偶数选择器
+    $("#uc>li:even").css("backgroundColor","red");
+  });
+});
+
+//下拉菜单案例
+$(function(){
+//获取ul中的所有li,然后注册鼠标进入和鼠标离开事件
+$(".wrap>ul>li").mouseenter(function(){
+	//当前的li中所有的子元素，再从所有的子元素中找ul
+    $(this).children("ul").stop().show(400);
+});
+
+$(".wrap>ul>li").mouseleave(function(){
+    $(this).children("ul").stop().hide(400);
+});
+});
+
+//高亮显示
+$(function(){
+   $("#ub>li").mouseenter(function(){
+    $(this).css("backgroundColor","red");
+   });
+    $("#ub>li").mouseleave(function(){
+     $(this).css("backgroundColor","");
+   });
+    //点击事件
+   $("#ub>li").click(function(){
+     $(this).css("color","green");
+     $(this).css("fontSize","30px");
+     $(this).css("fontFamily","全新硬笔行书简");
+
+
+
+   }); 
+});
+
+
+$(function(){
+   $("#btnC").click(function(){
+     if(/^[\u4e00-\u9fa5]{2,6}$/.test($("#txt").val())){
+     	$("#txt").css("backgroundColor","green");
+
+     }else{
+     	$("#txt").css("backgroundColor","red");
+
+     }
+   });
+});
+
+</script>
+<body>
+<!-- jquery  初次体验1 -->
+	<input type="button"  value="显示效果" id="btn" >
+	<div id="dv"></div>
+<!-- jquery  初次体验2 -->
+<input type="button"  value="显示效果1" id="btn1" >
+<p>第1个</p>
+<p>第2个</p>
+<p>第3个</p>
+<p>第4个</p>
+<p>第5个</p>
+
+<!-- jquery网页开关灯 -->
+<input type="button" value="网页开/关灯" id="btn2">
+<!-- jquery网页开关灯 2 -->
+<input type="button" value="关灯" id="btn3">
+
+<!-- 页面加载事件 -->
+<input type="button"  value="显示效果" id="btn4" >
+<!-- 通过id选择器操作元素的属性 -->
+
+<input type="button"  value="显示效果" id="btn5" >
+
+<!-- 通过标签选择器操作元素属性 -->
+<input type="button"  value="显示效果" id="btn6" >
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+
+<!-- 通过类样式操作元素属性 -->
+<input type="button"  value="显示效果" id="btn7" >
+<div class="ccs"></div>
+<p class="ccs">这是一个p</p>
+<p>少时诵诗书上</p>
+
+<!-- 交集选择器 -->
+<input type="button"  value="显示效果" id="btn8" >
+<p class="fff">小苏喜欢助教</p>
+<p>其实助教也喜欢小苏</p>
+<ul>
+	<li>小苏</li>
+	<li>助教</li>
+	<li>班主任</li>
+</ul>
+<span class="fff">我和小苏坐地铁上班</span>
+
+<!-- 并集选择器 -->
+
+ <input type="button"  value="显示效果" id="btn9" >
+ <div id="dd"></div>
+<p>这是一个p</p>
+<span class="ccc">这是一个span</span>
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+
+<!-- 层次选择器 -->
+<input type="button" value="显示效果" id="btnA">
+<span>这是第四个span</span>
+<div id="df">
+	<span>这是第一个span</span>
+	<ul>
+		<li>第一个li</li>
+		<li>第二个li
+    <span>这是第n个span</span>
+	<span>这是第m个span</span>
+		</li>
+	</ul>
+	<span>这是第二个span</span>
+	<span>这是第三个span</span>
+</div>
+<span>这是第五个span</span>
+
+
+
+<!-- 案例4：列表隔行变色 -->
+<input type="button" value="隔行变色" id="btnB">  
+<ul id="uc">
+	<li>兰博基尼</li>
+	<li>法拉利</li>
+	<li>保时捷</li>
+	<li>阿斯顿马丁</li>
+	<li>奔驰</li>
+	<li>宝马</li>
+	<li>奥迪</li>
+	<li>五菱宏光</li>
+</ul>
+<!-- 下拉菜单 -->
+<div class="wrap">
+<ul>
+	<li>
+	<a href="javascript:void(0)">帅哥系列</a>
+	<ul>
+		<li><a href="javascript:void(0)">彭于晏</a></li>
+		<li><a href="javascript:void(0)">古天乐</a></li>
+		<li><a href="javascript:void(0)">任达华</a></li>
+	</ul>
+	</li>
+	<li>
+	<a href="javascript:void(0)">美女系列</a>
+	<ul>
+		<li><a href="javascript:void(0)">柳岩</a></li>
+		<li><a href="javascript:void(0)">杨颖</a></li>
+		<li><a href="javascript:void(0)">赵丽颖</a></li>
+	</ul>
+	</li>
+	<li>
+	<a href="javascript:void(0)">渣男系列</a>
+	<ul>
+		<li><a href="javascript:void(0)">凤姐</a></li>
+		<li><a href="javascript:void(0)">助教</a></li>
+		<li><a href="javascript:void(0)">小苏</a></li>
+	</ul>
+	</li>
+</ul>
+</div>
+
+<div id="kk"></div>
+
+<ul id="ub">
+	<li>白云边</li>
+	<li>茅台</li>
+	<li>五粮液</li>
+	<li>天之蓝</li>
+	<li>稻花香</li>
+	<li>威士忌</li>
+	<li>人头马</li>
+	<li>江小白</li>
+</ul>
+
+
+<!-- 点击按钮，验证用户输入的是不是中文名字，如果是中文名字，则文本框的颜色为green -->
+请输入中文名字：<input type="text" value="" id="txt"><br>
+<input type="button" value="验证" id="btnC">
+<script>
+/*
+浏览器中的顶级对象：window，浏览器中和页面中所有的东西都是window的
+页面中的顶级对象：document,页面中某些东西是document
+jQuery中的顶级对象：jQuery-----可以用$符号来代替，为了方便，jQuery(jQuery的js文件中的所有的东西都是jQuery或者都是$符号下的) 
+如果想要使用jQuery中的属性或方法，那么需要jQuery.属性或者jQuery.方法()来使用
+jQuery的优点：写得少，做的多，开源，免费，链式编程，隐式迭代
+简单的写法$.属性  或者  $.方法
+大多数情况下，jQuery中几乎都是方法，属性很少
+jQuery中几乎把DOM中的事件都封装成了一个方法，在jQuery中几乎没有on，然后变成方法了
+
+
+jQuery对象和DOM对象互转的问题-----重点
+如何把DOM对象转成jQuery对象------$(DOM对象)----就变成jQuery对象
+如何把jQuery对象转成DOM对象---jQuery对象[0]或者对象.get(0);---就变成DOM对象
+
+为什么要jQuery对象和DOM对象互转？
+DOM操作很麻烦（兼容，一个功能鞋很多代码）--》转jQuery对象，操作简单，不需要写兼容
+jQuery操作中，有一些兼容没封装在jQuery中，转DOM对象，通过原生的js代码实现功能。
+
+jQuery对象.val();----表示的是获取该元素的value属性值
+jQuery对象.val("值");----表示的是设置该元素的value属性
+jQuery对象.css("css的属性名字","属性的值");----设置元素的样式属性值
+.text()方法-----相当于DOM中的.innertext属性
+对象.text()-----获取该元素的文本内容
+对象.text("值")----设置该元素的文本内容
+对象.html();-----设置或者是获取标签中的html内容---相当于DOM中的innerHTML
+.show();-----设置元素显示，括号中可以写数字，表示的是毫秒
+.hide();-----设置元素隐藏，括号中可以写数字，表示的是毫秒
+.stop();-----停止当前的动画
+
+本身代码没有循环操作，jquery中内部帮助我们循环操作的----隐式迭代
+
+根据id属性的值获取元素，返回的是一个元素对象
+document.getElementById("id属性的值");
+根据标签名字获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.getElementsByTagName("标签名字");
+
+
+下面的几个有的浏览器不支持
+根据name属性的值获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.getElementsByName("名字属性的值");
+根据类样式的名字来获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.getElementsByClassName("类样式的名字");
+根据选择器获取元素,返回的是一个元素对象
+document.querySelector("选择器的名字");
+根据选择器获取元素，返回的是一个伪数组，里面保存了多个DOM对象
+document.querySelectorAll("选择器的名字");
+
+jquery中获取元素的方式
+$("选择器")---jQuery对象
+
+id选择器
+$("#id属性的值")----某个元素
+
+标签选择器
+$("标签名字")-----多个元素或者是某个元素
+
+类选择器
+$(".类样式的名字")----多个元素或者是某个元素
+
+交集选择器
+$("标签.类样式的名字")
+
+并集选择器----多条件选择器
+$("标签名字,.类样式名字,#id选择器")
+
+层次选择器---后代选择器（直接的子元素，孙子元素）
+$("选择器 选择器");----后代选择器（含孙子元素）
+$("选择器>选择器");----子代选择器（只含子元素）
+$("选择器~选择器");----后面的所有兄弟元素
+$("选择器+选择器");----相邻的后面的第一个兄弟元素
+:odd---奇数选择器
+:even--偶数选择器
+
+
+
+
+
+
+ */
+
+
+</script>
+
+
+<script>
+//点击按钮改变div的样式
+$("#btn").click(function(){
+    $("#dv").css({"width":"200px","height":"200px","backgroundColor":"pink"});
+});
+
+//点击按钮改变p标签的所有内容
+$("#btn1").click(function(){
+    $("p").text("我们都是p");
+});
+
+
+//jquery网页开关灯 
+$("#btn2").click(function(){
+	//判断
+    if($("body").hasClass("cls")){
+    	//应用----删除cls
+     $("body").removeClass("cls");
+    }else{
+    	//没用应用---添加cls
+     $("body").addClass("cls");
+    }
+});
+ 
+
+// jquery网页开关灯 2
+
+$("#btn3").click(function(){
+   //判断这个按钮的值来修改body的样式
+   //此处的this是当前的按钮DOM对象
+   //判断按钮的value值是不是关灯
+   if($(this).val()=="关灯"){
+    //修改body的背景颜色
+    $("body").css("backgroundColor","black");
+    $(this).val("开灯");
+   }else{
+   	$("body").css("backgroundColor","");
+    $(this).val("关灯");
+   }
+});
+
+</script>
+</body>
+</html>

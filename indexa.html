@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 数据类型笔记</title>
+	<script>
+      var num1 = 10;
+      var num2 = 20;
+      var temp = num1;
+      num1 = num2;
+      num2 = temp;
+      console.log(num1,num2);
+
+
+      var num3 = 15;
+      var num4 = 25;
+      num3 = num3 + num4;
+      num4 = num3 - num4;
+      num3 = num3 - num4;
+      console.log(num3,num4);
+/*
+变量----作用，存储数据或操作数据
+变量的声明-----（有var 有变量名，没有值）
+变量的初始化-----（有 var 有变量名，有值）
+一次声明多个变量
+var x,y,z,a,b,c 
+
+ */
+
+
+//js的数据类型有哪些？
+//js中的原始数据类型：number，string，boolean，mull，undefined，object 
+/*
+number：数字类型（整数和小数）
+string：字符串类型（它的值一般都用单引号或双引号括起来）
+boolean：布尔值（true 真1  ， false  假0）
+null：空类型，一个对象指向空，此时可以赋值为null
+undefined：未定义类型，值只有一个undefined
+1.什么情况下的结果为undefined？
+变量声明了，没有赋值，结果undefined
+函数没有明确返回值，如果接收了，结果也是undefined
+如果一个变量的结果是undefined和一个数字进行计算结果是：NaN
+object：对象类型
+
+ */
+ //如何获取变量的数据类型是什么？
+ /*
+ 使用typeof来获取
+语法： typeof 变量名   ||   tyoeof(变量名)
+
+
+
+  */
+var num = 10;
+console.log(typeof num);  //number
+
+var str = "小白";
+console.log(typeof str);  //string
+
+var flag = true;
+console.log(typeof flag); //boolean
+
+var nll = null;
+console.log(typeof nll);  //object
+
+var undef ;
+console.log(typeof undef);  //undefined
+
+var obj = new Object();
+console.log(typeof obj);   //object
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

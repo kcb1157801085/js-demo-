@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html css 回顾</title>
+	<style>
+	*{
+		margin:0;
+		padding: 0;
+	}
+.btn1{
+	width: 200px;
+	height: 50px;
+	background-color: red;
+	color:#fff;
+	text-align: center;
+	line-height: 50px;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 2px;
+	border:1px solid red;
+
+}
+.tab1{
+	margin:0 auto;
+}
+
+.tab2{
+	margin:300px auto;
+}
+
+	</style>
+</head>
+<body>
+<!-- 表格 -->
+<table border="1px solid red" align="center" cellpadding="0" cellspacing="0" class="tab1">
+<caption>2018级制冷与空调班课程表</caption>
+<tr>
+<th>时间/日期</th>
+<th>星期一</th>
+<th>星期二</th>
+<th>星期三</th>
+<th>星期四</th>
+<th>星期五</th>
+</tr>
+<tr>
+<td rowspan="4">上午</td>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+<tr>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+<tr>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+<tr>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+
+<tr>
+<td rowspan="3" >下午</td>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+
+<tr>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+<tr>
+<td>语文</td>
+<td>数学</td>
+<td>英语</td>
+<td>文学</td>
+<td>化学</td>
+</tr>
+</table>
+
+
+
+
+<!-- 表单 -->
+<form action="" method="post" >
+<table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="tab2">
+<caption><h3>青春不常在，抓紧谈恋爱</h3></caption>
+<tr>
+<td>性别</td>
+<td><input type="radio" name="sex"> 男 <input type="radio" name="sex">女<br></td>
+</tr>
+<tr>
+<td>生日</td>
+<td><select name="" id="">
+  <option value="" selected="selected">选择年份</option>
+  <option value="">1995</option>
+  <option value="">1996</option>
+  <option value="">1997</option>
+  <option value="">1998</option>
+</select>
+<select name="" id="">
+<option value="">选择月份</option>
+<option value="">1月</option>
+<option value="">2月</option>
+<option value="">3月</option>
+<option value="">4月</option>
+<option value="">5月</option>
+<option value="">6月</option>
+<option value="">7月</option>
+<option value="">8月</option>
+<option value="">9月</option>
+<option value="">10月</option>
+<option value="">11月</option>
+<option value="">12月</option>
+</select>
+
+<select name="" id="">
+<option value="">选择日期</option>
+<option value="">1</option>
+<option value="">2</option>
+<option value="">3</option>
+<option value="">4</option>
+<option value="">5</option>
+<option value="">6</option>
+<option value="">7</option>
+<option value="">8</option>
+<option value="">9</option>
+<option value="">10</option>
+<option value="">11</option>
+<option value="">12</option>
+<option value="">13</option>
+<option value="">14</option>
+<option value="">15</option>
+<option value="">16</option>
+<option value="">17</option>
+<option value="">18</option>
+<option value="">19</option>
+<option value="">20</option>
+<option value="">21</option>
+<option value="">22</option>
+<option value="">23</option>
+<option value="">24</option>
+<option value="">25</option>
+<option value="">26</option>
+<option value="">27</option>
+<option value="">28</option>
+<option value="">29</option>
+<option value="">30</option>
+<option value="">31</option>
+</select>
+</td>
+</tr>
+ <tr>
+<td> <label for="txt">所在地区</label></td>
+<td><input type="text" value="北京" id="txt"></td>
+ </tr>
+<tr>
+<td>婚姻状况</td>
+<td><input type="radio" name="merry">未婚<input type="radio" name="merry">已婚<input type="radio" name="merry">丧偶</td>
+</tr>
+
+<tr>
+<td>学历</td>
+<td>
+<select name="" id="">
+<option value="">请选择你的学历</option>
+<option value="">小学</option>
+<option value="">初中</option>
+<option value="">高中</option>
+<option value="">本科</option>
+<option value="">专科</option>
+<option value="">硕士</option>
+<option value="">博士</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>月薪</td>
+<td>
+<select name="" id="">
+<option value="">3000-4000</option>
+<option value="">4000-7000<option>
+<option value="">7000-9000</option>
+<option value="">9000-12000</option>
+<option value="">12000-15000</option>
+<option value="">15000-20000</option>
+</select>
+</td>
+
+</tr>
+
+
+<tr>
+<td><label for="phone">手机号</label></td>
+<td><input type="tel" id="phone"></td>
+
+</tr>
+
+
+<tr>
+<td><label for="txt1">昵称</label></td>
+<td><input type="text" id="txt1"></td>
+
+</tr>
+
+<tr>
+<td>喜欢的类型</td>
+<td>
+妩媚<input type="checkbox" name="love">
+气质<input type="checkbox" name="love">
+小鲜肉<input type="checkbox" name="love">
+御姐<input type="checkbox" name="love">
+萝莉<input type="checkbox" name="love">
+</td>
+</tr>
+
+<tr>
+<td><label for="txtr">自我介绍</label></td>
+<td><textarea name="" id="txtr" cols="30" rows="10"></textarea></td>
+
+</tr>
+
+<tr>
+<td>
+<input type="button" class="btn1" value="免费注册">
+</td>
+</tr>
+<tr>
+<td>
+<input type="radio" >
+</td>
+</tr>
+
+
+
+
+
+
+
+
+<input type="submit" value="提交">
+<input type="reset" value="重置">
+</table>
+</form>
+</body>
+
+</html>

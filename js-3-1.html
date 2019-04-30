@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第三天函数笔记</title>
+</head>
+<body>
+	<script>
+//函数就是把一堆重复的代码封装在一起，在需要的时候直接调用即可
+/*
+函数的定义：
+语法：
+function 函数名(){
+	函数体----重复代码
+}
+函数的调用：
+函数名();
+函数注意问题：
+1、函数需要先定义，然后才能使用
+2、函数的名字：要遵循驼峰命名法
+3、函数一旦重名，后面的会把前面的函数覆盖
+函数的参数：
+1、在函数定义的时候，函数名字后面的小括号里的变量就是参数，目的是函数在调用的时候，用户传进来的值操作
+2、此时函数定义的时候后面的小括号里的变量叫参数，写了两个变量，就有两个参数，在函数调用的时候，按照提示的方式，给变量赋值---》
+就叫传值，把这个值就传到了变量（参数）中 
+形参：函数在定义的时候小括号里的变量（参数）叫形参
+实参：函数在调用的时候小括号里传入的值叫实参，实参可以是变量也可以是值
+函数的返回值：
+set：设置
+get：获取
+函数的返回值：在函数内部有return关键字，并且在关键字后面有内容，这个内容被返回了。
+当函数调用之后，需要这个返回值，那么就定义变量接收即可
+函数没有返回值，但是调用的时候接收了，那么结果就是undefined
+函数中有return，那么这个函数就有返回值，反正，就没有。
+如果一个函数中没有明确的返回值，那么调用的时候接收了，结果就是undefined（1函数中没有return  2函数中有return但后面没跟返回值）
+形参和实参的个数可以不一致。
+return下面的代码不会执行
+ */
+//用函数完成代码的重复调用
+function cook(){
+	console.log("切菜");
+	console.log("放油");
+	console.log("炒菜");
+	console.log("放盐");
+	console.log("装盘");
+}
+console.log("早上");
+cook();
+console.log("中午");
+cook();
+console.log("晚上");
+cook();
+console.log("半夜");
+cook();
+//求两个数字的和
+function consoleSum(num1,num2){
+	var sum = num1+num2;
+	return sum;
+}
+//调用
+var x =parseInt(prompt("输入第一个数字"));
+var y =parseInt(prompt("输入第二个数字"));
+ var result=consoleSum(x,y);
+      console.log(result);
+//求5个数的最大值
+function consoleMax(){
+	var arr = [5,7,1,100,145];
+	var max = arr[0]
+	for (var i = 0; i < arr.length; i++) {
+		if(max<arr[i]){
+          max=arr[i];
+		}
+	}
+	console.log(max);
+}
+consoleMax();
+//求1-100之间所有数的和
+function consoleSum1(){
+	var i=1;
+	var sum1=0;
+	while(i<=100){
+        sum1+=i;
+        i++;
+	}
+	console.log(sum1);
+}
+consoleSum1();
+//求：1-100之间偶数的和
+function consoleEven(){
+	var sum2=0;
+	for (var i = 1; i <= 100; i++) {
+	      if(i%2==0){
+           sum2+=i;    
+	      }
+	}
+	console.log(sum2);
+}
+consoleEven();
+//求：一个数组的和
+function Sum1(){
+	var arr3 =[10,50,40,86,73,65,15];
+	var sum3=0;
+	for (var i = 0; i < arr3.length; i++) {
+		sum3+=arr3[i];
+	}
+	console.log(sum3);
+}
+Sum1();
+ //1、求1-n之间所有数的和？
+ function getSum1(n){
+ 	var sum4=0;
+ 	for (var i = 1; i <= n; i++) {
+ 		sum4+=i;
+ 	}
+ 	return sum4;
+ }
+ n = parseInt(prompt("请输入数字n"));
+ console.log(getSum1(n));
+ // 2、求n-m之间所有数的和？
+ function getSum2(n,m){
+ 	var sum5=0;
+ 	for (var i = n; i <= m; i++) {
+ 		sum5+=i;
+ 	}
+ 	return sum5;
+ }
+ n = parseInt(prompt("请输入数字n"));
+ m = parseInt(prompt("请输入数字m"));
+ console.log(getSum2(n,m));
+ // 3、求圆的面积？
+ function getS(r){
+      return Math.PI*r*r;
+ }   
+console.log(getS(5));
+ // 4、求两个数中的最大值？
+ // 5、求3个数中的最大值？
+ // 6、判断一个是是否是素数？
+	</script>
+</body>
+</html>

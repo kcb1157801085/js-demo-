@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API  3</title>
+
+<style>
+#div1{
+	width: 300px;
+	height: 200px;
+	background-color:red;
+}
+#div2{
+	width: 250px;
+	height: 150px;
+	background-color:green;
+}
+#div3{
+	width: 200px;
+	height: 100px;
+	background-color:blue;
+}
+#box{
+	width: 450px;
+	margin: 200px auto;
+}
+#txt{
+	width: 350px;
+	border: 1px solid red;
+}
+img{
+	width: 200px;
+	height: 300px;
+}
+#as{
+	position: absolute;
+}
+#gk{
+	width: 600px;
+	height: 600px;
+	border: 2px solid yellow;
+	background-color: black;
+	position: relative;
+}
+span{
+	font-size: 30px;
+	color: red;
+	position: absolute;
+}
+
+
+</style>
+
+</head>
+<body>
+	<!-- 案例1：解绑事件上 -->
+<input type="button" value="小苏" id="btn">
+<input type="button" value="干掉第一个按钮的事件" id="btn1">
+<!-- 案例2：事件冒泡及解除事件冒泡 -->
+<div id="div1">
+	<div id="div2">
+		<div id="div3"></div>
+	</div>
+</div>
+<!-- 案例3：为同一个元素绑定多个不同的事件，指向相同的事件处理函数
+ -->
+<input type="button" value="小苏苏" id="btn2">
+<!-- 案例4：百度搜索提示项目案例 -->
+<div id="box">
+<input type="text" id="txt" value="">
+<input type="button" value="搜索" id="btn3">
+</div>
+<!-- 案例5：页面加载事件-->
+<input type="button" value="按钮" id="btn4">	
+
+<!-- 案例6：定时器1 -->
+<input type="button" value="停止" id="btn5">
+<!-- 案例7：一起摇起来-->
+<input type="button" value="摇起来" id="btnA">
+<input type="button" value="stop" id="btnB">
+
+<div id="as">
+<img src="images/flimg2.gif" alt="图片未加载">
+<img src="images/flimg3.gif" alt="图片未加载">
+</div>
+<!-- 案例8：亮晶晶 -->
+<input type="button" value="亮起来" id="btn6">
+<div id="gk"></div>
+<script type="text/javascript" src="common.js"></script>
+
+<script>
+//案例1：解绑事件上
+//第一种解绑事件
+//my$("btn").onclick=function(){
+//	console.log("萨瓦迪卡");
+//};
+//my$("btn1").onclick=function(){
+//	my$("btn").onclick=null;
+//}
+
+//第二种解绑事件
+function f1(){
+	console.log("您好啊，我是第二种方法");
+}
+my$("btn").addEventListener("click",f1,false);
+
+my$("btn1").onclick=function(){
+    my$("btn").removeEventListener("click",f1,false);
+}
+
+//第三种解绑事件
+//my$("btn").attachEvent("onclick",f1);
+//my$("btn1").onclick=function(){
+//	my$("btn").detachEvent("onclick",f1);
+//}
+
+//案例2：事件冒泡及解除事件冒泡
+my$("div1").onclick=function(){
+	console.log(this.id);
+}
+my$("div2").onclick=function(){
+	console.log(this.id);
+	window.event.cancelBubble=true;
+}
+
+my$("div3").onclick=function(e){
+	console.log(this.id);
+	e.stopPropagation();
+}
+//案例3：为同一个元素绑定多个不同的事件，指向相同的事件处理函数
+my$("btn2").onclick=f3;
+my$("btn2").onmouseover=f3;
+my$("btn2").onmouseout=f3;
+function f3(e){
+	switch(e.type){
+		case "click":alert("好帅哦");break;
+		case "mouseover":this.style.backgroundColor="yellow";break;
+		case "mouseout":this.style.backgroundColor="red";break;
+	}
+}
+
+//案例4：百度搜索提示项目案例 
+var keyWords=["小杨才是最纯洁的","小杨才是最帅的","小段是最猥琐的","小超是最龌龊的","传智播客是一个培训机构","传说在传智有个很帅很纯洁的小杨","苹果好吃","苹果此次召回还是没有中国"];
+my$("txt").onkeyup=function(){
+	if(my$("dv")){
+		//删除一次
+		my$("box").removeChild(my$("dv"));
+
+	}
+	var text=this.value;
+	var tempArr=[];
+	//把文本框输入的内容与数组中的每个数据做对比
+	for (var i = 0; i <keyWords.length; i++) {
+		
+		if(keyWords[i].indexOf(text)==0){
+			tempArr.push(keyWords[i]);
+		}
+	}
+	if(this.value.length==0||tempArr.length==0){
+		if(my$("dv")){
+			my$("box").removeChild(my$("dv"));
+		}
+		return;
+	}
+	var dvObj=document.createElement("div");
+	 my$("box").appendChild(dvObj);
+	 dvObj.id="dv";
+	 dvObj.style.width="350px";  
+	 dvObj.style.border="1px solid green"; 
+	 for (var i = 0; i < tempArr.length; i++) {
+	//创建p标签
+	var pObj=document.createElement("p");
+	//把p加到div中
+	dvObj.appendChild(pObj);
+	setInnerText(pObj,tempArr[i]);
+	pObj.style.margin=0;
+	pObj.style.padding=0;
+	pObj.style.cursor="pointer";
+	pObj.style.marginTop="5px";
+	pObj.style.marginLeft="5px";
+	//鼠标进入
+    pObj.onmouseover=function(){
+    	this.style.backgroundColor="yellow";
+    };
+	//鼠标离开
+	pObj.onmouseout=function(){
+		this.style.backgroundColor="";
+	};
+}
+}
+//案例5：页面加载事件
+window.onload=function(){
+	my$("btn4").onclick=function(){
+		alert("你好");
+	}
+}
+
+//案例6：定时器1
+
+timeId=setInterval(function(){
+  alert("HELLO")
+},3000);
+my$("btn5").onclick=function(){
+  window.clearInterval(timeId);
+}
+
+//案例7：一起摇起来
+var timeID="";
+my$("btnA").onclick=function(){
+	timeID=setInterval(function(){
+		var x=parseInt(Math.random()*100+1);
+		var y=parseInt(Math.random()*100+1);
+      my$("as").style.left=x+"px";
+      my$("as").style.top=y+"px";
+	},100);
+}
+my$("btnB").onclick=function(){
+	window.clearInterval(timeID);
+}
+//案例8：亮晶晶 
+
+my$("btn6").onclick=function(){
+setInterval(function(){
+my$("gk").innerHTML="<span>★</span>";
+var x=parseInt(Math.random()*600+1);
+var y=parseInt(Math.random()*600+1);
+my$("gk").firstElementChild.style.left=x+"px";
+my$("gk").firstElementChild.style.top=y+"px";
+	},10);	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

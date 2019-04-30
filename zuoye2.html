@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API第二天</title>
+
+
+<style>
+
+	*{
+		margin: 0;
+		padding: 0;
+	}
+li{
+	list-style: none;
+	cursor: pointer;
+}
+.nodeSmall{
+	width: 60px;
+	height: 60px;
+	background: url(images/mobile_qrcode.png)no-repeat;
+	position: fixed;
+	right: 10px;
+	top: 40%;
+}
+.erweima{
+	position: absolute;
+	top: 0;
+	left: -150px;
+}
+.nodeSmall a {
+	display: block;
+	width: 60px;
+	height: 60px;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}
+.cls{
+	background-color: green;
+}
+#aa div{
+	width: 200px;
+	height: 150px;
+	background-color: green;
+	float: left;
+	margin-left: 10px;
+	border: 2px solid green;
+}
+#txt1{
+	color: gray;
+}
+#fg{
+    width: 200px;
+    height: 150px;
+    border: 2px solid red;
+}
+#jb{
+	list-style-type: none;
+	cursor: pointer;
+}
+#ol{
+	width: 200px;
+	height: 100px;
+	background-color: yellow;
+}
+.asd{
+	border: 3px solid red;
+}
+
+
+.box{
+	width: 400px;
+	height: 300px;
+	border: 1px solid #ccc;
+	margin: 100px auto;
+	overflow: hidden;
+}
+.hd{
+	height: 45px;
+}
+.hd span{
+	display: inline-block;
+	width: 90px;
+	background-color: pink;
+	line-height: 45px;
+	text-align: center;
+	cursor: pointer;
+}
+.hd span.current{
+	background-color: purple;
+
+}
+
+.bd li{
+    height: 255px;
+    background-color: purple;
+    display:none;
+}
+.bd li.current{
+	display: block;
+}
+	</style>
+</head>
+<body>
+<!-- 案例1：点击按钮禁用文本框 -->
+<input type="button" value="禁用文本框" id="btn">
+<input type="text" value="不要" id="txt">
+<!-- 案例2：点击按钮修改列表背景颜色 -->
+<input type="button" value="变色" id="btn1">
+<ul id="uu">
+	<li>卡卡西</li>
+	<li>大蛇丸</li>
+	<li>我爱罗</li>
+	<li>鸣人</li>
+	<li>佐助</li>
+</ul>
+<!-- 案例3：阻止超链接默认跳转-->
+<a href="http://www.baidu.com" id="ak">百度</a>
+<!-- 案例4：列表隔行变色 -->
+<input type="button" value="隔行变色" id="btn2">  
+<ul id="uc">
+	<li>兰博基尼</li>
+	<li>法拉利</li>
+	<li>保时捷</li>
+	<li>阿斯顿马丁</li>
+	<li>奔驰</li>
+	<li>宝马</li>
+	<li>奥迪</li>
+	<li>五菱宏光</li>
+</ul>
+<!-- 案例5：列表高亮显示-->
+<ul id="ub">
+	<li>白云边</li>
+	<li>茅台</li>
+	<li>五粮液</li>
+	<li>天之蓝</li>
+	<li>稻花香</li>
+	<li>威士忌</li>
+	<li>人头马</li>
+	<li>江小白</li>
+</ul>
+<!-- 案例6：二维码的离开与隐藏 -->
+<div class="nodeSmall" id="node_small">
+<a href=""></a>
+<div class="erweima " id="er">
+<img src="images/mobile_qrcode@2x.png" alt="">
+</div>
+</div>
+<!-- 案例7：根据name属性值获取元素 -->
+<input type="button" value="显示" id="btn3"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name2"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<input type="text" value="您好" name="name3"><br/>
+<input type="text" value="您好" name="name1"><br/>
+<!-- 案例8：根据类样式的名字获取元素 -->
+<p class="cls">这是第一个p</p>
+<p>这是第二个p</p>
+<div class="cls">这是第一个div</div>
+<div>这是第二个div</div>
+<span class="cls">这是第一个span</span><br/>
+<span>这是第二个span</span><br/>
+<input type="button" value="look" id="btn4"><br/>
+<!-- 案例9：div的高亮显示 -->
+<div id="aa">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<!-- 案例10：模拟搜索框 -->
+<input type="text" value="请输入搜索内容" id="txt1">
+<!-- 案例11：验证文本框密码长度 -->
+<input type="password" value="" id="txt2">
+<!-- 案例12：点击按钮设置div中的文本内容 -->
+<input type="button" value="设置值" id="btn5"><br>
+<div id="fg">哈哈</div>
+<!-- 案例13：自定义属性操作 -->
+<ul id="jb">
+	<li>小网的成绩</li>
+	<li>小王的成绩</li>
+	<li>小刚的成绩</li>
+	<li>小明的成绩</li>
+	<li>小红的成绩</li>
+</ul>
+<!-- 案例14：移除自定义属性 -->
+<input type="button" value="移除自定义属性" id="btn6">
+<div id="ol" score="10" class="asd"></div>
+<!-- 案例15：tab切换实现 -->
+<div class="box" id="box">
+ <div class="hd">
+	<ul>
+		<span class="current">体育</span>
+		<span>娱乐</span>
+		<span>新闻</span>
+		<span>综合</span>
+	</ul>
+ </div>
+ <div class="bd">
+	<ul>
+		<li class="current">我是体育模块</li>
+		<li>我是娱乐模块</li>
+		<li>我是新闻模块</li>
+		<li>我是综合模块</li>
+	</ul>
+ </div>
+</div>
+
+<script type="text/javascript" src="common.js"></script>
+
+
+<script>
+//innerText和textContent兼容代码
+function setInnerText(element,text){
+	if(typeof element.textContent=="undefined"){
+		element.innerText=text;
+	}else{
+		element.textContent=text;
+	}
+}
+
+function getInnerText(element){
+	if(typeof element.textContent=="undefined"){
+		return element.innerText;
+	}else{
+		return element.textContent;
+	}
+}
+//案例1：点击按钮禁用文本框
+my$("btn").onclick=function(){
+	my$("txt").disabled=true;
+}
+//案例2：点击按钮修改列表背景颜色
+my$('btn1').onclick=function(){
+	my$("uu").style.backgroundColor="yellow";
+}
+
+//案例3：阻止超链接默认跳转
+my$("ak").onclick=function(){
+	alert("纳尼");
+	return false;
+}
+
+//案例4：列表隔行变色
+my$("btn2").onclick=function(){
+	var liObj=my$("uc").getElementsByTagName("li");
+	for (var i = 0; i < liObj.length; i++) {
+		if(i%2==0){
+			liObj[i].style.backgroundColor="blue";
+		}else{
+			liObj[i].style.backgroundColor="yellow";
+		}
+	}
+}
+
+//案例5：列表高亮显示
+var liObjS=my$("ub").getElementsByTagName("li");
+for (var i = 0; i < liObjS.length; i++) {
+	liObjS[i].onmouseover=function(){
+		this.style.backgroundColor="blue";
+	}
+	liObjS[i].onmouseout=function(){
+		this.style.backgroundColor="";
+	}
+}
+
+//案例6：二维码的离开与隐藏 
+var aObj=my$("node_small").getElementsByTagName("a")[0];
+aObj.onmouseover=function(){
+	my$("er").className="erweima show";
+}
+aObj.onmouseout=function(){
+	my$("er").className="erweima hide";
+}
+//案例7：根据name属性值获取元素
+my$("btn3").onclick=function(){
+	var txtObj=document.getElementsByName("name1");
+	for (var i = 0; i < txtObj.length; i++) {
+		txtObj[i].value="我很好";
+	}
+}
+
+
+//案例8：根据类样式的名字获取元素
+
+my$("btn4").onclick=function(){
+	var clsObj=document.getElementsByClassName("cls");
+	for (var i = 0; i < clsObj.length; i++) {
+		clsObj[i].style.backgroundColor="yellow";
+	}
+}
+
+//案例9：div的高亮显示
+var divObj=my$("aa").getElementsByTagName("div");
+for (var i = 0; i < divObj.length; i++) {
+	divObj[i].onmouseover=function(){
+         this.style.border="2px solid red";
+	}
+    divObj[i].onmouseout=function(){
+         this.style.border="";
+	}
+}
+//案例10：模拟搜索框
+var inObj=my$("txt1");
+inObj.onfocus=function(){
+   if(this.value=="请输入搜索内容"){
+   	this.value="";
+   	this.style.color=black;
+   }
+}
+inObj.onblur=function(){
+   if(this.value.length==0){
+   	this.value="请输入搜索内容";
+   	this.style.color="gray";
+   }
+}
+//案例11：验证文本框密码长度
+my$("txt2").onblur=function(){
+	if(this.value.length>=6&&this.value.length<=10){
+		this.style.backgroundColor="yellow";
+	}else{
+		this.style.backgroundColor="blue";
+	}
+}
+//案例12：点击按钮设置div中的文本内容
+my$("btn5").onclick=function(){
+	setInnerText(my$("fg"),"呵呵，我又变帅了");
+}
+//案例13：自定义属性操作
+var scoreObj=my$("jb").getElementsByTagName("li");
+for (var i = 0; i < scoreObj.length; i++) {
+	scoreObj[i].setAttribute("score",(i+1)*10);
+	scoreObj[i].onclick=function(){
+		alert(this.getAttribute("score"));
+	}
+}
+//案例14：移除自定义属性
+
+my$("btn6").onclick=function(){
+	my$("ol").removeAttribute("score");
+	my$("ol").removeAttribute("class");
+}
+//案例15：tab切换实现
+var box = my$("box");
+var hd=box.getElementsByTagName("div")[0];
+var bd=box.getElementsByTagName("div")[1];
+var spans=hd.getElementsByTagName("span");
+var lis=bd.getElementsByTagName("li");
+for (var i = 0; i < spans.length; i++) {
+spans[i].setAttribute("index",i);
+	spans[i].onclick=function(){
+       for (var j = 0; j < spans.length; j++) {
+       	spans[j].removeAttribute("class");
+       	
+       }
+       this.className="current";
+       var num=this.getAttribute("index");
+for (var k = 0; k< lis.length; k++) {
+	lis[k].removeAttribute("class");
+}
+    lis[num].className="current";
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

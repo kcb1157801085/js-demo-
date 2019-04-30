@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- manifest应用程序缓存清单文件的路径 建议文件的扩展名是appcache,这个文件的本质就是一个文本文件 -->
+<html lang="en" manifest="">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+.div1{
+	width: 200px;
+	height: 200px;
+	border:1px solid green;
+	position: relative;
+	margin-left: 20px;
+	float: left;
+}
+.div2{
+	width: 200px;
+	height: 200px;
+	border:1px solid red;
+	position: relative;
+	margin-left: 20px;
+	float: left;
+}
+
+.div3{
+	width: 200px;
+	height: 200px;
+	border:1px solid blue;
+	position: relative;
+	margin-left: 20px;
+	float: left;
+}
+
+ 
+p{
+	background-color: orange;
+	margin-top: 5px;
+}
+
+
+img{
+	width: 300px;   
+	display: block;
+}
+
+
+	</style>
+</head>
+<body>
+	<div id="div1" class="div1">
+		<p id="pe" draggable="true">把我拖过去</p>
+		<p id="pe1" draggable="true">把我也拖过去</p>
+	</div>
+<div id="div2" class="div2"></div>
+<div id="div3" class="div3"></div>
+
+
+
+<!-- 数据存储 -->
+<input type="text" id="userName">
+<input type="button" value="设置数据" id="setData">
+<input type="button" value="获取数据" id="getData">
+<input type="button" value="删除数据" id="removeData">
+<br>
+<!-- 数据存储 -->
+<input type="text" id="userName1">
+<input type="button" value="设置数据" id="setData1">
+<input type="button" value="获取数据" id="getData1">
+<input type="button" value="删除数据" id="removeData1">
+
+<!-- 应用程序缓存 -->
+ <img src="images/1.jpg" alt="">
+ <img src="images/2.jpg" alt="">
+ <img src="images/3.jpg" alt="">
+ <img src="images/4.jpg" alt="">
+
+
+<script>
+
+var obj=null;//当前被拖拽的元素
+var p =document.querySelector("#pe");
+var div1=document.querySelector("#div1");
+var div2=document.querySelector("#div2");
+document.ondragstart=function(e){
+	//通过事件捕获来获取当前被拖拽的子元素
+  e.target.style.opacity=0.5;
+  obj=e.target;
+  e.target.parentNode.style.borderWidth="5px";
+/*
+通过dataTransfer来实现数据的存储与获取
+setData(format,data)
+format:数据类型： text/html   text/uri-list
+Data:数据：一般来说是字符串值
+ */
+e.dataTransfer.setData("text/html",e.target.id);
+}
+document.ondragend=function(e){
+  e.target.style.opacity=1;
+e.target.parentNode.style.borderWidth="1px";
+}
+document.ondragleave=function(e){
+  
+}
+document.ondrag=function(e){
+
+}
+document.ondragenter=function(e){
+}
+document.ondragover=function(e){
+e.preventDefault();
+}
+document.ondrop=function(e){
+  
+//通过e.dataTransfer.setData存储的数据，只能在drop事件中获取
+ var id=e.dataTransfer.getData("text/html");
+ e.target.appendChild(document.getElementById(id));
+}
+document.ondragleave=function(e){
+
+}
+
+
+
+// web存储
+/*
+sessionStorage存储
+sessionStorage的使用：存储数据到本地，存储的容量5MB左右
+1 这个数据本质是存储在当前页面的内存中
+2 它的生命周期为关闭当前页面，关闭页面，数据自动清除
+setItem(key,value):存储数据，以键值对的方式存储
+getItem(key):获取数据，通过制定名称的key获取对应的value值
+removeItem(key):删除数据，通过指定名称key删除对应的值
+clear():清空所有存储的内容
+ */
+//存储数据
+document.querySelector("#setData").onclick=function(){
+	//获取用户名
+	var name = document.querySelector("#userName").value;
+	//存储数据
+	window.sessionStorage.setItem("userName",name);
+}
+//获取数据
+document.querySelector("#getData").onclick=function(){
+	//如果找不到对应名称的key，那么就会获取null
+	var name=window.sessionStorage.getItem("userName");
+	alert(name);
+}
+
+//删除数据
+document.querySelector("#removeData").onclick=function(){
+	//在删除的时候如果key值错误，不会报错，也不会删除数据
+	window.sessionStorage.removeItem("userName");   
+}
+
+/*
+ localStorage的使用：
+ 1、存储的内容大概20MB
+ 2、不同浏览器不能共享数据，但是在同一个浏览器的不同窗口中可以共享数据
+ 3、永久生效，它的数据是存储在硬盘上，并不会随着页面或者浏览器的关闭而清除，如果想清除，必须手动清除
+setItem(key,value):存储数据，以键值对的方式存储
+getItem(key):获取数据，通过制定名称的key获取对应的value值
+removeItem(key):删除数据，通过指定名称key删除对应的值
+clear():清空所有存储的内容
+
+ */
+
+document.querySelector("#setData1").onclick=function(){
+	var name=document.querySelector("#userName1").value;
+	//使用localStorage存储数据
+	window.localstorage.setItem("userName1",name);
+}
+
+
+//获取数据
+document.querySelector("#getData1").onclick=function(){
+	//如果找不到对应名称的key，那么就会获取null
+	var name=window.localstorage.getItem("userName1");
+	alert(name);
+}
+
+//删除数据
+document.querySelector("#removeData1").onclick=function(){
+	//在删除的时候如果key值错误，不会报错，也不会删除数据
+	window.localstorage.removeItem("userName1");   
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

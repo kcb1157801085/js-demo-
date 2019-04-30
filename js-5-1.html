@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第五天笔记及案例</title>
+</head>
+<body>
+	<script>
+/*
+编程思想：把一些生活中做事的经验融入到程序中
+面向过程：凡事都要亲力亲为，每件事的具体过程都要知道，注重过程
+面向对象：根据需求找对象，所有的是都用对象来做，注重结果
+面对对象的特征：封装 ，继承 ，多态
+js不是面向对象的语言，但是可以模拟面向对象的思想
+js是一门基于对象的语言
+
+
+分析对象：有特征和行为，具体特指的某一个事物
+对象：有属性和方法，具体特指的某个事物,一组无序属性的集合，属性的值可以是任意的类型
+
+ */
+//创建对象三种方式
+//1、调用系统的构造函数创建对象
+//练习1：有一个黄色的小狗，叫大黄，今年已经三岁了，250斤的重量每次走路很慢，喜欢吃大骨头
+var smallDog = new Object();
+//属性
+ smallDog.name = "大黄";
+ smallDog.color = "yellow";
+ smallDog.age = "3岁";
+ smallDog.weight="250";
+ //方法
+smallDog.eat = function(){
+	console.log("我要吃大骨头");
+}
+smallDog.walk = function(){
+	console.log("走一步摇尾巴");
+}
+//方法的调用
+smallDog.eat();
+smallDog.walk();
+
+//练习2：创建一个手机对象，手机有型号，有颜色，可以打电话和发短信
+var phone = new Object();
+phone.size = "ipone8";
+phone.color = "黑色";
+phone.call = function(){
+	console.log("打电话");
+}
+phone.sendMessage = function(){
+	console.log("what你弄啥呢？");
+}
+phone.call();
+phone.sendMessage();
+
+
+
+
+
+
+
+
+
+
+
+
+//2、自定义构造函数创建对象（结合第一种和需求通过工厂模式创建对象）
+//例子：自定义构造函数 名字的首字母大写
+function Person(name,age){
+	this.name = name;
+	this.age = age;
+	this.sayHi = function(){
+		console.log("我叫："+this.name,"年龄是："+this.age);
+	};
+}
+//自定义构造函数创建对象：先自定义一个构造函数，创建对象
+var obj = new Person("小明",10);
+console.log(obj.name);
+console.log(obj.age);
+obj.sayHi();
+/*
+自定义构造函数创建对象做了四件事
+1、在内存中开辟（申请一块空闲的空间）空间，存储创建新的对象
+2、把this设置为当前对象
+3、设置对象的属性和方法
+4、把this这个对象返回
+
+ */
+//通过自定义构造函数创建对象实现下面的作业？
+//作业1：创建一个图片的对象，有宽、高、大小（4M），图片可以展示内容
+//作业2：创建一个小猫的对象，猫有颜色，体重年龄，小猫可以抓耗子，打架
+
+
+
+
+
+
+
+
+
+
+
+
+//3、字面量的方式创建对象
+//var obj2={
+//	name:"小明",
+//	age:20,
+//	sayHi:function(){
+//		console.log("我是:"obj2.name);
+//	}
+//}
+
+
+
+
+/*
+如何获取该变量（对象）是不是属于什么类型？
+语法：
+变量instanceof类型的名字----布尔类型，结果为true是这种类型，false不是这种类型
+在当前对象的方法中，可以使用this关键字代表当前的对象
+
+ */
+//工厂模式创建对象
+//function createObject(name,age){
+//	var obj = new Object();
+//	obj.name = name;
+//	obj.age = age ;
+//	obj.sayHi = function(){
+//	 console.log("大家好，我叫："+this.name+"我今年："+this.age);
+//	};
+//	return obj;
+//}
+//var per1 = createObject("小红"，20);
+//per1.sayHi();
+//var per2 = createObject("小芳"，21);
+//per1.sayHi();
+
+//总结对象
+/*
+字面量创建对象的缺陷：一次性的对象
+点语法：对象.名字 = 值; 对象.名字 = 函数;
+
+ */
+//访问属性的另一种写法
+//function Person(name,age){
+//	this.name = name;
+//	this.age = age;
+//	this.sayHi = function(){
+//		console.log("我爱玩游戏");
+//	};
+//}
+//var obj = new Person("小明",10);
+//obj["name"]="佐助";
+//obj["sayHi"]();
+
+//console.log(obj["name"]);
+//console.log(obj.name);
+//console.log(obj.age);
+//obj.sayHi();
+
+
+
+//JSON格式的数据：一般都是成对的，
+//JSON也是一个对象，数据都是成对的，一般JSON格式的数据无论是键还是值都是用双引号括起来的
+var json={
+	"name":"小米",
+	"age":"10",
+	"sex":"男"
+};
+//对象不能for循环，可以for  in 循环
+//key是一个变量，这个变量中存储的是该对象的所有的属性的名字
+for(var key in json){
+     console.log(json[key]);
+}
+
+
+/*
+简单类型和复杂类型
+原始数据类型：number,string,boolean,undefined,null,object
+基本类型（简单类型），值类型：number,string,boolean
+复杂类型（引用类型）：object
+空类型：undefined,null
+值类型的值在那块空间中存储？    栈中存储
+引用类型的值在那块空间中存储？  对象在堆上存储，地址在栈上存储
+值类型之间传递的是值
+引用类型之间传递的是地址
+
+var num = 10; 值类型，值在栈上
+var obj = {};  复杂类型，对象在堆，地址（引用）在栈 
+
+值类型作为函数的参数，传递的是值
+引用类型作为函数的参数传递的是地址   
+ */
+
+var obj = {
+	name:"小明"
+};
+function f2(obj2){
+	obj2.name = "小红";
+}
+console.log(obj.name);
+f2(obj);
+console.log(obj.name);
+//注意对象里面存的是地址，具体分析过程可见视频截图 
+
+
+
+
+
+
+
+
+
+
+
+
+
+var num1 = 55;
+var num2 = 66;
+function f1(num,num1){
+	num=100;
+	num1=100;
+	num2=100;    //隐式全局变量
+console.log(num);
+console.log(num1);
+console.log(num2);	
+}
+f1(num1,num2);
+console.log(num1);
+console.log(num2);
+//console.log(num);
+
+
+//内置对象--js系统自带的对象
+/*
+实例对象：通过构造函数创建出来，实例化的对象
+静态对象:不需要创建，直接就是一个对象，方法（静态方法）直接可以通过这个对象名字调用
+
+实例方法必须通过实例对象调用
+静态方法必须通过大写的对象调用
+
+ 
+内置对象：
+
+
+Math 
+Date
+String
+Array
+Object
+
+ */
+//然后验证变量是不是一个对象
+//console.log(Array instannceof Object);
+//圆周率  属性
+console.log(Math.PI);
+
+//常数的底数E
+console.log(Math.E);
+
+//绝对值   方法
+console.log(Math.abs("-1"));
+console.log(Math.abs(-15));
+console.log(Math.abs(null));
+//console.log(Math.abs(string));
+
+//向上取整 方法
+console.log(Math.ceil(12.3));
+console.log(Math.ceil(12.9));
+console.log(Math.ceil(12.09));
+console.log(Math.ceil(12.03));
+console.log(Math.ceil(12.92));
+
+//向下取整
+console.log(Math.floor(12.3));
+console.log(Math.floor(12.9));
+console.log(Math.floor(12.09));
+console.log(Math.floor(12.03));
+console.log(Math.floor(12.92));
+//返回最近的单精度浮点格式的数字。
+console.log(Math.fround(12.3));
+console.log(Math.fround(11.9));
+console.log(Math.fround(10));
+//找最大值
+console.log(Math.max(10,20,50,100,45,60));
+//找最小值
+console.log(Math.min(10,20,50,100,45,60));
+//平方根
+console.log(Math.sqrt(16));
+//返回x的y次幂
+console.log(Math.pow(3,3));
+//返回0-1的随机数
+console.log(Math.random());
+</script>
+</body>
+</html>

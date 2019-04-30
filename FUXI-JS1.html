@@ -1,0 +1,33 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-1</title>
+		
+</head>
+<body>
+<script>
+
+//案例10：冒泡排序：把所有的数据按照一定的顺序进行排列
+  var arr7 =[10,0,100,20,60,30];
+  //循环控制比较的轮数
+  for (var i = 0; i < arr7.length-1; i++) {
+  	//控制每一轮的比较次数
+  	for (var j = 0; j<arr7.length-1-i; j++) {
+  		if(arr7[j]<arr7[j+1]){
+  			var temp =arr7[j];
+  			arr7[j]=arr7[j+1];
+  			arr7[j+1]=temp;
+  		}
+  	}
+  }
+              console.log(temp);
+
+
+
+
+</script>
+
+
+</body>
+</html>

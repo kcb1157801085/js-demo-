@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-API-4</title>
+<style>
+#div1{
+	width: 300px;
+	height: 200px;
+	background-color:red;
+}
+#div2{
+	width: 250px;
+	height: 150px;
+	background-color:green;
+}
+#div3{
+	width: 200px;
+	height: 100px;
+	background-color:blue;
+}
+#box{
+	width: 450px;
+	margin: 200px auto;
+}
+#txt{
+	width: 350px;
+	border: 1px solid red;
+}
+img{
+	width: 200px;
+	height: 300px;
+}
+#as{
+	position: absolute;
+}
+#gk{
+	width: 600px;
+	height: 600px;
+	border: 2px solid yellow;
+	background-color: black;
+	position: relative;
+}
+span{
+	font-size: 30px;
+	color: yellow;
+	position: absolute;
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+ <!-- 案例1：解绑事件上 -->
+<input type="button" value="小苏" id="btn">
+<input type="button" value="干掉第一个按钮的事件" id="btn1">
+<!-- 案例2：事件冒泡 -->
+<div id="div1">
+	<div id="div2">
+		<div id="div3"></div>
+	</div>
+</div>
+<!-- 案例3：为同一个元素绑定多个不同的事件，指向相同的事件处理函数
+ -->
+<input type="button" value="小苏" id="btn2">
+<!-- 案例4：百度搜索提示项目案例 -->
+<div id="box">
+<input type="text" id="txt" value="">
+<input type="button" value="搜索" id="btn3">
+</div>
+<!-- 案例5：页面加载事件-->
+<input type="button" value="按钮" id="btn4">	
+
+<!-- 案例6：定时器1 -->
+<input type="button" value="停止" id="btn5">
+<!-- 案例7：一起摇起来-->
+<input type="button" value="摇起来" id="btnA">
+<input type="button" value="stop" id="btnB">
+
+<div id="as">
+<img src="images/flimg2.gif" alt="图片未加载">
+<img src="images/flimg3.gif" alt="图片未加载">
+</div>
+<!-- 案例8：亮晶晶 -->
+<input type="button" value="亮起来" id="btn6">
+<div id="gk"></div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="common.js"></script>
+<script>
+ //案例1：解绑事件上 
+ //方法1
+//1 对象.on事件名字=事件处理函数-----绑定事件
+my$("btn").onclick=function(){
+    console.log("你好猥琐");
+};
+my$("btn1").onclick=function(){
+   //1、解绑事件
+   my$("btn").onclick=null;
+};
+//方法2
+function f1(){
+	console.log("第一个");
+}
+function f2(){
+	console.log("第二个");
+}
+my$("btn").addEventListener("click",f1,false);
+my$("btn").addEventListener("click",f2,false);
+//点击第二个按钮吧第一个按钮的第一个点击事件解绑
+my$("btn1").onclick=function(){
+	//解绑事件的时候，需要在绑定事件的时候，使用命名函数
+	my$("btn").removeEventListener("click",f1,false);
+};
+//ie8
+//my$("btn").attachEvent("onclick",f1);
+//my$("btn").attachEvent("onclick",f2);
+//my$("btn1").onclick=function(){
+//    my$("btn").detachEvent("onclick",f2);
+//};
+//案例2：事件冒泡
+ my$("div1").onclick=function(){
+      console.log(this.id);
+ };
+my$("div2").onclick=function(){
+      console.log(this.id);
+ };
+my$("div3").onclick=function(){
+      console.log(this.id);
+      //如何阻止事件冒泡(火狐不支持谷歌ie支持)
+     window.event.cancelBubble=true;
+ };
+my$("div3").onclick=function(e){
+      console.log(this.id);
+      //如何阻止事件冒泡(火狐谷歌支持ie不支持)
+     e.stopPropagation();
+ };
+//案例3：为同一个元素绑定多个不同的事件，指向相同的事件处理函数
+my$("btn2").onclick=f3;
+my$("btn2").onmouseover=f3;
+my$("btn2").onmouseout=f3;
+function f3(e){
+	switch(e.type){
+		case"click":alert("好帅啊");break;
+        case"mouseover":this.style.backgroundColor="red";break;
+		case"mouseout":this.style.backgroundColor="green";break;
+	}
+}
+//案例4：百度搜索提示项目案例
+
+var keyWords=["小杨才是最纯洁的","小杨才是最帅的","小段是最猥琐的","小超是最龌龊的","传智播客是一个培训机构","传说在传智有个很帅很纯洁的小杨","苹果好吃","苹果此次召回还是没有中国"];
+//获取文本框注册键盘抬起事件
+my$("txt").onkeyup=function(){
+	//每一次的键盘抬起都判断页面中有没有这个div
+	if(my$("dv")){
+		//删除一次
+		my$("box").removeChild(my$("dv"));
+
+	}
+	//获取文本框输入的内容
+	var text=this.value;
+	var tempArr=[];//临时数组--空数组--存放对应上的数据
+	//把文本框输入的内容和数组中的每个数据对比
+	for (var i = 0; i < keyWords.length; i++) {
+		//是否最开始出现的
+	if(keyWords[i].indexOf(text)==0){
+      tempArr.push(keyWords[i]); 
+	}	
+	//如果文本框是空的，临时数组是空的，不用创建div
+	if(this.value.length==0||tempArr.length==0){
+		if(my$("dv")){
+           my$("box").removeChild(my$("dv"));
+		}
+		return; 
+	}
+	}
+	//遍历临时数组，创建div，把div加入id为box的div中
+	var divObj=document.createElement("div");
+	my$("box").appendChild(divObj);
+	divObj.id="dv";
+	divObj.style.width="350px";
+	
+	divObj.style.border="1px solid green";
+//循环遍历临时数组，创建对应的p标签
+for (var i = 0; i < tempArr.length; i++) {
+	//创建p标签
+	var pObj=document.createElement("p");
+	//把p加到div中
+	divObj.appendChild(pObj);
+	setInnerText(pObj,tempArr[i]);
+	pObj.style.margin=0;
+	pObj.style.padding=0;
+	pObj.style.cursor="pointer";
+	pObj.style.marginTop="5px";
+	pObj.style.marginLeft="5px";
+	//鼠标进入
+    pObj.onmouseover=function(){
+    	this.style.backgroundColor="yellow";
+    };
+	//鼠标离开
+	pObj.onmouseout=function(){
+		this.style.backgroundColor="";
+	};
+	
+}
+}
+
+//案例5：页面加载事件
+//只要页面加载完毕，这个事件就会触发---页面中所有的内容，标签，属性，文本，包括外部引入的JS文件
+window.onload=function(){
+my$("btn4").onclick=function(){
+		alert("阿尼哈斯哟");
+	};
+};
+//案例6：定时器1
+////定时器
+//参数1：函数
+//参数2：时间---毫秒---1000毫秒--1秒
+//执行过程：页面加载完毕后，过了一秒，执行一次函数代码，又过了1秒再执行函数。。。
+//返回值就是定时器的id值
+  var timeId=setInterval(function(){
+alert("hello");
+},1000);
+my$("btn5").onclick=function(){
+
+	//点击按钮，停止定时器
+	//参数：要清理的定时的id的值
+	window.clearInterval(timeId);
+};
+
+//案例7：一起摇起来
+//点击按钮摇起来
+var timeID="";
+my$("btnA").onclick=function(){
+	 timeID=setInterval(function(){
+		//随机数
+	var x=parseInt(Math.random()*100+1);
+	var y=parseInt(Math.random()*100+1);
+	my$("as").style.left=x+"px";
+    my$("as").style.top=y+"px";
+	},100);	
+};
+my$("btnB").onclick=function(){
+  window.clearInterval(timeID);
+}
+
+//案例8：亮晶晶
+my$("btn6").onclick=function(){
+	setInterval(function(){
+		my$("gk").innerHTML="<span>★</span>";
+   var x=parseInt(Math.random()*600+1);
+	var y=parseInt(Math.random()*600+1);
+   my$("gk").firstElementChild.style.left=x+"px";
+   my$("gk").firstElementChild.style.left=y+"px";
+	},10); 
+};
+
+
+
+
+
+
+
+
+ 
+
+</script>
+	<script>
+/* 
+总结绑定事件的区别
+addEventListener();
+attachEvent();
+相同点：都可以为元素绑定事件
+不同点：
+1、方法名不一样
+2、参数个数不一样 addEventListener：3个 attachEvent：2个
+3、addEventListener 谷歌，火狐，IE11支持，IE8不支持
+attachEvent  IE8支持 谷歌，火狐，IE11不支持
+4 this 不同，addEventListener中的this是当前绑定事件的对象
+attachEvent中的this是window
+5、addEventListener中的事件的类型（事件的名字）没有on
+attachEvent中的事件的类型（事件的名字）有on
+
+一、解绑事件：
+注意：用什么方式绑定事件，就应该用对应的方式解绑事件
+对象.on事件名字=事件处理函数---绑定事件
+对象.on事件名字=null；
+2解绑事件2：
+对象.addEventListener("没有on的事件类型",命名函数,false);--绑定事件
+对象.removeEventListener("没有on的事件类型",命名函数,false);
+3解绑事件3：
+对象.attachEvent("on事件类型",命名函数);---绑定事件
+对象.detachEvent("on事件类型",函数名字);
+
+事件冒泡：多个元素嵌套，有层次关系，这些元素都注册了相同的事件，如果里面的元素的事件触发了，外面的元素的该事件自动的触发了
+//阻止事件冒泡的方法
+window.event.cancelBubble=true;火狐不支持  ie8支持谷歌支持
+e.stopPropagation();  火狐谷歌支持  ie8不支持
+window.event和e都是事件参数对象，一个是ie的标准，一个是火狐的标准
+ 
+总结事件：
+1、事件捕获阶段(从外向里)
+
+
+2、事件目标阶段（最开始选择的那个）
+
+
+3、事件冒泡阶段（从里向外）
+
+addEventListener中第三个参数是控制事件阶段的
+事件的阶段有三个：
+通过e.eventPhase这个属性可以做到当前的事件是什么阶段的
+如果这个属性的值是：
+1-----捕获阶段
+2-----目标阶段
+3-----冒泡
+一般默认都是冒泡阶段，很少用捕获阶段
+
+BOM---浏览器对象模型，操作浏览器的
+浏览器中有个顶级对象：window
+页面中顶级对象：document
+页面中所有的内容都是属于浏览器的，页面中的内容也都是window的
+
+页面加载完毕事件
+window.onload
+1.扩展的事件（了解）
+页面关闭后才触发的事件(ie8)
+window.onunload
+页面关闭之前触发的事件（ie8）
+window.onbeforeunload
+history对象
+back()后退
+forward()
+go()
+
+
+
+
+
+ */
+window.alert("您好啊");
+window.prompt("请输入账号");
+window.confirm("您确定退出吗");
+
+
+//Location 
+//地址栏上#及后面的内容
+console.log(window.location.hash);
+//主机名及端口号
+console.log(window.location.host);
+//主机名
+console.log(window.location.hostname);
+//文件的路径---相对路径
+console.log(window.location.pathname);
+//端口号
+console.log(window.location.port);
+//协议
+console.log(window.location.protocol);
+//搜索的内容
+console.log(window.location.search);
+
+//location 方法
+//设置跳转的页面的地址
+//location.href="http://www.jd.com";//属性--必须记住
+//location.assign("http://www.jd.com");//方法
+//location.reload();//重新加载--刷新
+//location.replace("http://www.jd.com");//没有历史记录
+//通过platform可以判断浏览器所在的系统平台类型
+console.log(window.navigator.platform);
+//通过userAgent可以判断用户浏览器的类型
+console.log(window.navigator.userAgent);
+
+//BOM中有两个定时器--计时器
+//定时器
+//参数1：函数
+//参数2：时间---毫秒---1000毫秒--1秒
+//执行过程：页面加载完毕后，过了一秒，执行一次函数代码，又过了1秒再执行函数。。。
+
+
+
+
+
+	</script>
+</body>
+</html>

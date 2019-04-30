@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>APi第三天</title>
+<style>
+*{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style-type: none;
+	cursor: pointer;
+}
+
+
+#dv{
+	width: 300px;
+	height: 450px;
+	border: 1px solid red;
+}
+#gk{
+	width: 300px;
+	height: 450px;
+	background-color: red;
+}
+#ipo{
+	width: 200px;
+	height: 400px;
+	border: 2px solid red;
+}
+#jkl{
+	width: 200px;
+	height: 400px;
+	border: 2px solid red;
+}
+
+
+#as{
+	width: 200px;
+	height: 200px;
+	border: 1px solid red;
+}
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+	<!-- 案例1：通过节点操作元素的背景颜色 -->
+<input type="button" value="变色" id="btn">
+<div id="dv">
+<span>这是span</span>
+<p>这是p</p>
+<span>这是span</span>
+<p>这是p</p>
+<span>这是span</span>
+<p>这是p</p>
+<span>这是span</span>
+<a href="http://www.baidu.com">百度</a>
+</div>
+<!-- 案例2：节点操作隔行变色 -->
+<input type="button" value="隔行变色" id="btn1">
+<ul id="uc">
+	<li>兰博基尼</li>
+	<li>法拉利</li>
+	<li>保时捷</li>
+	<li>阿斯顿马丁</li>
+	<li>奔驰</li>
+	<li>宝马</li>
+	<li>奥迪</li>
+	<li>五菱宏光</li>
+</ul>
+<!-- 案例3：全选和全不选案例 -->
+<div class="wrap">
+<table>
+	<thead>
+		<tr>
+			<th>
+               <input type="checkbox" id="j_cbAll">
+			</th>
+			<th>菜名</th>
+			<th>饭店</th>
+		</tr>
+	</thead>
+<tbody id="j_tb">
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>红烧肉</td>
+	<td>田老师</td>
+</tr
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>西红柿炒鸡蛋</td>
+	<td>王老师</td>
+</tr>
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>油炸榴莲</td>
+	<td>张老师</td>
+</tr>
+<tr>
+	<td>
+	<input type="checkbox">
+	</td>
+	<td>油炸冰溜子</td>
+	<td>黄老师</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- 案例4：第一种元素创建方式 -->
+<input type="button" value="创建一个p" id="btn2">
+<!-- 案例4：第二种元素创建方式 -->
+<input type="button" value="div创建p" id="btn3">
+<div id="dvb"></div>
+<!-- 案例5：第三种元素创建方式 -->
+<input type="button" value="创建p" id="btn6">
+<div id="bb"></div>
+
+<!-- 案例6：点击按钮在div中创建图片 -->
+<input type="button" value="来个图片" id="btn4">
+<div id="jk"></div>
+<!-- 案例7：点击按钮动态创建列表-->
+<input type="button" value="创建列表" id="btn5">
+<div id="gk"></div>
+<!-- 案例8：点击按钮动态创建列表2 -->
+<input type="button" value="创建列表2" id="btn7">
+<div id="ipo"></div>
+<!-- 案例9：动态创建表格 -->
+<input type="button" value="创建表格" id="btn8">
+<div id="jkl"></div>
+<!-- 案例10：为元素绑定事件 -->
+<input type="button" value="按钮" id="btn9">
+<!-- 案例11：只创建一个元素避免重复创建 -->
+ <input type="button" value="创建一个按钮" id="btnAS">
+<div id="as"></div>
+
+
+
+<script type="text/javascript" src="common.js"></script>
+<script>
+
+//案例1：通过节点操作元素的背景颜色
+my$("btn").onclick=function(){
+   var dvObj=my$("dv");
+   var nodes=dvObj.childNodes;
+   for (var i = 0; i < nodes.length; i++) {
+   if(nodes[i].nodeType==1 && nodes[i].nodeName=="P"){
+   	nodes[i].style.backgroundColor="red";
+   }
+   }
+}
+
+
+ //案例2：节点操作隔行变色
+
+ 
+my$("btn1").onclick=function(){
+	var current=0;
+	var ucObj=my$("uc");
+	var liObjs=ucObj.childNodes;
+	for (var i = 0; i < liObjs.length; i++) {
+		if(liObjs[i].nodeType==1 && liObjs[i].nodeName=="LI"){
+     liObjs[i].style.backgroundColor=current%2==0?"yellow":"blue";
+     current++;
+		}
+	}
+}
+//案例3：全选和全不选案例
+var ckAll=my$("j_cbAll");
+var cks= my$("j_tb").getElementsByTagName("input");
+ckAll.onclick=function(){
+	for (var i = 0; i < cks.length; i++) {
+		cks[i].checked=this.checked;
+	}
+}
+//获取tbody中所有的复选框，分别注册点击事件
+for (var j = 0; j < cks.length; j++) {
+	cks[j].onclick=function(){
+		//默认都被选中了
+	    var flag=true;
+       //判断是否所有的复选框都选中了
+	    for (var k= 0; k < cks.length; k++) {
+	    	if (!cks[k].checked) {
+	    		//没选中就进来了
+	    		flag=false;
+	    		break;
+	    	}
+	    }
+	   ckAll.checked=flag;  
+	};
+}
+
+//案例4：第一种元素创建方式
+my$("btn2").onclick=function(){
+	document.write("<p>这是一个创建出来的P标签</p>")
+}
+
+
+//案例4：第二种元素创建方式
+my$("btn3").onclick=function(){
+	var dvbObj=my$("dvb");
+	dvbObj.innerHTML="<p>我是P标签</p>";
+}
+
+//案例5：第三种元素创建方式
+my$("btn6").onclick=function(){
+	var pObj=document.createElement("p");
+	setInnerText(pObj,"这是p");
+	my$("bb").appendChild(pObj);
+}
+
+
+//案例7：点击按钮动态创建列表
+var names=["杨过","郭靖","张无忌","金毛狮王","周芷若","灭绝师太","乔峰"];
+my$("btn5").onclick=function(){
+	var str="<ul style='list-style-type:none; cursor:pointer'>";
+	for (var i = 0; i < names.length; i++) {
+		 str+="<li>"+names[i]+"</li>";
+	}
+	str+="</ul>";
+	my$("gk").innerHTML=str;
+
+	var listS=my$("gk").getElementsByTagName("li");
+	for (var i = 0; i < listS.length; i++) {
+		listS[i].onmouseover=function(){
+			this.style.backgroundColor="yellow";
+
+		}
+		listS[i].onmouseout=function(){
+			this.style.backgroundColor="";
+
+		}
+	}
+}
+
+
+//案例8：点击按钮动态创建列表
+var kungfu=["降龙十八掌","黯然销魂掌","葵花宝典","九阴真经","吸星大法","如来神掌","化骨绵掌","玉女心经","极乐神功"];
+my$("btn7").onclick=function(){
+	var ulObj=document.createElement("ul");
+	my$("ipo").appendChild(ulObj);
+	for (var i = 0; i < kungfu.length; i++) {
+		var liObjs=document.createElement("li");
+		liObjs.innerHTML=kungfu[i];
+		ulObj.appendChild(liObjs);
+       liObjs.onmouseover=mouseoverHandle;
+       liObjs.onmouseout=mouseoutHandle;
+	
+	}
+}
+
+function mouseoverHandle(){
+    this.style.backgroundColor="blue";
+ }
+
+
+function mouseoutHandle(){
+    this.style.backgroundColor="";
+}
+
+
+//案例9：动态创建表格
+var arr=[
+{name:"百度",href:"http://www.baidu.com"},
+{name:"谷歌",href:"http://www.google.com"},
+{name:"优酷",href:"http://www.youku.com"},
+{name:"淘宝",href:"http://www.taobao.com"},
+{name:"京东",href:"http://www.jd.com"},
+{name:"爱奇艺",href:"http://www.aiqiyi.com"}
+]
+
+my$("btn8").onclick=function(){
+	var tableObj= document.createElement("table");
+    tableObj.border="1";
+	tableObj.cellPadding="0";
+	tableObj.cellSpacing="0";
+    my$("jkl").appendChild(tableObj);
+    for (var i = 0; i < arr.length; i++) {
+    	 var dt=arr[i];
+    	 var trObj=document.createElement("tr");
+    	 tableObj.appendChild(trObj);
+    	 var td1=document.createElement("td");
+    	 td1.innerText=dt.name;
+    	 trObj.appendChild(td1);
+    	 var td2=document.createElement("td");
+    	 td2.innerHTML="<a href='+dt.href+'>+dt.name+'</a>'	";
+    	 trObj.appendChild(td2);
+    	 
+
+    }
+}
+
+
+
+
+
+//案例11：只创建一个元素避免重复创建
+//有则删除，无则创建
+my$("btnAS").onclick=function(){
+   if(my$("btnDF")){
+   	my$("as").removeChild(my$("btnDF"));
+   }
+	var obj=document.createElement("input");
+	obj.type="button";
+	obj.value="按钮";
+	obj.id="btnDF";
+	my$("as").appendChild(obj);
+}
+
+my$("btnAS").onclick=function(){
+   if(!my$("btnDF")){
+   	var obj=document.createElement("input");
+	obj.type="button";
+	obj.value="按钮";
+	obj.id="btnDF";
+	my$("as").appendChild(obj);
+   }	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+ *{
+ 	margin:0;
+ 	padding: 0;
+ }
+form{
+	width: 600px;
+	margin:20px auto;
+}
+form>fieldset{
+	padding: 10px;
+}
+form>fieldset>meter,
+form>fieldset>input{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+    border:none;
+    border:1px solid #ccc;
+	border-radius: 5px;
+	margin:10px 0;
+	font-size: 16px;
+	padding-left: 5px;
+	/*width=内容+padding+border*/
+	box-sizing: border-box;
+}
+form>fieldset>meter{
+	padding-left: 0px;
+}
+
+
+.red{
+	color:red;
+}
+.green{
+	color:green;
+}
+.blue{
+	color:blue;
+}
+.underline{
+	text-decoration: underline;
+}
+
+
+
+
+
+	</style>
+</head>
+<body>
+	  <form action="">
+<fieldset>
+<legend>学生档案</legend>
+<label for="userName">姓名：</label>
+<input type="text" name="userName" id="userName" placeholder="请输入用户名">
+<label for="userPhone">手机号码：</label>
+<input type="tel" name="userPhone" id="userPhone" placeholder="请输入手机号码" pattern="^(\+86)?1\d{10}$">
+<label for="userE-mail">邮箱地址：</label>
+<input type="email" name="userE-mail" id="userE-mail" placeholder="请输入邮箱地址" required="required">
+<label for="">所属学院：</label>
+<input type="text" name="college" id="college" list="cList" placeholder="请选择所属学院">
+<datalist id="cList">
+<option value="前端与移动开发"></option>
+<option value="java"></option>
+<option value="pathon"></option>
+<option value="PHP"></option>
+</datalist>
+<label for="">入学成绩：</label>
+<input type="number" max="100" min="0" value="0" id="score" placeholder="请输入入学成绩">
+<label for="">基础水平</label>
+<meter id="level" max="100" min="0" low="59" high="90"></meter>
+<label for="inTime">入学日期</label>
+<input type="date" id="inTime" name="inTime" >
+<label for="leaveinTime">毕业日期</label>
+<input type="date" id="leaveinTime" name="leaveinTime" >
+
+
+<input type="submit">
+
+</fieldset>
+	  </form>
+
+
+<ul>
+	<li>前端与移动开发</li>
+	<li class="blue">java</li>
+	<li>javascript</li>
+	<li class="red">c++</li>
+</ul>
+
+<input type="button" value="为第一个li元素添加类样式" id="add">
+<input type="button" value="为第二个li元素删除类样式" id="remove">
+<input type="button" value="为第三个li切换类样式" id="toggle">
+<input type="button" value="判断第四个li元素是否包含某个样式" id="contain">
+
+
+
+<!-- 自定义属性 -->
+<p data-school-name="itcast">传智播客</p>
+
+
+<script>
+document.getElementById("score").oninput=function(){
+    document.getElementById("level").value=this.value;
+}
+
+/*
+h5  获取DOM元素
+querySelector:获取单个元素，如果获取的元素不止一个，那么只会返回满足条件的第一个元素
+如果是类选择器，必须添加.  如果是id选择器，必须添加#
+querySelectorAll 获取满足条件的所有元素-----数组
+如果需要其中的一个 例：querySelectorAll("li")[1];
+
+
+
+
+
+
+
+ */
+window.onload=function(){
+	//add:为元素添加指定名称的样式 一次只能添加一个样式  
+	document.querySelector("#add").onclick=function(){
+	//classList:当前元素的所有样式列表---数组
+		document.querySelector("li").classList.add("red");
+	}
+	//remove:为元素移除指定名称的杨思，一次只能移除一个
+	document.querySelector("#remove").onclick=function(){
+  document.querySelector(".blue").classList.remove("blue");
+	}
+	//toggle：切换元素的样式：如果元素之前没有指定名称的样式则添加，有过有则移除
+	document.querySelector("#toggle").onclick=function(){
+		document.querySelectorAll("li")[2].classList.toggle("green");  
+	}
+	//contains:判断元素是否包含指定名称的样式，返回true/false
+	document.querySelector("#contain").onclick=function(){
+    var isContain=document.querySelector("li")[3].classList.contains("red");
+    console.log(isContain);
+	}
+}
+
+
+// 自定义属性取值
+var p=document.querySelector("p");
+// 获取自定义属性值
+// 将data-后面的单词使用驼峰命名法链接:必须使用驼峰命名法，否则无法获取
+var value=p.dataset["schoolName"];
+console.log(value);
+
+
+
+
+
+
+
+
+
+/*
+classList不会覆盖之前的类样式
+className的区别，className如果写一个会把之前的类样式覆盖了
+
+H5中自定义属性规范
+以  data- 开头  至少有一个字符  多个单词中间用-  链接
+1、名称应该都使用小写，不要包含任何的大写字符
+2、名称中不要有任何特殊符号
+3、名称不要纯数字
+dataset获取的是一个数组
+ */
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
